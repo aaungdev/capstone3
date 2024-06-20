@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Global CSS (CSS rules you want applied to all pages) -->
+    <link rel="stylesheet" href="./global.css" />
+
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="./login.css" />
+
+    <title>Login</title>
+
+    <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
+    <script src="auth.js"></script>
+    <script>
+      if (isLoggedIn() === true) {
+        window.location.replace("../posts/posts.html");
+      }
+    </script>
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <h1>Login</h1>
+      <form id="login">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" minlength="3" />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" minlength="6" />
+        </div>
+
+        <button id="loginButton" type="submit">Login</button>
+      </form>
+    </main>
+
+    <footer></footer>
+
+    <!-- Page-specific code -->
+    <script src="login.js"></script>
+  </body>
+</html>

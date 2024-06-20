@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Global CSS (CSS rules you want applied to all pages) -->
+    <link rel="stylesheet" href="global.css" />
+
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="index.css" />
+
+    <title>Login to the Microblog Network!</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <span id="greetingSpan">Welcome </span>
+        <a id="loginLink" href="account/login.html">Login</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Welcome to YOUR MICROBLOG NETWORK</h1>
+    </main>
+
+    <footer></footer>
+
+    <script src="account/auth.js"></script>
+    <script>
+      const loginLink = document.querySelector("#loginLink");
+      const greetingSpan = document.querySelector("#greetingSpan");
+      if (isLoggedIn() == true) {
+        loginLink.style.display = "none";
+      } else {
+        greetingSpan.style.display = "none";
+      }
+    </script>
+    <!-- Page-specific code -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
