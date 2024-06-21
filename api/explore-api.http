@@ -1,0 +1,74 @@
+### Base URL
+{{BASE_URL}}
+
+### Step 1) Register or create new user
+POST {{BASE_URL}}/api/users
+Content-Type: application/json
+
+{
+  "username": "aaung",
+  "fullName": "Aung Aung",
+  "password": "         "
+}
+
+
+### Step 2) Login
+POST {{BASE_URL}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "aaung",
+  "password": "aaung@yearup"
+}
+
+
+### Step 3) GET Users
+GET {{BASE_URL}}/api/users
+Authorization: Bearer {{TOKEN}}
+
+### Step 4) GET One User
+GET {{BASE_URL}}/api/users/aaung
+Authorization: Bearer {{TOKEN}}
+
+### Step 5) Create a Post
+POST {{BASE_URL}}/api/posts
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "text": "Hello World!"
+}
+
+### Step 6) GET Posts
+GET {{BASE_URL}}/api/posts
+Authorization: Bearer {{TOKEN}}
+
+### Step 6b) GET a Post
+GET {{BASE_URL}}/api/posts/6675a2e9fbf13c2cc0eaf755
+Authorization: Bearer {{TOKEN}}
+
+### Step 7) DELETE Post
+DELETE {{BASE_URL}}/api/posts/6675a2e9fbf13c2cc0eaf755
+Authorization: Bearer {{TOKEN}}
+
+### Step 8) Update User
+PUT {{BASE_URL}}/api/users/aaung
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "fullName": "Aung AI"
+}
+
+### Step 9) Add Like
+POST {{BASE_URL}}/api/likes
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "postId": "6675a2e9fbf13c2cc0eaf755"
+}
+
+### Step 10) Delete/Remove Like
+DELETE {{BASE_URL}}/api/likes/6675aa0efbf13c2cc0eaf84b
+Authorization: Bearer {{TOKEN}}
