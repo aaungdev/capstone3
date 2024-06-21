@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Clone</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn-icons-png.flaticon.com/128/3536/3536505.png"
+    />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="login.css" />
+    <script src="auth.js"></script>
+    <script>
+      if (isLoggedIn() === true) {
+        window.location.replace("../posts/posts.html");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="loginContainer">
+      <div class="navbar">
+        <div class="navLeft">
+          <img
+            id="logo"
+            src="https://cdn-icons-png.flaticon.com/128/3536/3536505.png"
+            alt="LinkedIn Logo"
+          />
+        </div>
+        <div class="navRight">
+          <div class="icons">
+            <img
+              class="icon"
+              src="https://cdn-icons-png.flaticon.com/128/1041/1041916.png"
+              alt="Articles"
+            />
+            <img
+              class="icon"
+              src="https://cdn-icons-png.flaticon.com/128/889/889140.png"
+              alt="People"
+            />
+            <img
+              class="icon"
+              src="https://cdn-icons-png.flaticon.com/128/3003/3003734.png"
+              alt="Learning"
+            />
+            <img
+              class="icon"
+              src="https://cdn-icons-png.flaticon.com/128/1077/1077042.png"
+              alt="Jobs"
+            />
+          </div>
+          <div class="iconNames">
+            <p class="textHover">Articles</p>
+            <p class="textHover">People</p>
+            <p class="textHover">Learning</p>
+            <p class="textHover">Jobs</p>
+          </div>
+          <button class="joinNow">Join now</button>
+          <button class="signIn">Sign in</button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="bodyLeft">
+          <h1 class="mainHeading">Welcome to your professional community</h1>
+          <div class="formDiv">
+            <form id="loginForm">
+              <div class="inputContainer">
+                <label for="username">Email or phone</label>
+                <input
+                  type="text"
+                  id="username"
+                  minlength="3"
+                  class="inputBox"
+                />
+              </div>
+              <div class="inputContainer">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  minlength="6"
+                  class="inputBox"
+                />
+                <button type="button" id="showPassword">Show</button>
+              </div>
+              <a href="#" class="forgotPass">Forgot password?</a>
+              <button type="submit" id="loginButton" class="signInButton">
+                Sign in
+              </button>
+              <div class="line">
+                <hr class="hrLeft" />
+                <span class="or">or</span>
+                <hr class="hrRight" />
+              </div>
+              <button type="button" class="googleSignIn">
+                <img
+                  src="https://cdn.pixabay.com/photo/2021/05/24/09/15/google-logo-6278331_1280.png"
+                  alt="Google Logo"
+                />Sign in with Google
+              </button>
+              <button type="button" class="joinNow">
+                New to LinkedIn? Join now
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="bodyRight">
+          <img
+            id="bgImage"
+            src="https://static.licdn.com/aero-v1/sc/h/dxf91zhqd2z6b0bwg85ktm5s4"
+            alt="Background Image"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>
