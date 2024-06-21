@@ -1,0 +1,596 @@
+openapi: 3.0.1
+info:
+  title: MicroblogLite API
+  version: "1.0.0"
+servers:
+  - url: http://microbloglite.us-east-2.elasticbeanstalk.com
+    description: AWS
+  - url: https://microbloglite.onrender.com
+    description: Render
+  - url: http://localhost:5000
+    description: localhost
+components:
+  schemas:
+    User:
+      additionalProperties: false
+      type: object
+      properties:
+        username:
+          $ref: "#/components/schemas/username"
+        fullName:
+          $ref: "#/components/schemas/fullName"
+        bio:
+          $ref: "#/components/schemas/bio"
+        createdAt:
+          $ref: "#/components/schemas/timestamp"
+        updatedAt:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - username
+        - fullName
+        - bio
+        - createdAt
+        - updatedAt
+    ArrayOfUsers:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+    Like:
+      additionalProperties: false
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/likeId"
+        username:
+          $ref: "#/components/schemas/username"
+        postId:
+          $ref: "#/components/schemas/postId"
+        createdAt:
+          $ref: "#/components/schemas/timestamp"
+      required:
+        - id
+        - username
+        - postId
+        - createdAt
+    Post:
+      additionalProperties: false
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/postId"
+        text:
+          $ref: "#/components/schemas/text"
+        username:
+          $ref: "#/components/schemas/username"
+        createdAt:
+          $ref: "#/components/schemas/timestamp"
+        likes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Like"
+      required:
+        - text
+        - username
+        - createdAt
+        - likes      
+    ArrayOfPosts:
+      type: array
+      items:
+        $ref: "#/components/schemas/Post"
+    OperationalError:
+      allOf:
+        - type: object
+          properties:
+            message:
+              type: string
+          required:
+            - message
+        - $ref: "#/components/schemas/ErrorStatusCode"
+    ErrorStatusCode:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          minimum: 400
+          maximum: 599
+      required:
+        - statusCode
+    SuccessStatusCode:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          minimum: 200
+          maximum: 399
+      required:
+        - statusCode
+    username:
+      description: Any HTML in this string will be removed automatically.
+      type: string
+      minLength: 3
+      maxLength: 20
+    postId:
+      type: string
+    likeId:
+      type: string
+    password:
+      type: string
+    fullName:
+      description: Any HTML in this string will be removed automatically.
+      type: string
+      minLength: 1
+    bio:
+      description: Any HTML in this string will be sanitized. _Some_ tags and attributes will be removed automatically. See /README.md in the backend server repository for details.
+      type: string
+      minLength: 0
+    text:
+      description: Any HTML in this string will be sanitized. _Some_ tags and attributes will be removed automatically. See /README.md in the backend server repository for details.
+      type: string
+      minLength: 2
+      maxLength: 255
+    timestamp:
+      type: string
+      format: date-time
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  parameters:
+    username:
+      in: path
+      name: username
+      required: true
+      schema:
+        $ref: "#/components/schemas/username"
+      description: The username of the user
+    postId:
+      in: path
+      name: postId
+      schema:
+        $ref: "#/components/schemas/postId"
+      required: true
+      description: The id of the post
+    likeId:
+      in: path
+      name: likeId
+      schema:
+        $ref: "#/components/schemas/likeId"
+      required: true
+      description: The id of the like
+    limitParam:
+      name: limit
+      in: query
+      description: Number of items to return
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 0
+  headers:
+    WWW-Authenticate:
+      description: Includes the URI location to receive a bearer token
+      required: true
+      schema:
+        type: string
+        enum:
+          - Bearer realm="POST your username and password to /auth/login to receive a token"
+  responses:
+    202:
+      description: A message describing a successful delete operation
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  id:
+                    $ref: "#/components/schemas/likeId"
+                  statusCode:
+                    type: integer
+                    enum: [202]
+                required:
+                  - id
+                  - statusCode
+    204:
+      description: No content (but successful)
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    401:
+      description: Unauthorized
+      headers:
+        WWW-Authenticate:
+          $ref: "#/components/headers/WWW-Authenticate"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    409:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    413:
+      description: Payload Too Large
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+    415:
+      description: Unsupported Media type
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationalError"
+paths:
+  /auth/login:
+    post:
+      summary: Login user
+      operationId: login
+      x-controller: auth
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                username:
+                  $ref: "#/components/schemas/username"
+                password:
+                  $ref: "#/components/schemas/password"
+              required:
+                - username
+                - password
+      responses:
+        200:
+          description: An object containing the username and bearer token of the newly-authenticated user
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      username:
+                        $ref: "#/components/schemas/username"
+                      token:
+                        type: string
+                      statusCode:
+                        type: integer
+                        enum: [200]
+                    required:
+                      - username
+                      - token
+                      - statusCode
+        400:
+          $ref: "#/components/responses/400"
+  /auth/logout:
+    get:
+      summary: Logout a user
+      operationId: logout
+      x-controller: auth
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      responses:
+        204:
+          $ref: "#/components/responses/204"
+        401:
+          $ref: "#/components/responses/401"
+  /api/users:
+    get:
+      summary: Get a list of users
+      operationId: getUsers
+      x-controller: users
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/limitParam"
+        - $ref: "#/components/parameters/offsetParam"
+      responses:
+        200:
+          description: An array of user objects
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArrayOfUsers"
+        400:
+          $ref: "#/components/responses/400"
+    post:
+      summary: Create a new user
+      operationId: createUser
+      x-controller: users
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                username:
+                  $ref: "#/components/schemas/username"
+                fullName:
+                  $ref: "#/components/schemas/fullName"
+                password:
+                  $ref: "#/components/schemas/password"
+              required:
+                - username
+                - displayName
+                - password
+      responses:
+        201:
+          description: The newly-created user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          $ref: "#/components/responses/400"
+        409:
+          $ref: "#/components/responses/409"
+  /api/users/{username}:
+    get:
+      summary: Get a user
+      operationId: getUser
+      x-controller: users
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/username"
+      responses:
+        200:
+          description: The requested user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          $ref: "#/components/responses/400"
+        404:
+          $ref: "#/components/responses/404"
+    put:
+      summary: Update user
+      operationId: updateUser
+      x-controller: users
+      tags:
+        - Users
+      parameters:
+        - $ref: "#/components/parameters/username"
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: The user updates
+        required: true
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                password:
+                  $ref: "#/components/schemas/password"
+                bio:
+                  $ref: "#/components/schemas/bio"
+                fullName:
+                  $ref: "#/components/schemas/fullName"
+      responses:
+        200:
+          description: The new state of the user as updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        403:
+          $ref: "#/components/responses/403"
+        404:
+          $ref: "#/components/responses/404"
+  /api/posts:
+    get:
+      summary: Get a list of posts
+      operationId: getPosts
+      x-controller: posts
+      tags:
+        - Posts
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/limitParam"
+        - $ref: "#/components/parameters/offsetParam"
+        - name: username
+          in: query
+          description: Get posts created by this username
+          required: false
+          schema:
+            $ref: "#/components/schemas/username"
+      responses:
+        200:
+          description: An array of post objects
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArrayOfPosts"
+        400:
+          $ref: "#/components/responses/400"
+    post:
+      summary: Create a post
+      operationId: createPost
+      x-controller: posts
+      tags:
+        - Posts
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: The post to create
+        required: true
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                text:
+                  $ref: "#/components/schemas/text"
+              required:
+                - text
+      responses:
+        201:
+          description: The newly-created post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+  /api/posts/{postId}:
+    get:
+      summary: Get a post
+      operationId: getPost
+      x-controller: posts
+      tags:
+        - Posts
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/postId"
+      responses:
+        200:
+          description: The requested post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+        400:
+          $ref: "#/components/responses/400"
+        404:
+          $ref: "#/components/responses/404"
+    delete:
+      summary: Delete a post
+      operationId: deletePost
+      x-controller: posts
+      tags:
+        - Posts
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/postId"
+      responses:
+        202:
+          description: A message describing a successful delete operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        enum:
+                          - Post deleted
+                    required:
+                      - id
+                  - $ref: "#/components/schemas/SuccessStatusCode"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        403:
+          $ref: "#/components/responses/403"
+        404:
+          $ref: "#/components/responses/404"
+  /api/likes:
+    post:
+      summary: Add Like
+      operationId: addLike
+      x-controller: likes
+      tags:
+        - Likes
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              type: object
+              properties:
+                postId:
+                  $ref: "#/components/schemas/postId"
+              required:
+                - postId
+      responses:
+        201:
+          description: The newly-created like object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Like"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+  /api/likes/{likeId}:
+    delete:
+      summary: Remove Like
+      operationId: removeLike
+      x-controller: likes
+      tags:
+        - Likes
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/likeId"
+      responses:
+        202:
+          $ref: "#/components/responses/202"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        404:
+          $ref: "#/components/responses/404"
