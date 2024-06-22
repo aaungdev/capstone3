@@ -31,7 +31,6 @@ body {
   width: 8rem;
 }
 
-/* || SIGNUP CONTENT AREA */
 .signupContent {
   display: flex;
   flex-direction: column;
@@ -174,7 +173,7 @@ body {
 .signupContent .signupArea .buttonLink img {
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 4px;
   vertical-align: middle;
 }
 

@@ -44,6 +44,7 @@ body {
   box-shadow: 0 0.4rem 0.9rem #ccc;
   padding: 2.5rem 1.8rem;
   border-radius: 0.6rem;
+  width: 25%;
 }
 
 .titleArea {
@@ -57,9 +58,10 @@ body {
 }
 
 .description {
-  color: #666;
+  color: #000000c4;
   font-weight: 500;
   font-size: 0.9em;
+  margin-top: 0.5em;
 }
 
 .loginForm {
@@ -100,6 +102,15 @@ body {
   font-weight: 600;
 }
 
+.agreement {
+  font-size: 0.8em;
+  margin-bottom: 1em;
+}
+
+.agreement a {
+  color: #0467c3;
+  font-weight: 550;
+}
 .button input {
   width: 100%;
   padding: 1.12rem 0.75rem;
@@ -112,14 +123,15 @@ body {
 }
 
 .button button {
-    width: 100%;
-    padding: 1.12rem 0.75rem;
-    background-color: #0467c3;
-    color: #fff;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 3rem;
-    cursor: pointer;
+  margin-top: 1em;
+  width: 100%;
+  padding: 1rem 0.75rem;
+  background-color: #0467c3;
+  color: #fff;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
 }
 
 .or {
@@ -154,8 +166,9 @@ body {
 .buttonLink {
   text-align: center;
   border: 2px solid #999;
-  padding: 1.1rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 3.1rem;
+  margin-bottom: 0.5em;
 }
 
 .buttonLink i {
@@ -167,6 +180,13 @@ body {
   text-decoration: none;
   color: #666;
   font-weight: 600;
+}
+
+.buttonLink img {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
 .joinNow .link {

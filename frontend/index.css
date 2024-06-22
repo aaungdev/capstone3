@@ -715,7 +715,7 @@ header {
 .lastSection {
   width: 100%;
   height: auto;
-  background-image: url(posts/images/bgimage.png);
+  background-image: url(images/bgimage.png);
   background-size: contain;
   background-position: center;
   height: 100dvh;
@@ -723,6 +723,7 @@ header {
   display: flex;
   justify-content: center;
   padding: 60px 0;
+  margin-bottom: -7em;
 }
 
 .lastHeader {
@@ -737,11 +738,12 @@ header {
 .lastHeader button {
   background-color: rgb(10, 102, 194);
   color: white;
-  padding: 13px 24px;
-  border-radius: 20px;
+  padding: 15px 24px;
+  border-radius: 24px;
   font-weight: 600;
   border: none;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .lastHeader button:hover {
@@ -754,6 +756,7 @@ footer {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+  margin-top: 0;
   background-color: #f3f2f0;
 }
 
