@@ -1,4 +1,3 @@
-<!-- POSTS page -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +22,9 @@
     </script>
   </head>
   <body>
-    <header></header>
+    <header>
+      <button id="logoutButton">Logout</button>
+    </header>
 
     <main>
       <h1>Posts</h1>
@@ -33,5 +34,12 @@
 
     <!-- Page-specific code -->
     <script src="posts.js"></script>
+    <script>
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          logout();
+        });
+    </script>
   </body>
 </html>
