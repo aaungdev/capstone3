@@ -1,0 +1,875 @@
+/* General Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Navbar */
+nav {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mainNav {
+    width: 77%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoNav {
+    width: 130px;
+}
+
+.logoNav img {
+    width: 100%;
+}
+
+.navBar {
+    width: 46%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navLinks {
+    width: 70%;
+}
+
+.navLinks ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navLinks li {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navLinks li:hover i {
+    color: black;
+}
+
+.navLinks li:hover span {
+    color: black;
+}
+
+.navLinks li span {
+    color: #00000099;
+    font-size: 12px;
+}
+
+.navLinks li i {
+    font-size: 20px;
+    color: #00000099;
+}
+
+.lineView {
+    width: 1px;
+    height: 37px;
+    background-color: rgb(235, 235, 235);
+}
+
+.navCta {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navCta a:first-child {
+    color: #000000bf;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 11px 22px;
+    border-radius: 15px;
+}
+
+.navCta a:first-child:hover {
+    background-color: lightgray;
+}
+
+.navCta a:last-child {
+    color: #0a66c2;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 11px 22px;
+    border: 1px solid #0a66c2;
+    border-radius: 15px;
+}
+
+.navCta a:last-child:hover {
+    background-color: #d8e8f8;
+}
+
+/* Header */
+header {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.formSection {
+    width: 60%;
+}
+
+.headTitle {
+    font-size: 50px;
+    font-weight: 200;
+    width: 60%;
+    color: #b24020;
+    margin-bottom: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.field label {
+    font-size: 14px;
+    color: #000000bf;
+    font-weight: bold;
+}
+
+.field input {
+    padding: 14px 16px;
+    margin-top: 8px;
+}
+
+.passwordField {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    position: relative;
+}
+
+.passwordField label {
+    font-size: 14px;
+    color: #000000bf;
+    font-weight: bold;
+}
+
+.passwordField input {
+    padding: 14px 16px;
+    margin-top: 5px;
+}
+
+.passwordField button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0a66c2;
+}
+
+.forgot {
+    margin-top: 10px;
+}
+
+.forgot a {
+    color: #0a66c2;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.signinButton button {
+    background-color: #0a66c2;
+    color: white;
+    width: 50%;
+    border-radius: 15px;
+    padding: 14px 16px;
+    border: none;
+    box-shadow: 0 0 5px lightgray;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.lineViewOr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.line {
+    width: 45%;
+    height: 1px;
+    background-color: lightgrey;
+}
+
+.privacy {
+    width: 45%;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.googleButton {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.googleButton button {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+}
+
+.googleButton button i {
+    width: 18px;
+    margin-right: 3px;
+}
+
+.joinButton {
+    width: 50%;
+}
+
+.joinButton button {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.headerImage {
+    width: 40%;
+    margin-top: 50px;
+}
+
+.headerImage img {
+    width: 100%;
+}
+
+/* Explore Section */
+.exploreSection {
+    width: 100%;
+    background-color: #f3f2f0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 50px 0;
+}
+
+.exploreContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.titleSide {
+    width: 50%;
+}
+
+.titleSide p:first-child {
+    font-size: 48px;
+    color: #000000e6;
+}
+
+.titleSide p:last-child {
+    font-size: 20px;
+    color: #000000e6;
+    width: 88%;
+    margin-top: 12px;
+    line-height: -10px;
+}
+
+.buttons {
+    width: 50%;
+}
+
+.buttons ul li:last-child {
+    border: 1px solid #0a66c2;
+}
+
+.buttons ul li:last-child a {
+    color: #0a66c2;
+}
+
+.buttons ul li:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.buttons ul li {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.buttons ul li a {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Job Section */
+.jobSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.jobContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.jobTitle {
+    width: 50%;
+}
+
+.jobTitle p {
+    font-size: 48px;
+    color: #000000e6;
+}
+
+.searchSide {
+    width: 50%;
+}
+
+.searchSide p {
+    font-size: 16px;
+    color: #00000099;
+    margin-bottom: 15px;
+}
+
+.searchButtons ul li {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.searchButtons ul li:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.searchButtons ul li a {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.showMore button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: transparent;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.showMore button:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.showMore button i {
+    margin-left: 3px;
+}
+
+/* Post Section */
+.postSection {
+    width: 100%;
+    background-color: #f1ece5;
+    display: flex;
+    justify-content: center;
+    padding: 70px 0;
+}
+
+.postContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postTitle {
+    width: 40%;
+}
+
+.postTitle p {
+    color: #b24020;
+    font-size: 40px;
+}
+
+.postButton {
+    width: 120px;
+    margin-left: 20px;
+}
+
+.postButton button {
+    background-color: transparent;
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    padding: 13px 17px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.postButton button:hover {
+    background-color: rgb(205, 235, 255);
+}
+
+/* Discover Section */
+.discoverSection {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 60px 0;
+}
+
+.discoverContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.discoverTitle {
+    width: 50%;
+}
+
+.discoverTitle p:first-child {
+    font-size: 48px;
+    color: #000000e6;
+}
+
+.discoverTitle p:last-child {
+    font-size: 20px;
+    color: #000000e6;
+    width: 88%;
+    margin-top: 12px;
+    line-height: -10px;
+}
+
+.discoverButtons {
+    width: 70%;
+}
+
+.discoverButtons ul li:last-child {
+    border: 1px solid #0a66c2;
+}
+
+.discoverButtons ul li:last-child a {
+    color: #0a66c2;
+}
+
+.discoverButtons ul li:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.discoverButtons ul li {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.discoverButtons ul li a {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Community Section */
+.communitySection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+    background-color: #f3f2f0;
+}
+
+.communityContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.communityTitle {
+    width: 50%;
+}
+
+.communityTitle p:first-child {
+    font-size: 40px;
+    color: #b24020;
+}
+
+.communityTitle p:last-child {
+    font-size: 32px;
+    color: #000000e6;
+    line-height: -10px;
+    margin-top: 10px;
+}
+
+.communityImage {
+    width: 45%;
+}
+
+.communityImage img {
+    width: 100%;
+}
+
+.arrowButton button {
+    padding: 12px 13px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+/* Connection Section */
+.connectionSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.connectionContainer {
+    width: 77%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.connectionLeft {
+    width: 50%;
+}
+
+.connectionLeft img {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.connectionLeft p {
+    font-size: 48px;
+    color: #000000e6;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.connectionLeft button {
+    padding: 12px 22px;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.connectionLeft button:hover {
+    opacity: 0.6;
+}
+
+.connectionRight {
+    width: 50%;
+}
+
+.connectionRight img {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.connectionRight p {
+    font-size: 48px;
+    color: #000000e6;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.connectionRight button {
+    padding: 15px 35px;
+    font-size: 20px;
+}
+
+.connectionRight button i {
+    margin-left: 10px;
+}
+
+/* Find Section */
+.findSection {
+    width: 100%;
+    display: flex;
+    padding: 60px 0;
+}
+
+.findLeftSide {
+    width: 65%;
+    background-color: #f3f2f0;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.findContent {
+    width: 60%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.findContent .subTitle {
+    font-size: 40px;
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+.findContent .headTitle {
+    width: 100%;
+    font-size: 40px;
+}
+
+.findContent button {
+    width: 90%;
+    padding: 20px 25px;
+    margin-bottom: 10px;
+    background-color: #ede7db;
+    border: none;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+
+.findContent button i {
+    position: absolute;
+    right: 10px;
+}
+
+.findContent button:hover {
+    background-color: #cac5bd;
+}
+
+.findImage {
+    width: 70%;
+}
+
+.findImage img {
+    width: 100%;
+    margin-left: 86px;
+}
+
+/* Last Section */
+.lastSection {
+    width: 100%;
+    background-image: url(bgimage.png);
+    background-size: contain;
+    background-position: center;
+    height: 100dvh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.lastHeader {
+    margin-top: 70px;
+    width: 80%;
+}
+
+.lastHeader p {
+    font-size: 56px;
+}
+
+.lastHeader button {
+    background-color: rgb(10, 102, 194);
+    color: white;
+    padding: 13px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.lastHeader button:hover {
+    background-color: rgb(6, 64, 122);
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #f3f2f0;
+}
+
+.footerMain {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footerMain .footerRight {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+.footerLogo img {
+    width: 100px;
+}
+
+.footerGeneral p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.footerGeneral ul li {
+    line-height: 20px;
+}
+
+.footerGeneral ul li:hover a {
+    text-decoration: underline;
+}
+
+.footerGeneral ul li a {
+    color: #00000099;
+    font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (min-width:200px) and (max-width:768px) {
+    .mainNav {
+        width: 100% !important;
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .navCta {
+        white-space: nowrap;
+    }
+
+    .navBar {
+        justify-content: end;
+    }
+
+    .headerContainer {
+        width: 100% !important;
+        padding: 0 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header {
+        background-image: none !important;
+    }
+
+    .formSection {
+        width: 100% !important;
+    }
+
+    .headTitle, .field, .passwordField, .signinButton button, .lineViewOr, .privacy, .googleButton, .joinButton, .headerImage {
+        width: 100% !important;
+    }
+
+    .headerImage {
+        display: flex;
+        justify-content: center;
+    }
+
+    .headerImage img {
+        width: 50% !important;
+    }
+
+    .lineView {
+        display: none;
+    }
+
+    .jobSection, .exploreSection, .postSection, .discoverSection, .communitySection, .connectionSection, .findSection, .lastSection, footer .footerMain, .footerGeneral {
+        width: 100% !important;
+    }
+
+    .jobContainer, .exploreContainer, .discoverContainer, .communityContainer, .connectionContainer, .findLeftSide, .footerMain, .footerGeneral {
+        width: 100% !important;
+        padding: 0 10px;
+    }
+
+    .titleSide, .postTitle, .jobTitle, .searchSide, .discoverTitle {
+        width: 100% !important;
+    }
+
+    .buttons, .searchButtons {
+        width: 100% !important;
+        margin-top: 20px;
+    }
+
+    .postContainer, .findLeftSide .findContent {
+        width: 100% !important;
+    }
+
+    .lastSection {
+        background: none !important;
+        height: fit-content !important;
+        margin-bottom: 50px;
+        padding: 0 10px !important;
+    }
+
+    .lastHeader {
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+
+    .lastHeader p {
+        width: 100% !important;
+        margin-bottom: 24px;
+        font-size: 32px;
+    }
+}
