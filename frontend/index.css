@@ -97,9 +97,9 @@ nav {
 .navCta a:first-child {
   color: #000000bf;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   padding: 11px 22px;
-  border-radius: 15px;
+  border-radius: 24px;
 }
 
 .navCta a:first-child:hover {
@@ -109,10 +109,10 @@ nav {
 .navCta a:last-child {
   color: #0a66c2;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   padding: 11px 22px;
   border: 1px solid #0a66c2;
-  border-radius: 15px;
+  border-radius: 24px;
 }
 
 .navCta a:last-child:hover {
@@ -215,8 +215,8 @@ header {
 }
 
 .googleButton :hover {
-    background-color: #dcdcdc46;
-  }
+  background-color: #dcdcdc46;
+}
 
 .joinButton :hover {
   background-color: #dcdcdc46;
@@ -256,7 +256,7 @@ header {
 
 .googleButton button i {
   width: 28px;
-  margin-right: 8px; /* Increased margin for better spacing */
+  margin-right: 8px;
 }
 
 .headerImage {
@@ -333,7 +333,7 @@ header {
 .buttons ul li a {
   color: black;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* Job Section */
@@ -385,7 +385,7 @@ header {
 .searchButtons ul li a {
   color: black;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .showMore button {
@@ -443,7 +443,7 @@ header {
   padding: 13px 17px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -458,18 +458,18 @@ header {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  padding: 60px 0;
+  padding: 70px 0;
 }
 
 .discoverContainer {
-  width: 77%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .discoverTitle {
-  width: 50%;
+  width: 40%;
 }
 
 .discoverTitle p:first-child {
@@ -486,7 +486,10 @@ header {
 }
 
 .discoverButtons {
-  width: 70%;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Add gap between buttons */
 }
 
 .discoverButtons ul li:last-child {
@@ -512,7 +515,7 @@ header {
 .discoverButtons ul li a {
   color: black;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /* Community Section */
@@ -520,7 +523,8 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 60px 0;
+  padding-top: 200px;
+  padding-bottom: 200px;
   background-color: #f3f2f0;
 }
 
@@ -549,7 +553,7 @@ header {
 }
 
 .communityImage {
-  width: 45%;
+  width: 38%;
 }
 
 .communityImage img {
@@ -570,7 +574,8 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 60px 0;
+  padding-top: 200px;
+  padding-bottom: 200px;
 }
 
 .connectionContainer {
@@ -724,7 +729,7 @@ header {
   color: white;
   padding: 13px 24px;
   border-radius: 20px;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
   cursor: pointer;
 }
@@ -762,7 +767,7 @@ footer {
 
 .footerGeneral p {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 10px;
   width: 100%;
 }
