@@ -2,30 +2,108 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="global.css" />
-
-    <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="index.css" />
-
-    <title>Login to the Microblog Network!</title>
+    <title>Sign Up | LinkedIn</title>
+    <link rel="icon" href="img/linkedin.png" type="image/x-icon" />
+    <link rel="stylesheet" href="register.css" type="text/css" />
   </head>
   <body>
-    <header>
-      <nav>
-        
-      </nav>
+    <header class="header">
+      <section class="headerContainer">
+        <a href="#" class="siteLogo">
+          <img
+            src="images/LinkedIn-logo.png"
+            alt="LinkedIn logo"
+            class="logo"
+          />
+        </a>
+      </section>
     </header>
-
     <main>
-      <h1>Register</h1>
+      <section class="loginContent">
+        <div class="titleArea">
+          <h1 class="title">Make the most of your professional life</h1>
+        </div>
+        <article class="loginArea">
+          <form action="login" class="loginForm">
+            <p class="field">
+              Email or phone number
+              <input
+                type="text"
+                name="emailOrPhone"
+                id="emailOrPhone"
+                placeholder="Email or Phone"
+                autocomplete="on"
+                required
+                autofocus
+              />
+            </p>
+            <p class="field">
+              Password (6+ characters)
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="on"
+                required
+              />
+              <span>show</span>
+            </p>
+            <p>
+              By clicking Agree & Join, you agree to LinkedIn's
+              <a href="#">User <br />Agreement,</a
+              ><a href="#">Privacy Policy,</a> and
+              <a href="#">Cookie Policy</a>.
+            </p>
+            <p class="button"><input type="submit" value="Agree & Join" /></p>
+          </form>
+          <p class="or">or</p>
+          <p class="buttonLink">
+            <img
+              src="https://i.pinimg.com/originals/8c/03/0b/8c030bd6bd7ee87ad41485e3c7598dd4.png"
+              alt="Google Logo"
+              class="googleLogo"
+            />
+            <a href="#">Continue with Google</a>
+          </p>
+
+          <p class="signinLink">
+            Already on LinkedIn? <a href="signin.html">Sign in</a>
+          </p>
+        </article>
+        <article class="getHelp">
+          <p class="link">
+            Looking to create a page for a business? <a href="#">Get help</a>
+          </p>
+        </article>
+      </section>
     </main>
 
-    <footer></footer>
-
-   
+    <footer>
+      <ul>
+        <li>
+          <a href="#"
+            ><i class="bi bi-linkedin"></i
+            ><span>
+              &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script></span
+            ></a
+          >
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">User Agreement</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Copyright Policy</a></li>
+        <li><a href="#">Brand Policy</a></li>
+        <li><a href="#">Guest Controls</a></li>
+        <li><a href="#">Community Guidelines</a></li>
+        <li><a href="#">Language</a></li>
+      </ul>
+    </footer>
   </body>
 </html>
