@@ -103,7 +103,7 @@ nav {
 }
 
 .navCta a:first-child:hover {
-  background-color: lightgray;
+  background-color: rgba(211, 211, 211, 0.22);
 }
 
 .navCta a:last-child {
@@ -116,7 +116,7 @@ nav {
 }
 
 .navCta a:last-child:hover {
-  background-color: #d8e8f8;
+  background-color: #d8e8f862;
 }
 
 /* Header */
@@ -126,100 +126,106 @@ header {
   align-items: center;
   justify-content: center;
 }
-
 .headerContainer {
-  width: 77%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
 }
 
 .formSection {
-  width: 60%;
+  margin-left: 130px;
+  width: 30%;
 }
 
 .headTitle {
-  font-size: 56px;
+  font-size: 55px;
   font-weight: 200;
-  width: 80%;
+  width: 150%;
   color: #b24020;
+  margin-bottom: 30px;
+}
+
+.field,
+.passwordField,
+.signinButton,
+.googleButton,
+.joinButton {
+  width: 100%;
   margin-bottom: 20px;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-bottom: 10px;
-}
-
-.field label {
-  font-size: 14px;
-  color: #000000bf;
-  font-weight: bold;
-}
-
-.field input {
-  padding: 14px 16px;
-  margin-top: 8px;
-}
-
-.passwordField {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  position: relative;
-}
-
+.field label,
 .passwordField label {
   font-size: 14px;
   color: #000000bf;
-  font-weight: bold;
+  font-weight: 600;
 }
 
+.field input,
 .passwordField input {
-  padding: 14px 16px;
-  margin-top: 5px;
+  width: 100%;
+  padding: 16px 18px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.passwordField {
+  position: relative;
 }
 
 .passwordField button {
-  background-color: transparent;
-  border: none;
   position: absolute;
   right: 20px;
   bottom: 15px;
+  background-color: transparent;
+  border: none;
   font-size: 16px;
   font-weight: 600;
   color: #0a66c2;
 }
 
 .forgot {
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .forgot a {
   color: #0a66c2;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .signinButton button {
   background-color: #0a66c2;
   color: white;
-  width: 50%;
-  border-radius: 15px;
-  padding: 14px 16px;
+  width: 100%;
+  border-radius: 24px;
+  padding: 16px 18px;
   border: none;
   box-shadow: 0 0 5px lightgray;
-  font-weight: bold;
+  font-weight: 600;
   margin-top: 20px;
+  font-size: 16px;
 }
 
+.signinButton button:hover {
+  background-color: #01386e;
+}
+
+.googleButton :hover {
+    background-color: #dcdcdc46;
+  }
+
+.joinButton :hover {
+  background-color: #dcdcdc46;
+}
 .lineViewOr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 100%;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -231,52 +237,39 @@ header {
 }
 
 .privacy {
-  width: 45%;
-  font-size: 12px;
-  margin-bottom: 10px;
-}
-
-.googleButton {
-  width: 50%;
-  margin-bottom: 10px;
-}
-
-.googleButton button {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.googleButton button,
+.joinButton button {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 24px;
   background-color: transparent;
   border: 1px solid lightgrey;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 550;
 }
 
 .googleButton button i {
-  width: 18px;
-  margin-right: 3px;
-}
-
-.joinButton {
-  width: 50%;
-}
-
-.joinButton button {
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: transparent;
-  cursor: pointer;
+  width: 28px;
+  margin-right: 8px; /* Increased margin for better spacing */
 }
 
 .headerImage {
-  max-width: 112;
-  position: relative;
-  width: auto fit-content; 
-  flex-wrap: nowrap;/* Ensure the container takes the full width */
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headerImage img {
   width: 100%;
+  height: auto;
+  padding-top: 40px;
 }
 
 /* Explore Section */
