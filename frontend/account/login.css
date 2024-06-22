@@ -23,7 +23,6 @@ body {
 .header {
   padding: 2rem 0 0;
   margin-left: 1rem;
-  background-color: #fff;
 }
 
 .header .siteLogo .logo {
@@ -164,29 +163,45 @@ body {
 }
 
 .buttonLink {
+  width: 100%;
   text-align: center;
   border: 2px solid #999;
   padding: 0.5rem 0.75rem;
   border-radius: 3.1rem;
   margin-bottom: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.buttonLink i {
-  font-size: 1.3em;
-  color: #222;
+.appleIcon {
+  font-size: 1.7em;
 }
 
-.buttonLink a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 600;
+.buttonLink span {
+  padding: 0.3em;
+  margin-left: 0.5em;
+  font-size: 1.2em;
+  font-weight: 550;
+  color: #4b4b4b;
 }
 
 .buttonLink img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin-right: 4px;
   vertical-align: middle;
+}
+
+.buttonLink:hover {
+  background-color: #f0f0f0;
+  border-color: #888;
+}
+
+.button :hover {
+  background-color: #02417c;
 }
 
 .joinNow .link {

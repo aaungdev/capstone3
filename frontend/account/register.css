@@ -41,7 +41,7 @@ body {
 }
 
 .signupContent .titleArea {
-  margin-top: 0rem;
+  margin-top: -1rem;
   margin-bottom: 0;
 }
 
@@ -57,7 +57,7 @@ body {
   box-shadow: 0 0.1rem 0.1rem #ccc;
   padding: 2.5rem 1rem 1.2rem;
   border-radius: 0.6rem;
-  width: 30%;
+  width: 28%;
   height: auto;
 }
 
@@ -124,7 +124,7 @@ body {
 
 .signupContent .signupArea .signupForm .button input {
   width: 100%;
-  padding: 1.12rem 0.75rem;
+  padding: 0.8rem 0.75rem;
   background-color: #0467c3;
   color: #fff;
   font-size: 1.1em;
@@ -181,6 +181,32 @@ body {
   text-decoration: none;
   color: #666;
   font-weight: 600;
+}
+
+.googleButtonLink {
+  width: 100%;
+  text-align: center;
+  border: 2px solid #999;
+  padding: 0.7rem 0.75rem;
+  border-radius: 3.1rem;
+  font-size: 1em;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleButtonLink img {
+  width: 25px;
+  height: 25px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.googleButtonLink:hover {
+  background-color: #f0f0f0;
+  border-color: #888;
 }
 
 .signupContent .signupArea .signinLink {
