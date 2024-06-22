@@ -29,18 +29,7 @@
           <h1 class="title">Make the most of your professional life</h1>
         </div>
         <article class="signupArea">
-          <form class="signupForm">
-            <div class="field">
-              <label for="fullName">Full Name</label>
-              <input
-                type="text"
-                name="fullName"
-                id="fullName"
-                placeholder="Full Name"
-                autocomplete="on"
-                required
-              />
-            </div>
+          <form id="signupForm" class="signupForm">
             <div class="field">
               <label for="emailOrPhone">Email or phone number</label>
               <input
@@ -122,6 +111,17 @@
         </li>
       </ul>
     </footer>
+
+    <!-- Modal structure -->
+    <div id="successModal" class="modal">
+      <div class="modalContent">
+        <span class="closeBtn">&times;</span>
+        <h2>Congratulations! 🎉🎊</h2>
+        <p>Your account has been successfully created.</p>
+        <button id="goToPostsBtn">Go to Home Page</button>
+      </div>
+    </div>
+
     <script src="register.js"></script>
   </body>
 </html>

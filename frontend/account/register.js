@@ -7,7 +7,6 @@ document.querySelector(".signupForm").onsubmit = function (event) {
 
   const newUser = {
     username: document.querySelector("#emailOrPhone").value,
-    fullName: document.querySelector("#fullName").value,
     password: document.querySelector("#password").value,
   };
 
@@ -29,17 +28,36 @@ function createUser(userData) {
       if (data.error) {
         alert("Error: " + data.message);
       } else {
-        alert("User created successfully!");
-        // Automatically log in the user and redirect to posts page
-        login({
-          username: userData.username,
-          password: userData.password,
-        });
+        showModal();
       }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+function showModal() {
+  const modal = document.getElementById("successModal");
+  modal.style.display = "block";
+
+  const closeBtn = document.querySelector(".closeBtn");
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  const goToPostsBtn = document.getElementById("goToPostsBtn");
+  goToPostsBtn.onclick = function () {
+    login({
+      username: document.querySelector("#emailOrPhone").value,
+      password: document.querySelector("#password").value,
+    });
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 }
 
 function login(loginData) {
