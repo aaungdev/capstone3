@@ -11,14 +11,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="linkedin.css" />
   </head>
 
   <body>
     <header>
       <div class="mainNav">
         <div class="logoNav">
-          <img src="linkedIn-logo.png" />
+          <img src="linkedin-logo.png" />
         </div>
         <div class="navBar">
           <div class="navLinks">
@@ -133,24 +133,166 @@
           </div>
         </div>
       </section>
-
-      <h1>Welcome to YOUR MICROBLOG NETWORK</h1>
+      <section class="postSection">
+        <div class="postContainer">
+          <div class="postTitle">
+            <p>Post your job for millions of people to see</p>
+          </div>
+          <div class="postButton">
+            <button>Post a job</button>
+          </div>
+        </div>
+      </section>
+      <section class="discoverSection">
+        <div class="discoverContainer">
+          <div class="discoverTitle">
+            <p>Discover the best software tools</p>
+            <p>
+              Connect with buyers who have first-hand experience to find the
+              best products for you.
+            </p>
+          </div>
+          <div class="discoverButtons">
+            <ul>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Public Administration</a></li>
+              <li><a href="#">Healthcare</a></li>
+              <li><a href="#">Engineering</a></li>
+              <li><a href="#">It Services</a></li>
+              <li><a href="#">Sustainability</a></li>
+              <li><a href="#">Business Administration</a></li>
+              <li><a href="#">Telecommunications</a></li>
+              <li><a href="#">HR Management</a></li>
+              <li><a href="#">Show all</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="communitySection">
+        <div class="communityContainer">
+          <div class="communityTitle">
+            <p>Let the right people know you’re open to work</p>
+            <p>
+              With the Open To Work feature, you can privately tell recruiters
+              or publicly share with the LinkedIn community that you are looking
+              for new job opportunities.
+            </p>
+          </div>
+          <div class="communityImage">
+            <img src="community-image.png" />
+          </div>
+          <div class="arrowButton">
+            <button><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </section>
+      <section class="connectionSection">
+        <div class="connectionContainer">
+          <div class="connectionLeft">
+            <img src="image-1.svg" />
+            <p>Connect with people who can help</p>
+            <button>Find people you know</button>
+          </div>
+          <div class="connectionRight">
+            <img src="image-3.svg" />
+            <p>Learn the skills you need to succeed</p>
+            <button>
+              Choose a topic to learn about <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="findSection">
+        <div class="findLeftSide">
+          <div class="findContent">
+            <p class="headTitle">Who is LinkedIn for?</p>
+            <p class="subTitle">
+              Anyone looking to navigate their professional life.
+            </p>
+            <button>
+              Find a coworker or classmate<i class="fas fa-arrow-right"></i>
+            </button>
+            <button>Find a new job<i class="fas fa-arrow-right"></i></button>
+            <button>
+              Find a course or training<i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="findImage">
+          <img src="image-2.jpeg" alt="" />
+        </div>
+      </section>
+      <section class="lastSection">
+        <div class="lastHeader">
+          <p>Join your colleagues, classmates, and friends on LinkedIn.</p>
+          <button>Get started</button>
+        </div>
+      </section>
     </main>
-
-    <footer></footer>
-
-    <script src="account/auth.js"></script>
-    <script>
-      const loginLink = document.querySelector("#loginLink");
-      const greetingSpan = document.querySelector("#greetingSpan");
-      if (isLoggedIn() == true) {
-        loginLink.style.display = "none";
-      } else {
-        greetingSpan.style.display = "none";
-      }
-    </script>
-    <!-- Page-specific code -->
-
-    <script src="index.js"></script>
+    <footer>
+      <div class="footerMain">
+        <div class="footerLogo">
+          <img src="linkedin-logo.png" />
+        </div>
+        <div class="footerRight">
+          <div class="footerGeneral">
+            <p>General</p>
+            <ul>
+              <li><a href="#">Sign up</a></li>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Developers</a></li>
+            </ul>
+          </div>
+          <div class="footerGeneral">
+            <p>Browse LinkedIn</p>
+            <ul>
+              <li><a href="#">Learning</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Salary</a></li>
+              <li><a href="#">Mobile</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Top Companies Hub</a></li>
+              <li><a href="#">Talent</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Sales</a></li>
+              <li><a href="#">Learning</a></li>
+            </ul>
+          </div>
+          <div class="footerGeneral">
+            <p>Business Solutions</p>
+            <ul>
+              <li><a href="#">Talent</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Sales</a></li>
+              <li><a href="#">Learning</a></li>
+            </ul>
+          </div>
+          <div class="footerGeneral">
+            <p>Directories</p>
+            <ul>
+              <li><a href="#">Members</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Companies</a></li>
+              <li><a href="#">Featured</a></li>
+              <li><a href="#">Learning</a></li>
+              <li><a href="#">Posts</a></li>
+              <li><a href="#">Articles</a></li>
+              <li><a href="#">Schools</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">News Letters</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Advice</a></li>
+              <li><a href="#">People Search</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
