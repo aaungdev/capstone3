@@ -73,6 +73,12 @@ body {
   margin-bottom: 1rem;
 }
 
+.field label {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #545454;
+}
+
 .signupContent .signupArea .signupForm .field span {
   position: absolute;
   top: 50%;
@@ -163,11 +169,6 @@ body {
   margin: 0.6rem 0;
   padding: 1.1rem 0.75rem;
   border-radius: 3.1rem;
-}
-
-#hover :hover {
-  cursor: pointer;
-  background-color: aliceblue;
 }
 
 .signupContent .signupArea .buttonLink img {

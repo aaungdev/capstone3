@@ -713,7 +713,8 @@ header {
 
 /* Last Section */
 .lastSection {
-  width: 130%;
+  width: 100%;
+  height: auto;
   background-image: url(posts/images/bgimage.png);
   background-size: contain;
   background-position: center;

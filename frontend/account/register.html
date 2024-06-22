@@ -26,8 +26,8 @@
         </div>
         <article class="signupArea">
           <form action="login" class="signupForm">
-            <p class="field">
-              Email or phone number
+            <div class="field">
+              <label for="emailOrPhone">Email or phone number</label>
               <input
                 type="text"
                 name="emailOrPhone"
@@ -37,9 +37,9 @@
                 required
                 autofocus
               />
-            </p>
-            <p class="field">
-              Password (6+ characters)
+            </div>
+            <div class="field">
+              <label for="password">Password (6+ characters)</label>
               <input
                 type="password"
                 name="password"
@@ -49,25 +49,25 @@
                 required
               />
               <span>show</span>
-            </p>
+            </div>
             <p id="agreementLink">
               By clicking Agree & Join, you agree to LinkedIn's
-              <a href="#">User <br />Agreement,</a
-              ><a href="#">Privacy Policy,</a> and
-              <a href="#">Cookie Policy</a>.
+              <a href="#">User <br />Agreement,</a>
+              <a href="#">Privacy Policy,</a> and <a href="#">Cookie Policy</a>.
             </p>
-            <p class="button"><input type="submit" value="Agree & Join" /></p>
+            <div class="button">
+              <input type="submit" value="Agree & Join" />
+            </div>
           </form>
           <p class="or">or</p>
-          <p class="buttonLink" id="hover">
+          <div class="buttonLink">
             <img
               src="https://i.pinimg.com/originals/8c/03/0b/8c030bd6bd7ee87ad41485e3c7598dd4.png"
               alt="Google Logo"
               class="googleLogo"
             />
             <a href="#">Continue with Google</a>
-          </p>
-
+          </div>
           <p class="signinLink">
             Already on LinkedIn? <a href="signin.html">Sign in</a>
           </p>
@@ -79,7 +79,6 @@
         </article>
       </section>
     </main>
-
     <footer>
       <ul>
         <li>
