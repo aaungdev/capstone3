@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      href="posts/images/global-logo.png"
+      href="images/global-logo.png"
       type="image/x-icon"
     />
     <title>LinkedIn: Log In or Sign Up</title>
@@ -17,13 +17,19 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="index.css" />
+    <script src="account/auth.js"></script>
+    <script>
+      if (isLoggedIn() === true) {
+        window.location.replace("../posts/posts.html");
+      }
+    </script>
   </head>
 
   <body>
     <nav>
       <div class="mainNav">
         <div class="logoNav">
-          <img src="posts/images/LinkedIn-logo.png" />
+          <img src="images/LinkedIn-logo.png" alt="Logo" />
         </div>
         <div class="navBar">
           <div class="navLinks">
@@ -44,13 +50,13 @@
     </nav>
     <header>
       <div class="headerContainer">
-        <div class="formSection">
+        <form class="formSection" id="loginForm">
           <div class="headTitle">
             <p>Welcome to your professional community</p>
           </div>
           <div class="field">
             <label for="email">Email or phone</label>
-            <input type="text" id="email" />
+            <input type="text" id="username" />
           </div>
           <div class="passwordField">
             <label for="password">Password</label>
@@ -61,7 +67,7 @@
             <a href="#">Forgot password?</a>
           </div>
           <div class="signinButton">
-            <button>Sign in</button>
+            <button id="loginButton" type="submit">Sign in</button>
           </div>
           <div class="lineViewOr">
             <div class="line"></div>
@@ -87,9 +93,9 @@
           <div class="joinButton">
             <button>New to LinkedIn? Join now</button>
           </div>
-        </div>
+        </form>
         <div class="headerImage">
-          <img src="posts/images/main-image.svg" />
+          <img src="images/main-image.svg" alt="Main Image" />
         </div>
       </div>
     </header>
@@ -190,7 +196,7 @@
           </p>
         </div>
         <div class="communityImage">
-          <img src="posts/images/community-image.png" />
+          <img src="images/community-image.png" alt="Community Image" />
         </div>
         <div class="arrowButton">
           <button><i class="fas fa-arrow-right"></i></button>
@@ -200,12 +206,12 @@
     <section class="connectionSection">
       <div class="connectionContainer">
         <div class="connectionLeft">
-          <img src="posts/images/connection1.svg" />
+          <img src="images/connection1.svg" alt="Connection 1" />
           <p>Connect with people who can help</p>
           <button>Find people you know</button>
         </div>
         <div class="connectionRight">
-          <img src="posts/images/connection2.svg" />
+          <img src="images/connection2.svg" alt="Connection 2" />
           <p>Learn the skills you need to succeed</p>
           <button>
             Choose a topic to learn about <i class="fas fa-chevron-down"></i>
@@ -230,7 +236,7 @@
         </div>
       </div>
       <div class="findImage">
-        <img src="posts/images/find.jpeg" alt="" />
+        <img src="images/find.jpeg" alt="" />
       </div>
     </section>
     <section class="lastSection">
@@ -242,7 +248,7 @@
     <footer>
       <div class="footerMain">
         <div class="footerLogo">
-          <img src="posts/images/LinkedIn-logo.png" />
+          <img src="images/LinkedIn-logo.png" alt="Footer Logo" />
         </div>
         <div class="footerRight">
           <div class="footerGeneral">
@@ -304,5 +310,6 @@
         </div>
       </div>
     </footer>
+    <script src="account/login.js"></script>
   </body>
 </html>

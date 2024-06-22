@@ -2,18 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="./global.css" />
-
-    <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="./login.css" />
-
-    <title>Login</title>
-
-    <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
+    <title>Sign In | LinkedIn</title>
+    <link
+      rel="shortcut icon"
+      href="images/global-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="login.css" type="text/css" />
     <script src="auth.js"></script>
     <script>
       if (isLoggedIn() === true) {
@@ -22,28 +18,93 @@
     </script>
   </head>
   <body>
-    <header></header>
-
+    <header class="header">
+      <section class="headerContainer">
+        <a href="#" class="siteLogo">
+          <img
+            src="images/LinkedIn-logo.png"
+            alt="LinkedIn logo"
+            class="logo"
+          />
+        </a>
+      </section>
+    </header>
     <main>
-      <h1>Login</h1>
-      <form id="login">
-        <div>
-          <label for="username">Username</label>
-          <input type="text" id="username" minlength="3" />
-        </div>
-
-        <div>
-          <label for="password">Password</label>
-          <input type="password" id="password" minlength="6" />
-        </div>
-
-        <button id="loginButton" type="submit">Login</button>
-      </form>
+      <section class="loginContent">
+        <article class="loginArea">
+          <div class="titleArea">
+            <h1 class="title">Sign in</h1>
+            <p class="description">Stay updated on your professional world</p>
+          </div>
+          <form id="loginForm" action="login" class="loginForm">
+            <div class="field">
+              <input
+                type="text"
+                name="emailOrPhone"
+                id="username"
+                placeholder="Email or Phone"
+                autocomplete="on"
+                required
+                autofocus
+              />
+            </div>
+            <div class="field">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="on"
+                required
+              />
+              <span>show</span>
+            </div>
+            <p class="link"><a href="#">Forget password?</a></p>
+            <p class="button">
+              <button id="loginButton" type="submit">Sign in</button>
+            </p>
+            <p>
+              By clicking Continue, you agree to LinkedIn's
+              <a href="#">User <br />Agreement,</a
+              ><a href="#">Privacy Policy,</a> and
+              <a href="#">Cookie Policy</a>.
+            </p>
+          </form>
+          <p class="or">or</p>
+          <p class="buttonLink">
+            <i class="bi bi-apple"></i>
+            <a href="#">Sign in with Apple</a>
+          </p>
+        </article>
+        <article class="joinNow">
+          <p class="link">
+            New to LinkedIn? <a href="signup.html">Join now</a>
+          </p>
+        </article>
+      </section>
     </main>
-
-    <footer></footer>
-
-    <!-- Page-specific code -->
+    <footer>
+      <ul>
+        <li>
+          <a href="#"
+            ><i class="bi bi-linkedin"></i
+            ><span
+              >&copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script></span
+            ></a
+          >
+        </li>
+        <li><a href="#">User Agreement</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Community Guidelines</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Copyright Policy</a></li>
+        <li><a href="#">Send Feedback</a></li>
+        <li><a href="#">Language</a></li>
+      </ul>
+    </footer>
     <script src="login.js"></script>
   </body>
 </html>
