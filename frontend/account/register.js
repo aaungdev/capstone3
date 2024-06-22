@@ -2,14 +2,20 @@
 
 const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
 
-document.querySelector(".signupForm").onsubmit = function (event) {
+document.querySelector("#firstStepForm").onsubmit = function (event) {
   event.preventDefault();
+  document.querySelector("#firstStepForm").style.display = "none";
+  document.querySelector("#secondStepForm").style.display = "block";
+};
 
+document.querySelector("#secondStepForm").onsubmit = function (event) {
+  event.preventDefault();
   const newUser = {
     username: document.querySelector("#emailOrPhone").value,
     password: document.querySelector("#password").value,
+    firstName: document.querySelector("#firstName").value,
+    lastName: document.querySelector("#lastName").value,
   };
-
   createUser(newUser);
 };
 
