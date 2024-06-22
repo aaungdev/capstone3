@@ -20,12 +20,12 @@
       </section>
     </header>
     <main>
-      <section class="loginContent">
+      <section class="signupContent">
         <div class="titleArea">
           <h1 class="title">Make the most of your professional life</h1>
         </div>
-        <article class="loginArea">
-          <form action="login" class="loginForm">
+        <article class="signupArea">
+          <form action="login" class="signupForm">
             <p class="field">
               Email or phone number
               <input
@@ -50,7 +50,7 @@
               />
               <span>show</span>
             </p>
-            <p>
+            <p id="agreementLink">
               By clicking Agree & Join, you agree to LinkedIn's
               <a href="#">User <br />Agreement,</a
               ><a href="#">Privacy Policy,</a> and
@@ -59,7 +59,7 @@
             <p class="button"><input type="submit" value="Agree & Join" /></p>
           </form>
           <p class="or">or</p>
-          <p class="buttonLink">
+          <p class="buttonLink" id="hover">
             <img
               src="https://i.pinimg.com/originals/8c/03/0b/8c030bd6bd7ee87ad41485e3c7598dd4.png"
               alt="Google Logo"
@@ -83,15 +83,15 @@
     <footer>
       <ul>
         <li>
-          <a href="#"
-            ><i class="bi bi-linkedin"></i
-            ><span>
-              &copy;
+          <a href="#">
+            <i class="bi bi-linkedin"></i>
+            <span
+              >&copy;
               <script>
                 document.write(new Date().getFullYear());
-              </script></span
-            ></a
-          >
+              </script>
+            </span>
+          </a>
         </li>
         <li><a href="#">About</a></li>
         <li><a href="#">Accessibility</a></li>
@@ -102,7 +102,10 @@
         <li><a href="#">Brand Policy</a></li>
         <li><a href="#">Guest Controls</a></li>
         <li><a href="#">Community Guidelines</a></li>
-        <li><a href="#">Language</a></li>
+        <li>
+          <a href="#">Language</a>
+          <a href="#"><i class="bi bi-chevron-down"></i></a>
+        </li>
       </ul>
     </footer>
   </body>
