@@ -29,7 +29,18 @@
           <h1 class="title">Make the most of your professional life</h1>
         </div>
         <article class="signupArea">
-          <form action="login" class="signupForm">
+          <form class="signupForm">
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                name="fullName"
+                id="fullName"
+                placeholder="Full Name"
+                autocomplete="on"
+                required
+              />
+            </div>
             <div class="field">
               <label for="emailOrPhone">Email or phone number</label>
               <input
@@ -111,5 +122,6 @@
         </li>
       </ul>
     </footer>
+    <script src="register.js"></script>
   </body>
 </html>
