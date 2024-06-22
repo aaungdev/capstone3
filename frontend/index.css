@@ -704,8 +704,8 @@ header {
 
 /* Last Section */
 .lastSection {
-  width: 100%;
-  background-image: url(bgimage.png);
+  width: 130%;
+  background-image: url(posts/images/bgimage.png);
   background-size: contain;
   background-position: center;
   height: 100dvh;
