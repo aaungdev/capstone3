@@ -10,10 +10,235 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Profile | LinkedIn</title>
   </head>
 
-    <script src="script.js"></script>
+  <body id="body">
+    <div class="container">
+      <div class="contentContainer">
+        <section>
+          <!-- Profile Background Image -->
+          <div class="upperSection">
+            <div class="profileBackgroundImage">
+              <img
+                src="https://source.unsplash.com/random/landscape"
+                id="preview"
+                height="201px"
+              />
+              <span class="editBgCircle">
+                <label for="editBgIcon">
+                  <i class="fa-solid fa-pencil" style="color: #0062c7"></i>
+                </label>
+                <input
+                  type="file"
+                  name="editBgIcon"
+                  id="editBgIcon"
+                  accept="image/*"
+                />
+              </span>
+            </div>
+            <!-- Profile Picture -->
+            <span class="profilePic">
+              <img
+                src="https://source.unsplash.com/random/profile"
+                id="preview2"
+              />
+              <span class="editBgCircle2">
+                <label for="editBgIcon2">
+                  <i class="fa-solid fa-pencil" style="color: #0062c7"></i>
+                </label>
+                <input
+                  type="file"
+                  name="editBgIcon2"
+                  id="editBgIcon2"
+                  accept="image/*"
+                />
+              </span>
+            </span>
+            <!-- Golden Tick -->
+            <div class="userGolden">
+              <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
+              <span class="editBgCircle3">
+                <label for="editBgIcon3">
+                  <i class="fa-solid fa-pencil" style="color: #444"></i>
+                </label>
+                <input
+                  type="file"
+                  name="editBgIcon3"
+                  id="editBgIcon3"
+                  accept="image/*"
+                />
+              </span>
+            </div>
+            <!-- User Bio Details -->
+            <div class="userBioDetails">
+              <h1>John Doe</h1>
+              <p>Frontend Web Developer | HTML | CSS | JavaScript | React.js</p>
+              <div class="address">
+                <p id="location">New York, NY</p>
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="color: #4c8ed0"
+                  id="address"
+                ></i>
+                <span class="contactInfo">
+                  <a href="">∙ Contact info</a>
+                </span>
+              </div>
+              <div class="connections">
+                <a href="">500+ connections</a>
+              </div>
+              <div class="buttons">
+                <button>Open to</button>
+                <button>Add profile section</button>
+                <button>Add custom button</button>
+                <button>More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Section -->
+          <div class="lowerSection">
+            <div class="suggested">
+              <h1>Suggested for you</h1>
+              <i class="fa-solid fa-eye" style="color: #666666"></i>
+              <p>Private to you</p>
+            </div>
+            <div class="intermediate">
+              <h2>Intermediate</h2>
+              <div class="line"></div>
+              <p>6/7</p>
+              <div class="completeStar">
+                <p>Complete 1 step to achieve</p>
+                <a href="">All star</a>
+              </div>
+            </div>
+            <div class="enhanceProfile">
+              <div class="upperEnhance">
+                <div class="premium">
+                  <i class="fa-solid fa-square" style="color: #f6c885"></i>
+                  <h4>PREMIUM</h4>
+                </div>
+                <h3>Enhance your profile</h3>
+              </div>
+              <div class="lowerEnhance">
+                <p>
+                  Try our AI profile writing assistant to strengthen your
+                  profile
+                </p>
+                <button><i class="fa-solid fa-star"></i>Write with AI</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <aside>
+          <div class="upperAside">
+            <div class="languageEng">
+              <h2>Profile Language</h2>
+              <i class="fa-solid fa-pencil" style="color: #444"></i>
+            </div>
+            <div class="eng">
+              <p>English</p>
+            </div>
+            <div class="profileUrl">
+              <h2>Public profile & URL</h2>
+              <i class="fa-solid fa-pencil" style="color: #444"></i>
+            </div>
+            <div class="url">
+              <p>www.linkedin.com/in/johndoe</p>
+            </div>
+          </div>
+          <div class="lowerAside">
+            <div class="otherLower">
+              <p>Other similar profiles</p>
+            </div>
+            <div class="otherSimilarProfiles">
+              <div class="contPro">
+                <div class="profileSmall">
+                  <img src="https://source.unsplash.com/random/fruits" />
+                </div>
+                <div class="profileInfo">
+                  <h3>Jane Smith</h3>
+                  <span>∙ 2nd</span>
+                  <p>
+                    UI and UX developer to change frontend development world.
+                  </p>
+                  <div class="userConnect">
+                    <button><i class="fa-solid fa-plus"></i>Follow</button>
+                  </div>
+                </div>
+              </div>
+              <div class="contPro">
+                <div class="profileSmall">
+                  <img src="https://source.unsplash.com/random/cars" />
+                </div>
+                <div class="profileInfo">
+                  <h3>Akshu Gajbhiye</h3>
+                  <span>∙ 1st</span>
+                  <p>
+                    Full Stack Developer | React.js ,Redux | Flutter Developer
+                    |...
+                  </p>
+                  <div class="userConnect">
+                    <button>
+                      <i class="fa-brands fa-telegram"></i>Message
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="contPro">
+                <div class="profileSmall">
+                  <img src="https://source.unsplash.com/random/animals" />
+                </div>
+                <div class="profileInfo">
+                  <h3>Tanya Saxena</h3>
+                  <span>∙ 3rd</span>
+                  <p>
+                    MCA Student | web developer | Java developer | HTML | CSS
+                    |...
+                  </p>
+                  <div class="userConnect">
+                    <button><i class="fa-solid fa-plus"></i>Follow</button>
+                  </div>
+                </div>
+              </div>
+              <div class="contPro">
+                <div class="profileSmall">
+                  <img src="https://source.unsplash.com/random/fruits" />
+                </div>
+                <div class="profileInfo">
+                  <h3>Asha Kumari</h3>
+                  <span>∙ 2nd</span>
+                  <p>
+                    MCA Student | web developer | Java developer | HTML | CSS
+                    |...
+                  </p>
+                  <div class="userConnect">
+                    <button><i class="fa-solid fa-plus"></i>Follow</button>
+                  </div>
+                </div>
+              </div>
+              <div class="contPro">
+                <div class="profileSmall">
+                  <img src="https://source.unsplash.com/random" />
+                </div>
+                <div class="profileInfo">
+                  <h3>Naman Singh</h3>
+                  <span>∙ 1st</span>
+                  <p>
+                    BCA Student | web developer | Java developer | HTML | CSS
+                    |...
+                  </p>
+                  <div class="userConnect">
+                    <button><i class="fa-solid fa-plus"></i>Follow</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
   </body>
 </html>

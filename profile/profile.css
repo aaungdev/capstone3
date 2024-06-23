@@ -1,0 +1,282 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbarLeft,
+.navbarCenter,
+.navbarRight {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background-color: #eef3f8;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.searchBox i {
+  color: #666;
+}
+
+.searchBox input {
+  border: none;
+  background-color: transparent;
+  margin-left: 5px;
+  outline: none;
+}
+
+.navbarCenter ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbarCenter ul li {
+  margin-right: 20px;
+}
+
+.navbarCenter ul li a {
+  color: #666;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbarCenter ul li a span {
+  margin-left: 5px;
+}
+
+.navbarRight .online {
+  display: flex;
+  align-items: center;
+}
+
+.navProfileImg {
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.verticalLine {
+  width: 1px;
+  height: 20px;
+  background-color: #ddd;
+  margin: 0 15px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.leftSidebar,
+.rightSidebar {
+  width: 25%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.leftContainer,
+.rightContainer {
+  width: 48%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profileBackgroundImage img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.profilePic {
+  position: relative;
+  top: -50px;
+  left: 20px;
+}
+
+.profilePic img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+}
+
+.editBgCircle,
+.editBgCircle2,
+.editBgCircle3 {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.editBgCircle {
+  top: 10px;
+  right: 10px;
+}
+
+.editBgCircle2 {
+  bottom: 10px;
+  right: 10px;
+}
+
+.editBgCircle3 {
+  bottom: 10px;
+  left: 10px;
+}
+
+.profileInfo {
+  text-align: center;
+  margin-top: -40px;
+}
+
+.profileInfo h1 {
+  margin: 10px 0 5px;
+}
+
+.profileInfo p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.profileActions {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.profileActions button {
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.profileActions button:hover {
+  background-color: #005983;
+}
+
+.suggestedForYou,
+.profileLanguage,
+.publicProfileUrl,
+.otherSimilarProfiles {
+  margin-top: 20px;
+}
+
+.suggestedForYou h2,
+.profileLanguage h2,
+.publicProfileUrl h2,
+.otherSimilarProfiles h2 {
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  background-color: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 10px;
+}
+
+.progress {
+  background-color: #0073b1;
+  height: 100%;
+}
+
+.premiumSuggestion {
+  background-color: #f3f6fa;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.premiumSuggestion p {
+  margin: 5px 0;
+}
+
+.writeWithAi {
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.writeWithAi:hover {
+  background-color: #005983;
+}
+
+.otherSimilarProfiles ul {
+  list-style: none;
+  padding: 0;
+}
+
+.otherSimilarProfiles ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.otherSimilarProfiles ul li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.otherSimilarProfiles ul li div {
+  flex-grow: 1;
+}
+
+.otherSimilarProfiles ul li button {
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.otherSimilarProfiles ul li button:hover {
+  background-color: #005983;
+}
