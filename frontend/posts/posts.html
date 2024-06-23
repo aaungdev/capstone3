@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feed | LinkedIn</title>
     <link
+      rel="shortcut icon"
+      href="images/global-logo2.png"
+      type="image/x-icon"
+    />
+    <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
@@ -26,7 +31,7 @@
       <nav class="navbar">
         <section class="navbarLeft">
           <a href="index.html" class="logo"
-            ><img src="../images/global-logo.png" alt="LinkedIn Logo"
+            ><img src="../images/global-logo2.png" alt="LinkedIn Logo"
           /></a>
 
           <article class="searchBox">
@@ -68,14 +73,14 @@
         <section class="navbarRight">
           <article class="online">
             <img
-              src="img/user-1.png"
+              src="../images/aaung.png"
               alt="User Image"
               class="navProfileImg"
               onclick="toggleMenu()"
             />
             <p>Me <i class="bx bxs-down-arrow"></i></p>
           </article>
-
+          <div class="verticalLine"></div>
           <article class="forBusinessNav">
             <i class="bx bx-dots-horizontal"></i>
             <i class="bx bx-dots-horizontal"></i>
@@ -87,11 +92,126 @@
             <h6>
               <i class="bx bxs-checkbox" style="color: #282c00"></i> PREMIUM
             </h6>
-            <p>Try Premium for USD0</p>
+            <p>Try Premium for USD $0</p>
           </article>
         </section>
       </nav>
     </header>
+
+    <!-- LEFT SIDEBAR START -->
+    <section class="leftSidebar">
+      <article class="sidebarProfileBox">
+        <img src="img/cover-pic.png" alt="Cover Picture" />
+        <figure class="sidebarProfileInfo sidebarProfileInfoHover">
+          <img src="img/user-1.png" alt="User Image" />
+          <figcaption>Mosesfamot</figcaption>
+        </figure>
+        <h3 class="profileInfoTitle">Web Developer</h3>
+        <hr />
+        <article class="sidebarProfileInfo">
+          <ul>
+            <li>Connections<span>10</span></li>
+            <li>Grow your network</li>
+          </ul>
+        </article>
+        <hr />
+        <article class="sideBarCareer">
+          <p>Grow your career with Premium</p>
+          <!-- <p> &#128278 Try 1 month for USD 0</p> -->
+        </article>
+        <hr />
+        <article class="sidebarProfileSaved">
+          <!-- <p> &#128304 Saved items</p> -->
+        </article>
+      </article>
+
+      <article class="sidebarActivity" id="sidebarActivity">
+        <article class="recent">
+          <p>Recent</p>
+          <p class="recentHash"><i class="bx bx-hash"></i> indiastudents</p>
+        </article>
+        <article class="linkList">
+          <p><a href="#">Groups</a></p>
+          <p>
+            <a href="#"
+              >Events <span><i class="bx bx-plus"></i></span
+            ></a>
+          </p>
+          <p><a href="#">Followed Hashtags</a></p>
+        </article>
+        <article class="seeAll">
+          <p class="recentHash">
+            <a href="#"><i class="bx bx-hash"></i> indiastudents</a>
+          </p>
+          <p><a href="#">&nbsp;&nbsp;See all</a></p>
+        </article>
+        <hr />
+        <article class="discoverMoreLink">
+          <a href="#">Discover More</a>
+        </article>
+      </article>
+
+      <p id="showMoreLink" onclick="toggleActivity()">Show more <b>+</b></p>
+    </section>
+    <!-- LEFT SIDEBAR END -->
+
+    <!-- RIGHT SIDEBAR START -->
+    <section class="rightSidebar">
+      <article class="sidebarNews">
+        <img src="img/more.png" alt="more" class="infoIcon" />
+        <h3>Trending News</h3>
+        <a href="#">High demand for skilled manpower</a>
+        <span>2d ago &middot; 19,428 readers</span>
+
+        <a href="#">Careers growing horizontally</a>
+        <span>1d ago &middot; 9,428 readers</span>
+
+        <a href="#">Less work visa for US, more for UK</a>
+        <span>19h ago &middot; 27,800 readers</span>
+
+        <a href="#">Less hiring = lower confidence?</a>
+        <span>5h ago &middot; 5,240 readers</span>
+
+        <a href="#">The world's second richest</a>
+        <span>12h ago &middot; 8,880 readers</span>
+
+        <a href="#" class="readMoreLink">Read More</a>
+      </article>
+
+      <article class="sidebarAd">
+        <small>Ad &middot; &middot; &middot;</small>
+        <p>Master the 5 principles of web design</p>
+        <article>
+          <img src="img/user-1.png" alt="User" />
+          <img src="img/mi-logo.png" alt="Mi logo" />
+        </article>
+        <b>Brand and Demand in Xiaomi</b>
+        <a href="#" class="adLink">Learn More</a>
+      </article>
+
+      <article class="sidebarUsefulLinks">
+        <a href="#">About</a>
+        <a href="#">Accessbility</a>
+        <a href="#">Help Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Advertising</a>
+        <a href="#">Get the App</a>
+        <a href="#">More</a>
+
+        <article class="copyrightMsg">
+          <img src="img/logo.png" alt="LinkedIn logo" />
+          <p>
+            LinkedIn &#169;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            . All right reserved
+          </p>
+        </article>
+      </article>
+    </section>
+    <!-- RIGHT SIDEBAR END -->
+
     <footer>
       <button id="logoutButton">Logout</button>
     </footer>
