@@ -2,4 +2,7 @@
 .env
 api_requests_resolved.http
 
+.DS_Store
+
+feeds
 
