@@ -112,6 +112,25 @@ body {
     object-fit: cover;
   }
 
+  .editBgCircle input[type="file"],
+  .editBgCircle2 input[type="file"],
+  .editBgCircle3 input[type="file"] {
+    display: none;
+  }
+
+  .editBgCircle label,
+  .editBgCircle2 label,
+  .editBgCircle3 label {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .editBgCircle:hover label,
+  .editBgCircle2:hover label,
+  .editBgCircle3:hover label {
+    cursor: pointer;
+  }
+
   .editBgCircle {
     position: absolute;
     top: 20px;
