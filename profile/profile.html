@@ -10,15 +10,39 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="profile.css" />
     <title>Profile | LinkedIn</title>
+    <script type="module" src="profile.js"></script>
   </head>
 
   <body id="body">
+    <div class="sidebar" id="sidebar">
+      <div class="profileJiPic">
+        <img src="https://source.unsplash.com/random/profile" />
+        <h2>
+          John Doe <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
+        </h2>
+        <p>View Profile</p>
+      </div>
+      <div class="viewImpressions">
+        <div class="viewers">
+          <h4>58</h4>
+          <p>profile viewers</p>
+        </div>
+        <div class="impressions">
+          <h4>188</h4>
+          <p>post impressions</p>
+        </div>
+      </div>
+      <div class="groupEvent">
+        <h2>Groups</h2>
+        <h2>Events</h2>
+      </div>
+    </div>
+
     <div class="container">
       <div class="contentContainer">
         <section>
-          <!-- Profile Background Image -->
           <div class="upperSection">
             <div class="profileBackgroundImage">
               <img
@@ -38,7 +62,6 @@
                 />
               </span>
             </div>
-            <!-- Profile Picture -->
             <span class="profilePic">
               <img
                 src="https://source.unsplash.com/random/profile"
@@ -56,7 +79,6 @@
                 />
               </span>
             </span>
-            <!-- Golden Tick -->
             <div class="userGolden">
               <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
               <span class="editBgCircle3">
@@ -71,7 +93,6 @@
                 />
               </span>
             </div>
-            <!-- User Bio Details -->
             <div class="userBioDetails">
               <h1>John Doe</h1>
               <p>Frontend Web Developer | HTML | CSS | JavaScript | React.js</p>
@@ -80,7 +101,7 @@
                 <i
                   class="fa-solid fa-location-dot"
                   style="color: #4c8ed0"
-                  id="address"
+                  id="addressIcon"
                 ></i>
                 <span class="contactInfo">
                   <a href="">∙ Contact info</a>
@@ -97,8 +118,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Lower Section -->
           <div class="lowerSection">
             <div class="suggested">
               <h1>Suggested for you</h1>
@@ -174,7 +193,7 @@
                   <img src="https://source.unsplash.com/random/cars" />
                 </div>
                 <div class="profileInfo">
-                  <h3>Akshu Gajbhiye</h3>
+                  <h3>Emily Johnson</h3>
                   <span>∙ 1st</span>
                   <p>
                     Full Stack Developer | React.js ,Redux | Flutter Developer
@@ -192,7 +211,7 @@
                   <img src="https://source.unsplash.com/random/animals" />
                 </div>
                 <div class="profileInfo">
-                  <h3>Tanya Saxena</h3>
+                  <h3>Michael Brown</h3>
                   <span>∙ 3rd</span>
                   <p>
                     MCA Student | web developer | Java developer | HTML | CSS
@@ -208,7 +227,7 @@
                   <img src="https://source.unsplash.com/random/fruits" />
                 </div>
                 <div class="profileInfo">
-                  <h3>Asha Kumari</h3>
+                  <h3>Sarah Lee</h3>
                   <span>∙ 2nd</span>
                   <p>
                     MCA Student | web developer | Java developer | HTML | CSS
@@ -224,7 +243,7 @@
                   <img src="https://source.unsplash.com/random" />
                 </div>
                 <div class="profileInfo">
-                  <h3>Naman Singh</h3>
+                  <h3>David Wilson</h3>
                   <span>∙ 1st</span>
                   <p>
                     BCA Student | web developer | Java developer | HTML | CSS
