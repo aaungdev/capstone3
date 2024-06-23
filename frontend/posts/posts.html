@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="../global.css" />
-
-    <!-- Page-specific CSS -->
+    <title>Feed | LinkedIn</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="posts.css" />
-
-    <title>/POSTS</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
     <script src="../account/auth.js"></script>
@@ -23,10 +21,12 @@
   </head>
   <body>
     <header>
+      <!-- NAVBAR START -->
+
       <nav class="navbar">
         <section class="navbarLeft">
           <a href="index.html" class="logo"
-            ><img src="img/logo.png" alt="LinkedIn Logo"
+            ><img src="../images/global-logo.png" alt="LinkedIn Logo"
           /></a>
 
           <article class="searchBox">
@@ -64,6 +64,7 @@
             </li>
           </ul>
         </section>
+
         <section class="navbarRight">
           <article class="online">
             <img
@@ -89,47 +90,8 @@
             <p>Try Premium for USD0</p>
           </article>
         </section>
-
-        <article class="profileMenuWrap" id="profileMenu">
-          <article class="profileMenu">
-            <article class="userInfo">
-              <img src="img/user-1.png" alt="User Image" />
-              <article>
-                <h3>Moses Ojo</h3>
-                <a href="profile.html">See your profile</a>
-              </article>
-            </article>
-            <hr />
-            <a href="#" class="profileMenuLink">
-              <img src="img/feedback.png" alt="Feedback" />
-              <p>Give Feedback</p>
-              <span>></span>
-            </a>
-            <a href="#" class="profileMenuLink">
-              <img src="img/setting.png" alt="Setting" />
-              <p>Settings & Privacy</p>
-              <span>></span>
-            </a>
-            <a href="#" class="profileMenuLink">
-              <img src="img/help.png" alt="Help" />
-              <p>Help & Support</p>
-              <span>></span>
-            </a>
-            <a href="#" class="profileMenuLink">
-              <img src="img/display.png" alt="Display" />
-              <p>Display & Accessibility</p>
-              <span>></span>
-            </a>
-            <a href="#" class="profileMenuLink">
-              <img src="img/logout.png" alt="Logout" />
-              <p>Logout</p>
-              <span>></span>
-            </a>
-          </article>
-        </article>
       </nav>
     </header>
-
     <footer>
       <button id="logoutButton">Logout</button>
     </footer>

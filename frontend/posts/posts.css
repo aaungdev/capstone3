@@ -1,1 +1,198 @@
-/* Posts Page CSS */
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+/* RESET START */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+/* RESET END */
+
+/* GENERAL STYLES START */
+
+body {
+  background: #f4f2ee;
+  color: #f0f2f5;
+}
+
+a {
+  text-decoration: none;
+  color: #5f5f5f;
+}
+
+/* GENERAL STYLES END */
+
+/* NAVBAR AREA START */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0 0.37rem 0.2rem 0.37rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo img {
+  width: 1.875rem;
+  margin-right: 0.93rem;
+  margin-left: 6rem;
+  display: block;
+}
+
+.navbarCenter ul li {
+  display: inline-block;
+  list-style: none;
+}
+
+.navbarCenter ul li a {
+  display: flex;
+  align-items: center;
+  font-size: 0.87rem;
+  margin: 0 0.5rem 0.3rem;
+  padding-right: 0.1rem;
+  position: relative;
+}
+
+.navbarCenter ul li span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 1.56rem;
+  color: #777;
+}
+
+.navbarCenter ul li a i {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 1.87rem;
+  margin: 0 1.4rem;
+}
+
+.navbarCenter li a:hover {
+  color: #000;
+}
+
+.navbarCenter .activeLink {
+  color: #000;
+}
+
+.navbarCenter ul li a::after {
+  content: "";
+  width: 0;
+  height: 0.125rem;
+  background: #333;
+  position: absolute;
+  bottom: -1.3rem;
+  transition: width 0.3s;
+}
+
+.navbarCenter ul li a:hover::after,
+.navbarCenter ul li a.activeLink::after {
+  width: 100%;
+}
+
+.navbarRight {
+  margin-right: 10rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.navbarRight .online {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navProfileImg {
+  width: 2rem;
+  border-radius: 50%;
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+
+.online {
+  position: relative;
+  margin-right: 1.5rem;
+}
+
+.online p,
+.online p i {
+  color: #777;
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+}
+
+.navbarRight .forBusinessNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.navbarRight .forBusinessNav i {
+  color: #777;
+  font-size: 1.5rem;
+  margin-bottom: -1.05rem;
+}
+
+.navbarRight .forBusinessNav p,
+.navbarRight .forBusinessNav p i {
+  color: #777;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.navbarRight .tryPremiumLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.navbarRight .tryPremiumLink h6,
+.navbarRight .tryPremiumLink p {
+  color: #777;
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+.searchBox {
+  background: #ecf1fa;
+  width: 15.6rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.searchBox i {
+  width: 0.875rem;
+  color: #000;
+  font-weight: 600;
+}
+
+.searchBox input {
+  width: 100%;
+  background: transparent;
+  padding: 0.5rem;
+  border: 0;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  margin-left: 4.5rem;
+}
+/* NAVBAR AREA END */
