@@ -11,5 +11,5 @@ document.querySelector("#signupForm").onsubmit = function (event) {
   localStorage.setItem("temp-password", password);
 
   // Redirect to the next step
-  window.location.href = "registerStep2.html";
+  window.location.href = "register-step2.html";
 };
