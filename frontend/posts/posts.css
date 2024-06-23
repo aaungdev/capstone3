@@ -124,11 +124,10 @@ a {
   margin-top: 0.1rem;
 }
 
-
 .verticalLine {
   border-left: 1px solid #ccc;
-  height: 3rem; 
-  margin: 0 0.625rem; 
+  height: 3rem;
+  margin: 0 0.625rem;
 }
 
 .navbarRight .forBusinessNav {
@@ -185,6 +184,13 @@ a {
   font-weight: 600;
 }
 
+.jobIconSize {
+  font-size: 1.3rem !important;
+  text-align: center;
+  width: 1.87rem;
+  margin: 0rem 1.6rem 1rem 1rem;
+}
+
 .searchBox input {
   width: 100%;
   background: transparent;
@@ -199,3 +205,306 @@ a {
 }
 /* NAVBAR AREA END */
 
+/* CONTAINER START */
+.container {
+  padding: 1.25rem 11%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* LEFT SIDEBAR START */
+.leftSidebar {
+  flex-basis: 20%;
+  align-self: flex-start;
+  position: sticky;
+  top: 4.56rem;
+}
+
+.sidebarProfileBox {
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  background: #fff;
+}
+
+.sidebarProfileBox img {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.sidebarProfileInfo {
+  margin: 0.8rem 0;
+  padding: 0;
+}
+
+.sidebarProfileInfo img {
+  width: 4.5rem;
+  border-radius: 50%;
+  background: #fff;
+  padding: 0.1rem;
+  margin: -2.8rem 30% 0 30%;
+}
+
+.sidebarProfileInfo figcaption {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #222;
+}
+
+.profileInfoTitle {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: #777;
+}
+
+.sidebarProfileInfo ul {
+  list-style-type: none;
+  padding: 0.5rem;
+}
+
+.sidebarProfileInfo ul li {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.sidebarProfileInfo ul li:last-child {
+  font-weight: 600;
+}
+
+.sidebarProfileInfo ul li span {
+  float: right;
+  color: #045be6;
+}
+
+.sideBarCareer {
+  padding: 0.5rem;
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.sidebarProfileSaved {
+  padding: 0.6rem 0.5rem;
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.sidebarProfileInfo ul:hover,
+.sideBarCareer:hover,
+.sidebarProfileSaved:hover {
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+.sidebarActivity {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  margin: 0.75rem 0;
+  font-size: 0.75rem;
+}
+
+.sidebarActivity .recent {
+  color: #777;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.sidebarActivity .recent p {
+  margin: 0.5rem 0;
+  padding: 0.2rem 0.5rem;
+}
+
+.sidebarActivity .recentHash:hover {
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+.sidebarActivity .linkList {
+  padding: 0 0.5rem;
+}
+
+.sidebarActivity .linkList p {
+  margin: 0.5rem 0;
+}
+
+.sidebarActivity .linkList a {
+  font-weight: 600;
+  color: #045be6;
+}
+
+.linkList a span i {
+  float: right;
+  font-size: 1rem;
+}
+
+.sidebarActivity .linkList a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sidebarActivity .seeAll {
+  margin: 1rem 0 1.5rem 0;
+}
+
+.sidebarActivity .seeAll p {
+  margin: 0.5rem 0;
+  padding: 0.2rem 0.5rem;
+}
+
+.discoverMoreLink {
+  text-align: center;
+  margin-left: -1.56rem;
+  margin-right: -1.56rem;
+}
+
+.discoverMoreLink a {
+  font-size: 0.8rem;
+  color: #777;
+  display: inline-block;
+  margin: 0.625rem 0;
+}
+
+.discoverMoreLink:hover {
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+/* RIGHT SIDEBAR START */
+.rightSidebar {
+  flex-basis: 20%;
+  align-self: flex-start;
+  position: sticky;
+  top: 4.56rem;
+}
+
+.sidebarNews {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  padding: 0.625rem 1.56rem;
+}
+
+.infoIcon {
+  width: 0.93rem;
+  float: right;
+  margin-top: 0.93rem;
+  cursor: pointer;
+}
+
+.sidebarNews h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0.625rem 0 0.8rem;
+}
+
+.sidebarNews a {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.625rem;
+  margin-bottom: -5px;
+}
+
+.sidebarNews span {
+  font-size: 0.75rem;
+  color: #333;
+}
+
+.sidebarNews .readMoreLink {
+  color: #045be6;
+  font-weight: 500;
+  margin: 1.25rem 0 0.625rem;
+}
+
+.sidebarAd {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  padding: 0.93rem 1.56rem;
+  text-align: center;
+  margin: 0.75rem 0;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.sidebarAd img {
+  width: 3.75rem;
+  border-radius: 50%;
+  margin: 0.25rem;
+}
+
+.sidebarAd small {
+  float: left;
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebarAd p {
+  margin-top: 1.87rem;
+  margin-bottom: 0.625rem;
+  color: #333;
+}
+
+.sidebarAd b {
+  display: block;
+  font-weight: 500;
+  margin-top: 0.625rem;
+  color: #333;
+}
+
+.adLink {
+  display: inline-block;
+  border: 1px solid #045be6;
+  border-radius: 1.875rem;
+  padding: 0.31rem 0.93rem;
+  color: #045be6;
+  font-weight: 500;
+  margin: 1.25rem auto 0.625rem;
+}
+
+.sidebarUsefulLinks {
+  padding: 0.93rem 1.56rem;
+  text-align: center;
+}
+
+.sidebarUsefulLinks a {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin: 4px 2px;
+  font-size: 0.8rem;
+}
+
+.sidebarUsefulLinks a:hover {
+  color: #045be6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.copyrightMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  margin-top: 0.625rem;
+  font-weight: 500;
+}
+
+.copyrightMsg img {
+  width: 1.125rem;
+  margin-right: 0.25rem;
+}
+
+.copyrightMsg p {
+  color: #333;
+}
+/* MAIN CONTENT START */
+.mainContent {
+  flex-basis: 55%;
+}
