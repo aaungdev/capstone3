@@ -604,3 +604,109 @@ a {
   width: 0.75rem;
   margin-left: 3px;
 }
+
+.post {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  padding: 1.25rem 1.56rem 0;
+  margin: 0.31rem 0 0.93rem;
+  color: #333;
+}
+
+.postAuthor {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.postAuthor img {
+  width: 2.18rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+  margin-top: 0.31rem;
+  cursor: pointer;
+}
+
+.postAuthor h1 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.postAuthor h1:hover {
+  cursor: pointer;
+  color: #045be6;
+  text-decoration: underline;
+}
+
+.postAuthor small {
+  display: block;
+  margin-bottom: -2px;
+  cursor: pointer;
+}
+
+.post p {
+  font-size: 0.875rem;
+  margin-bottom: 0.93rem;
+}
+
+.postStats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.375rem;
+}
+
+.postStats article {
+  display: flex;
+  align-items: center;
+}
+
+.postStats img {
+  width: 0.93rem;
+  margin-right: -5px;
+  cursor: pointer;
+}
+
+.postStats article span:hover {
+  cursor: pointer;
+  color: #045be6;
+  text-decoration: underline;
+}
+
+.likedUser {
+  margin-left: 0.625rem;
+}
+
+.postActivity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #777;
+}
+
+.postActivity article {
+  display: flex;
+  align-items: center;
+}
+
+.postActivityLink {
+  margin: 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.postActivityLink:hover {
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+.postActivityLink i {
+  font-size: 1.5rem;
+}
