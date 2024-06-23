@@ -2,14 +2,22 @@
 
 const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
 
-document.querySelector("#completeProfileForm").onsubmit = function (event) {
+document.querySelector("#completeForm").onsubmit = function (event) {
   event.preventDefault();
 
-  const newUserData = JSON.parse(window.localStorage.getItem("new-user-data"));
-  newUserData.firstName = document.querySelector("#firstName").value;
-  newUserData.lastName = document.querySelector("#lastName").value;
+  const firstName = document.querySelector("#firstName").value;
+  const lastName = document.querySelector("#lastName").value;
+  const fullName = `${firstName} ${lastName}`;
+  const username = localStorage.getItem("temp-username");
+  const password = localStorage.getItem("temp-password");
 
-  createUser(newUserData);
+  const newUser = {
+    username: username,
+    fullName: fullName,
+    password: password,
+  };
+
+  createUser(newUser);
 };
 
 function createUser(userData) {
@@ -18,24 +26,23 @@ function createUser(userData) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username: userData.username,
-      password: userData.password,
-      fullName: `${userData.firstName} ${userData.lastName}`,
-    }),
+    body: JSON.stringify(userData),
   };
 
   fetch(apiBaseURL + "/api/users", options)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error) {
-        alert("Error: " + data.message);
-      } else {
-        showModal();
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((data) => {
+          throw new Error(data.message);
+        });
       }
+      return response.json();
+    })
+    .then((data) => {
+      showModal();
     })
     .catch((error) => {
-      console.error("Error:", error);
+      alert("Error: " + error.message);
     });
 }
 
@@ -51,10 +58,8 @@ function showModal() {
   const goToPostsBtn = document.getElementById("goToPostsBtn");
   goToPostsBtn.onclick = function () {
     login({
-      username: JSON.parse(window.localStorage.getItem("new-user-data"))
-        .username,
-      password: JSON.parse(window.localStorage.getItem("new-user-data"))
-        .password,
+      username: localStorage.getItem("temp-username"),
+      password: localStorage.getItem("temp-password"),
     });
   };
 
