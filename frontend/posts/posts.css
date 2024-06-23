@@ -530,6 +530,10 @@ a {
   cursor: pointer;
 }
 
+.createPostUser {
+  width: 100;
+}
+
 .createPostInput input {
   width: 100%;
   border: 1px solid #ccc;
@@ -555,8 +559,15 @@ a {
   justify-content: space-between;
 }
 
+.createPostLinks ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 .createPostLinks li {
-  list-style: none;
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;

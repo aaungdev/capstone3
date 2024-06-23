@@ -27,7 +27,13 @@ async function fetchPosts() {
 
 function displayPosts(posts) {
   const mainContent = document.querySelector(".mainContent");
+  const createPostSection = document.querySelector(".createPost");
+  const sortBySection = document.querySelector(".sortBy");
+
+  // Clear posts, but keep the createPost and sortBy sections
   mainContent.innerHTML = "";
+  mainContent.appendChild(createPostSection);
+  mainContent.appendChild(sortBySection);
 
   posts.forEach((post) => {
     const postElement = document.createElement("article");
@@ -35,13 +41,11 @@ function displayPosts(posts) {
 
     const postAuthor = `
             <article class="postAuthor">
-                <img src="img/user-3.png" alt="User">
+                <img src="images/user-3.png" alt="User">
                 <article>
                     <h1>${post.username}</h1>
                     <small>${post.bio || ""}</small>
-                    <small>${new Date(
-                      post.createdAt
-                    ).toLocaleTimeString()}</small>
+                    <small>${new Date(post.createdAt).toLocaleTimeString()}</small>
                 </article>
             </article>`;
 
@@ -53,20 +57,16 @@ function displayPosts(posts) {
     const postStats = `
             <article class="postStats">
                 <article>
-                    <img src="frontend/posts/images/like.svg" alt="Like">
-                    <img src="frontend/posts/images/love.svg" alt="Love">
-                    <img src="frontend/posts/images/celebrate.svg" alt="Celebrate">
-                    <img src="frontend/posts/images/support.svg" alt="Support">
-                    <img src="frontend/posts/images/insightful.svg" alt="Insightful">
-                    <img src="frontend/posts/images/funny.svg" alt="funny">
+                    <img src="images/like.svg" alt="Like">
+                    <img src="images/love.svg" alt="Love">
+                    <img src="images/celebrate.svg" alt="Celebrate">
+                    <img src="images/support.svg" alt="Support">
+                    <img src="images/insightful.svg" alt="Insightful">
+                    <img src="images/funny.svg" alt="funny">
                     <span class="likedUser">${post.likes.length} likes</span>
-                    </article>
+                </article>
                 <article>
-                    <span>${
-                      post.comments || 0
-                    } comments</span> <b>&nbsp;-&nbsp;</b> <span>${
-      post.shares || 0
-    } shares</span>
+                    <span>${post.comments || 0} comments</span> <b>&nbsp;-&nbsp;</b> <span>${post.shares || 0} shares</span>
                 </article>
             </article>`;
 
