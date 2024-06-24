@@ -159,14 +159,15 @@
       <section class="mainContent">
         <!-- Main content goes here -->
         <article class="createPost">
-          <article class="createPostInput">
+          <form class="createPostInput">
             <img
               src="images/aaung.png"
               alt="User Image"
               class="createPostUser"
             />
-            <input type="text" placeholder="Write a post" />
-          </article>
+            <input type="text" placeholder="Write a post" required />
+            <button type="submit" hidden>Submit</button>
+          </form>
           <article class="createPostLinks">
             <ul>
               <li><img src="images/add-image.png" alt="Photo" />Photo</li>
