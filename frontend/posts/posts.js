@@ -4,32 +4,15 @@ const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTU3NDkwLCJleHAiOjE3MTkyNDM4OTB9.bNlxL8YTydqW-g3fHPvvpGvtmRDSjksSkHR_mbdb49A";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
-
   fetchPosts();
 
-  // Modal functionality
-  const modal = document.getElementById("postModal");
-  const fakeInput = document.getElementById("openModalInput");
-  const span = document.getElementsByClassName("close")[0];
-
-  fakeInput.onclick = function () {
-    console.log("Fake input clicked");
-    modal.style.display = "block";
-  };
-
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+  const createPostInput = document.querySelector(".createPostInput input");
+  createPostInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      createPost();
     }
-  };
-
-  const createPostForm = document.querySelector(".modal .createPostInput");
-  createPostForm.addEventListener("submit", createPost);
+  });
 });
 
 async function fetchPosts() {
@@ -185,10 +168,8 @@ async function removeLike(postId) {
   }
 }
 
-async function createPost(event) {
-  event.preventDefault();
-
-  const input = document.querySelector(".modal .createPostInput textarea");
+async function createPost() {
+  const input = document.querySelector(".createPostInput input");
   const postText = input.value.trim();
 
   if (!postText) {
@@ -215,7 +196,6 @@ async function createPost(event) {
 
     const newPost = await response.json();
     input.value = "";
-    document.getElementById("postModal").style.display = "none"; // Close the modal
     fetchPosts(); // Refresh the posts to include the new post
   } catch (error) {
     console.error("Error creating post:", error);

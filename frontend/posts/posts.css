@@ -510,6 +510,84 @@ a {
   flex-basis: 50%;
 }
 
+.createPost {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  padding: 1.25rem 1.56rem 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.createPostInput {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.createPostInput img {
+  width: 3rem;
+  border-radius: 50%;
+  margin-right: 0.625rem;
+  cursor: pointer;
+}
+
+.createPostUser {
+  width: 100;
+}
+
+.createPostInput input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 1.7rem;
+  padding: 1rem;
+  outline: 0;
+  resize: none;
+  background: transparent;
+}
+
+.createPostInput input::placeholder {
+  font-weight: 500;
+}
+
+.createPostInput input:hover {
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+.createPostLinks {
+  display: flex;
+  justify-content: center;
+}
+
+.createPostLinks ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  gap: 3rem;
+}
+
+.createPostLinks li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3c3b3bcc;
+}
+
+.createPostLinks li:hover {
+  background: #f3f3f3;
+}
+
+.createPostLinks li img {
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
 .sortBy {
   display: flex;
   align-items: center;
@@ -645,146 +723,3 @@ a {
   font-size: 1.5rem;
 }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto; /* 10% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  border-radius: 8px;
-  max-width: 600px;
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Other CSS */
-.createPost {
-  background: #fff;
-  border-radius: 0.5rem;
-  border: 0.6px solid #ccc;
-  padding: 1.25rem 1.56rem 0.625rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.createPostInput {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.createPostInput img {
-  width: 3rem;
-  border-radius: 50%;
-  margin-right: 0.625rem;
-  cursor: pointer;
-}
-
-.createPostUser {
-  width: 100%;
-}
-
-.fakeInput {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 1.7rem;
-  padding: 1rem;
-  background: transparent;
-  cursor: pointer;
-}
-
-.fakeInput:hover {
-  background: #f3f3f3;
-}
-
-.createPostInput textarea {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  outline: 0;
-  resize: none;
-  background: transparent;
-  margin-bottom: 1rem;
-}
-
-.createPostInput textarea::placeholder {
-  font-weight: 500;
-}
-
-.postButton {
-  background-color: #0073b1;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  align-self: flex-end;
-}
-
-.postButton:hover {
-  background-color: #005582;
-}
-
-.createPostLinks {
-  display: flex;
-  justify-content: center;
-}
-
-.createPostLinks ul {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  gap: 3rem;
-}
-
-.createPostLinks li {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3c3b3bcc;
-}
-
-.createPostLinks li:hover {
-  background: #f3f3f3;
-}
-
-.createPostLinks li img {
-  width: 1.5rem;
-  margin-right: 0.5rem;
-}

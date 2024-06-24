@@ -110,7 +110,7 @@
             <img src="images/aaung.png" alt="User Image" />
             <figcaption>Aung Aung</figcaption>
           </figure>
-          <h3 class="profileInfoTitle">Software Engineer</h3>
+          <h3 class="profileInfoTitle">Web Developer</h3>
           <hr />
           <article class="sidebarProfileInfo">
             <ul>
@@ -158,8 +158,6 @@
       <!-- MAIN CONTENT START -->
       <section class="mainContent">
         <!-- Main content goes here -->
-
-        <!-- Create Post Section -->
         <article class="createPost">
           <article class="createPostInput">
             <img
@@ -167,7 +165,7 @@
               alt="User Image"
               class="createPostUser"
             />
-            <div id="openModalInput" class="fakeInput">Write a post</div>
+            <input type="text" placeholder="Write a post" />
           </article>
           <article class="createPostLinks">
             <ul>
@@ -180,28 +178,6 @@
             </ul>
           </article>
         </article>
-
-        <!-- Modal Structure -->
-        <div id="postModal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <article class="createPost">
-              <form class="createPostInput">
-                <img
-                  src="images/aaung.png"
-                  alt="User Image"
-                  class="createPostUser"
-                />
-                <textarea
-                  placeholder="What do you want to talk about?"
-                  required
-                ></textarea>
-                <button type="submit" class="postButton">Post</button>
-              </form>
-            </article>
-          </div>
-        </div>
-
         <article class="sortBy">
           <hr />
           <p>
@@ -266,14 +242,13 @@
       <button id="logoutButton">Logout</button>
     </footer>
     <!-- Page-specific code -->
-
     <script src="posts.js"></script>
-    <!-- <script>
+    <script>
       document
         .getElementById("logoutButton")
         .addEventListener("click", function () {
           logout();
         });
-    </script> -->
+    </script>
   </body>
 </html>
