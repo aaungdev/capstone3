@@ -158,27 +158,49 @@
       <!-- MAIN CONTENT START -->
       <section class="mainContent">
         <!-- Main content goes here -->
+        <!-- Create Post Section -->
         <article class="createPost">
-          <form class="createPostInput">
+          <article class="createPostInput">
             <img
               src="images/aaung.png"
               alt="User Image"
               class="createPostUser"
             />
-            <input type="text" placeholder="Write a post" required />
-            <button type="submit" hidden>Submit</button>
-          </form>
+            <input type="text" placeholder="Write a post" />
+          </article>
           <article class="createPostLinks">
             <ul>
               <li><img src="images/add-image.png" alt="Photo" />Photo</li>
               <li><img src="images/add-event.png" alt="Video" />Video</li>
-              <li>
+              <li id="writePostButton">
                 <img src="images/add-article.png" alt="Write article" />Write
                 article
               </li>
             </ul>
           </article>
         </article>
+
+        <!-- Modal Structure -->
+        <div id="postModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <article class="createPost">
+              <form class="createPostInput">
+                <img
+                  src="images/aaung.png"
+                  alt="User Image"
+                  class="createPostUser"
+                />
+                <textarea
+                  placeholder="What do you want to talk about?"
+                  required
+                ></textarea>
+                <button type="submit" class="postButton">Post</button>
+              </form>
+            </article>
+          </div>
+        </div>
+
         <article class="sortBy">
           <hr />
           <p>

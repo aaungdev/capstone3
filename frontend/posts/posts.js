@@ -6,7 +6,33 @@ const token =
 document.addEventListener("DOMContentLoaded", () => {
   fetchPosts();
 
-  const createPostForm = document.querySelector(".createPostInput");
+  // Get the modal
+  const modal = document.getElementById("postModal");
+
+  // Get the button that opens the modal
+  const btn = document.getElementById("writePostButton");
+
+  // Get the <span> element that closes the modal
+  const span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  const createPostForm = document.querySelector(".modal .createPostInput");
   createPostForm.addEventListener("submit", createPost);
 });
 
@@ -167,7 +193,7 @@ async function removeLike(postId) {
 async function createPost(event) {
   event.preventDefault();
 
-  const input = document.querySelector(".createPostInput input");
+  const input = document.querySelector(".modal .createPostInput textarea");
   const postText = input.value.trim();
 
   if (!postText) {
@@ -194,6 +220,7 @@ async function createPost(event) {
 
     const newPost = await response.json();
     input.value = "";
+    document.getElementById("postModal").style.display = "none"; // Close the modal
     fetchPosts(); // Refresh the posts to include the new post
   } catch (error) {
     console.error("Error creating post:", error);

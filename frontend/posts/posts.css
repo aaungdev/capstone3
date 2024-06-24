@@ -722,3 +722,89 @@ a {
 .postActivityLink i {
   font-size: 1.5rem;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 10% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.createPost {
+  display: flex;
+  flex-direction: column;
+}
+
+.createPostInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.createPostInput img {
+  width: 3rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.createPostInput textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  outline: 0;
+  resize: none;
+  background: transparent;
+  margin-bottom: 1rem;
+}
+
+.createPostInput textarea::placeholder {
+  font-weight: 500;
+}
+
+.postButton {
+  background-color: #0073b1;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.postButton:hover {
+  background-color: #005582;
+}
