@@ -228,6 +228,7 @@ a {
 }
 
 .sidebarProfileBox img {
+  width: 100%;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
@@ -520,7 +521,7 @@ a {
 .createPostInput {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .createPostInput img {
@@ -555,16 +556,16 @@ a {
 
 .createPostLinks {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .createPostLinks ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0;
   margin: 0;
   list-style-type: none;
+  gap: 3rem;
 }
 
 .createPostLinks li {

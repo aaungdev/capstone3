@@ -41,11 +41,13 @@ function displayPosts(posts) {
 
     const postAuthor = `
             <article class="postAuthor">
-                <img src="images/user-3.png" alt="User">
+                <img src="images/user.png" alt="User">
                 <article>
                     <h1>${post.username}</h1>
                     <small>${post.bio || ""}</small>
-                    <small>${new Date(post.createdAt).toLocaleTimeString()}</small>
+                    <small>${new Date(
+                      post.createdAt
+                    ).toLocaleTimeString()}</small>
                 </article>
             </article>`;
 
@@ -66,7 +68,11 @@ function displayPosts(posts) {
                     <span class="likedUser">${post.likes.length} likes</span>
                 </article>
                 <article>
-                    <span>${post.comments || 0} comments</span> <b>&nbsp;-&nbsp;</b> <span>${post.shares || 0} shares</span>
+                    <span>${
+                      post.comments || 0
+                    } comments</span> <b>&nbsp;-&nbsp;</b> <span>${
+      post.shares || 0
+    } shares</span>
                 </article>
             </article>`;
 
@@ -154,3 +160,4 @@ async function removeLike(postId) {
 }
 
 fetchPosts();
+
