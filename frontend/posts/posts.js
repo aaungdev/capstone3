@@ -4,28 +4,24 @@ const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTU3NDkwLCJleHAiOjE3MTkyNDM4OTB9.bNlxL8YTydqW-g3fHPvvpGvtmRDSjksSkHR_mbdb49A";
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+
   fetchPosts();
 
-  // Get the modal
+  // Modal functionality
   const modal = document.getElementById("postModal");
-
-  // Get the button that opens the modal
-  const btn = document.getElementById("writePostButton");
-
-  // Get the <span> element that closes the modal
+  const fakeInput = document.getElementById("openModalInput");
   const span = document.getElementsByClassName("close")[0];
 
-  // When the user clicks the button, open the modal
-  btn.onclick = function () {
+  fakeInput.onclick = function () {
+    console.log("Fake input clicked");
     modal.style.display = "block";
   };
 
-  // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
   };
 
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
@@ -63,7 +59,6 @@ function displayPosts(posts) {
   const createPostSection = document.querySelector(".createPost");
   const sortBySection = document.querySelector(".sortBy");
 
-  // Clear posts, but keep the createPost and sortBy sections
   mainContent.innerHTML = "";
   mainContent.appendChild(createPostSection);
   mainContent.appendChild(sortBySection);

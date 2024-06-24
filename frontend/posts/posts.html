@@ -108,9 +108,9 @@
           <img src="images/cover.jpeg" alt="Cover Picture" />
           <figure class="sidebarProfileInfo">
             <img src="images/aaung.png" alt="User Image" />
-            <figcaption>Mosesfamot</figcaption>
+            <figcaption>Aung Aung</figcaption>
           </figure>
-          <h3 class="profileInfoTitle">Web Developer</h3>
+          <h3 class="profileInfoTitle">Software Engineer</h3>
           <hr />
           <article class="sidebarProfileInfo">
             <ul>
@@ -158,6 +158,7 @@
       <!-- MAIN CONTENT START -->
       <section class="mainContent">
         <!-- Main content goes here -->
+
         <!-- Create Post Section -->
         <article class="createPost">
           <article class="createPostInput">
@@ -166,13 +167,13 @@
               alt="User Image"
               class="createPostUser"
             />
-            <input type="text" placeholder="Write a post" />
+            <div id="openModalInput" class="fakeInput">Write a post</div>
           </article>
           <article class="createPostLinks">
             <ul>
               <li><img src="images/add-image.png" alt="Photo" />Photo</li>
               <li><img src="images/add-event.png" alt="Video" />Video</li>
-              <li id="writePostButton">
+              <li>
                 <img src="images/add-article.png" alt="Write article" />Write
                 article
               </li>
@@ -265,13 +266,14 @@
       <button id="logoutButton">Logout</button>
     </footer>
     <!-- Page-specific code -->
+
     <script src="posts.js"></script>
-    <script>
+    <!-- <script>
       document
         .getElementById("logoutButton")
         .addEventListener("click", function () {
           logout();
         });
-    </script>
+    </script> -->
   </body>
 </html>

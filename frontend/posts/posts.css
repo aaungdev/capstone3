@@ -510,84 +510,6 @@ a {
   flex-basis: 50%;
 }
 
-.createPost {
-  background: #fff;
-  border-radius: 0.5rem;
-  border: 0.6px solid #ccc;
-  padding: 1.25rem 1.56rem 0.625rem;
-  margin-bottom: 1rem;
-}
-
-.createPostInput {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.createPostInput img {
-  width: 3rem;
-  border-radius: 50%;
-  margin-right: 0.625rem;
-  cursor: pointer;
-}
-
-.createPostUser {
-  width: 100;
-}
-
-.createPostInput input {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 1.7rem;
-  padding: 1rem;
-  outline: 0;
-  resize: none;
-  background: transparent;
-}
-
-.createPostInput input::placeholder {
-  font-weight: 500;
-}
-
-.createPostInput input:hover {
-  cursor: pointer;
-  background: #f3f3f3;
-}
-
-.createPostLinks {
-  display: flex;
-  justify-content: center;
-}
-
-.createPostLinks ul {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  gap: 3rem;
-}
-
-.createPostLinks li {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3c3b3bcc;
-}
-
-.createPostLinks li:hover {
-  background: #f3f3f3;
-}
-
-.createPostLinks li img {
-  width: 1.5rem;
-  margin-right: 0.5rem;
-}
-
 .sortBy {
   display: flex;
   align-items: center;
@@ -763,21 +685,45 @@ a {
   cursor: pointer;
 }
 
+/* Other CSS */
 .createPost {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.6px solid #ccc;
+  padding: 1.25rem 1.56rem 0.625rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .createPostInput {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .createPostInput img {
   width: 3rem;
   border-radius: 50%;
-  margin-bottom: 1rem;
+  margin-right: 0.625rem;
+  cursor: pointer;
+}
+
+.createPostUser {
+  width: 100%;
+}
+
+.fakeInput {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 1.7rem;
+  padding: 1rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.fakeInput:hover {
+  background: #f3f3f3;
 }
 
 .createPostInput textarea {
@@ -807,4 +753,38 @@ a {
 
 .postButton:hover {
   background-color: #005582;
+}
+
+.createPostLinks {
+  display: flex;
+  justify-content: center;
+}
+
+.createPostLinks ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  gap: 3rem;
+}
+
+.createPostLinks li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3c3b3bcc;
+}
+
+.createPostLinks li:hover {
+  background: #f3f3f3;
+}
+
+.createPostLinks li img {
+  width: 1.5rem;
+  margin-right: 0.5rem;
 }
