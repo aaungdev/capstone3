@@ -57,10 +57,7 @@ function showModal() {
 
   const goToPostsBtn = document.getElementById("goToPostsBtn");
   goToPostsBtn.onclick = function () {
-    login({
-      username: localStorage.getItem("temp-username"),
-      password: localStorage.getItem("temp-password"),
-    });
+    window.location.assign("login.html"); // Redirect to login page
   };
 
   window.onclick = function (event) {
@@ -68,24 +65,4 @@ function showModal() {
       modal.style.display = "none";
     }
   };
-}
-
-function login(loginData) {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(loginData),
-  };
-
-  fetch(apiBaseURL + "/auth/login", options)
-    .then((response) => response.json())
-    .then((loginData) => {
-      window.localStorage.setItem("login-data", JSON.stringify(loginData));
-      window.location.assign("/frontend/posts/posts.html"); // redirect
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
 }
