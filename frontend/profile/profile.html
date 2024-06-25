@@ -21,7 +21,6 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="profile.css" />
-    <script type="module" src="profile.js"></script>
     <link rel="stylesheet" href="../posts/posts.css" />
   </head>
   <body>
@@ -70,7 +69,7 @@
         <section class="navbarRight">
           <article class="online">
             <img
-              src="images/aaung.png"
+              src="https://i.pravatar.cc/300"
               alt="User Image"
               class="navProfileImg"
               onclick="toggleMenu()"
@@ -95,12 +94,72 @@
     </header>
     <div class="sidebar" id="sidebar">
       <div class="profileJiPic">
-        <img src="https://source.unsplash.com/random/profile" />
+        <img src="https://i.pravatar.cc/300" />
         <h2>
           John Doe <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
         </h2>
         <p>View Profile</p>
       </div>
+
+      <!-- Popup Form for Editing Profile -->
+      <div id="editProfileModal" class="modal">
+        <div class="modalContent">
+          <span class="close">&times;</span>
+          <h2>Edit intro</h2>
+          <form id="editProfileForm">
+            <p class="requiredInfo">* Indicates required</p>
+            <div class="basicInfo">
+              <h3>Basic info</h3>
+              <p>
+                If you change your name, you may have to re-verify in order to
+                keep your verification. <a href="#">Learn more</a>
+              </p>
+              <div class="formGroup">
+                <label for="firstName">First name*</label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              <div class="formGroup">
+                <label for="lastName">Last name*</label>
+                <input type="text" id="lastName" name="lastName" required />
+              </div>
+              <div class="formGroup">
+                <label for="additionalName">Additional name</label>
+                <input type="text" id="additionalName" name="additionalName" />
+              </div>
+              <div class="formGroup">
+                <label for="pronouns">Pronouns</label>
+                <select id="pronouns" name="pronouns">
+                  <option value="he/him">He/Him</option>
+                  <option value="she/her">She/Her</option>
+                  <option value="they/them">They/Them</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+              <p>
+                Let others know how to refer to you.
+                <a href="#"
+                  >Learn more about
+                  <span style="color: #0a66c2; text-decoration: none"
+                    >gender pronouns</span
+                  ></a
+                >.
+              </p>
+              <div class="formGroup">
+                <button class="allLinkedInMembersBtn">
+                  <i class="fa-solid fa-eye" style="color: #666666"></i> All
+                  LinkedIn members
+                </button>
+              </div>
+              <div class="formGroup">
+                <label for="headline">Headline*</label>
+                <input type="text" id="headline" name="headline" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btnPrimary">Save</button>
+          </form>
+        </div>
+      </div>
+
       <div class="viewImpressions">
         <div class="viewers">
           <h4>58</h4>
@@ -122,9 +181,9 @@
           <div class="upperSection">
             <div class="profileBackgroundImage">
               <img
-                src="https://source.unsplash.com/random/landscape"
+                src="https://i.pravatar.cc/300"
                 id="preview"
-                height="201px"
+                alt="Profile Background Image"
               />
               <span class="editBgCircle">
                 <label for="editBgIcon"
@@ -140,8 +199,9 @@
             </div>
             <span class="profilePic">
               <img
-                src="https://source.unsplash.com/random/profile"
+                src="https://i.pravatar.cc/300"
                 id="preview2"
+                alt="Profile Picture"
               />
               <span class="editBgCircle2">
                 <label for="editBgIcon2"
@@ -158,31 +218,29 @@
             <div class="userGolden">
               <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
               <span class="editBgCircle3">
-                <label for="editBgIcon3"
-                  ><i class="fa-solid fa-pencil" style="color: #444"></i
-                ></label>
-                <input
-                  type="file"
-                  name="editBgIcon3"
-                  id="editBgIcon3"
-                  accept="image/*"
-                />
+                <button id="editFullNameBtn">
+                  <i class="fa-solid fa-pencil" style="color: #444"> </i>
+                </button>
               </span>
             </div>
             <div class="userBioDetails">
-              <h1 id="fullName">John Doe</h1>
-              <button id="editFullNameBtn">Edit</button>
-              <input type="text" id="editFullNameInput" style="display: none" />
-
-              <p id="bio">
-                Frontend Web Developer | HTML | CSS | JavaScript | React.js
-              </p>
-              <button id="editBioBtn">Edit</button>
-              <textarea id="editBioInput" style="display: none"></textarea>
-
-              <div class="buttons">
-                <button id="saveProfileBtn" style="display: none">Save</button>
-                <button id="cancelEditBtn" style="display: none">Cancel</button>
+              <div class="nameSection">
+                <h1 id="fullName">John Doe</h1>
+                <input
+                  type="text"
+                  id="editFullNameInput"
+                  style="display: none"
+                />
+              </div>
+              <div class="bioSection">
+                <p id="bio">
+                  Frontend Web Developer | HTML | CSS | JavaScript | React.js
+                </p>
+                <textarea id="editBioInput" style="display: none"></textarea>
+              </div>
+              <div class="buttons" style="display: none">
+                <button id="saveProfileBtn">Save</button>
+                <button id="cancelEditBtn">Cancel</button>
               </div>
             </div>
           </div>
@@ -243,7 +301,7 @@
             <div class="otherSimilarProfiles">
               <div class="contPro">
                 <div class="profileSmall">
-                  <img src="https://source.unsplash.com/random/fruits" />
+                  <img src="https://i.pravatar.cc/300" />
                 </div>
                 <div class="profileInfo">
                   <h3>Jane Smith</h3>
@@ -258,7 +316,7 @@
               </div>
               <div class="contPro">
                 <div class="profileSmall">
-                  <img src="https://source.unsplash.com/random/cars" />
+                  <img src="https://i.pravatar.cc/300" />
                 </div>
                 <div class="profileInfo">
                   <h3>Emily Johnson</h3>
@@ -276,7 +334,7 @@
               </div>
               <div class="contPro">
                 <div class="profileSmall">
-                  <img src="https://source.unsplash.com/random/animals" />
+                  <img src="https://i.pravatar.cc/300" />
                 </div>
                 <div class="profileInfo">
                   <h3>Michael Brown</h3>
@@ -292,7 +350,7 @@
               </div>
               <div class="contPro">
                 <div class="profileSmall">
-                  <img src="https://source.unsplash.com/random/fruits" />
+                  <img src="https://i.pravatar.cc/300" />
                 </div>
                 <div class="profileInfo">
                   <h3>Sarah Lee</h3>
@@ -308,7 +366,7 @@
               </div>
               <div class="contPro">
                 <div class="profileSmall">
-                  <img src="https://source.unsplash.com/random" />
+                  <img src="https://i.pravatar.cc/300" />
                 </div>
                 <div class="profileInfo">
                   <h3>David Wilson</h3>

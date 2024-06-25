@@ -128,6 +128,21 @@ h2 {
     border-radius: 50%;
   }
 
+  .editBgCircle3 button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #444;
+  }
+
+  .editBgCircle3 button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    padding: 6px;
+    color: #000;
+  }
+
   .editBgCircle:hover,
   .editBgIcon:hover,
   .editBgCircle2:hover,
@@ -601,4 +616,128 @@ h2 {
 .edit-mode #saveProfileBtn,
 .edit-mode #cancelEditBtn {
   display: inline-block;
+}
+
+/* Popup form styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px 20px 55px 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.requiredInfo {
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.modalContent h3 {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modalContent p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.modalContent a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.modalContent a:hover {
+  text-decoration: underline;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.allLinkedInMembersBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f3f2ef;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.allLinkedInMembersBtn i {
+  margin-right: 5px;
+}
+
+.allLinkedInMembersBtn:hover {
+  background-color: #e0dfdc;
+}
+
+.btnPrimary {
+  background-color: #0a66c2;
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  float: right;
+}
+
+.btnPrimary:hover {
+  background-color: #004182;
+}
+
+.basicInfo {
+  border: #0000001a 1px solid;
+  padding: 0 10px 0 10px;
 }
