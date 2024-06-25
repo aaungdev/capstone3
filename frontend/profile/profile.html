@@ -20,12 +20,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <link rel="stylesheet" href="profile.css" />
     <script type="module" src="profile.js"></script>
     <link rel="stylesheet" href="../posts/posts.css" />
   </head>
-
   <body>
     <header>
       <nav class="navbar">
@@ -118,7 +116,6 @@
         <h2>Events</h2>
       </div>
     </div>
-
     <div class="container">
       <div class="contentContainer">
         <section>
@@ -130,9 +127,9 @@
                 height="201px"
               />
               <span class="editBgCircle">
-                <label for="editBgIcon">
-                  <i class="fa-solid fa-pencil" style="color: #0062c7"></i>
-                </label>
+                <label for="editBgIcon"
+                  ><i class="fa-solid fa-pencil" style="color: #0062c7"></i
+                ></label>
                 <input
                   type="file"
                   name="editBgIcon"
@@ -147,9 +144,9 @@
                 id="preview2"
               />
               <span class="editBgCircle2">
-                <label for="editBgIcon2">
-                  <i class="fa-solid fa-pencil" style="color: #0062c7"></i>
-                </label>
+                <label for="editBgIcon2"
+                  ><i class="fa-solid fa-pencil" style="color: #0062c7"></i
+                ></label>
                 <input
                   type="file"
                   name="editBgIcon2"
@@ -161,9 +158,9 @@
             <div class="userGolden">
               <i class="fa-brands fa-linkedin" style="color: #c37d16"></i>
               <span class="editBgCircle3">
-                <label for="editBgIcon3">
-                  <i class="fa-solid fa-pencil" style="color: #444"></i>
-                </label>
+                <label for="editBgIcon3"
+                  ><i class="fa-solid fa-pencil" style="color: #444"></i
+                ></label>
                 <input
                   type="file"
                   name="editBgIcon3"
@@ -173,27 +170,19 @@
               </span>
             </div>
             <div class="userBioDetails">
-              <h1>John Doe</h1>
-              <p>Frontend Web Developer | HTML | CSS | JavaScript | React.js</p>
-              <div class="address">
-                <p id="location">New York, NY</p>
-                <i
-                  class="fa-solid fa-location-dot"
-                  style="color: #4c8ed0"
-                  id="addressIcon"
-                ></i>
-                <span class="contactInfo">
-                  <a href="">∙ Contact info</a>
-                </span>
-              </div>
-              <div class="connections">
-                <a href="">500+ connections</a>
-              </div>
+              <h1 id="fullName">John Doe</h1>
+              <button id="editFullNameBtn">Edit</button>
+              <input type="text" id="editFullNameInput" style="display: none" />
+
+              <p id="bio">
+                Frontend Web Developer | HTML | CSS | JavaScript | React.js
+              </p>
+              <button id="editBioBtn">Edit</button>
+              <textarea id="editBioInput" style="display: none"></textarea>
+
               <div class="buttons">
-                <button>Open to</button>
-                <button>Add profile section</button>
-                <button>Add custom button</button>
-                <button>More</button>
+                <button id="saveProfileBtn" style="display: none">Save</button>
+                <button id="cancelEditBtn" style="display: none">Cancel</button>
               </div>
             </div>
           </div>
@@ -338,5 +327,6 @@
         </aside>
       </div>
     </div>
+    <script src="profile.js"></script>
   </body>
 </html>

@@ -1,56 +1,77 @@
-import { getUserLocation } from "./getLocation.js";
+"use strict";
 
-const imageInput = document.getElementById("editBgIcon");
-const imageInput2 = document.getElementById("editBgIcon2");
-const imagePreview = document.getElementById("preview");
-const imagePreview2 = document.getElementById("preview2");
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MjM2NTIyLCJleHAiOjE3MTkzMjI5MjJ9.Xn9G394Zx-CzSRvyCU-uHuLgKfaMFEdBQJPsEwfskcw";
 
-imageInput.style.display = "none";
-imageInput2.style.display = "none";
+document.addEventListener("DOMContentLoaded", () => {
+  const editFullNameBtn = document.getElementById("editFullNameBtn");
+  const editFullNameInput = document.getElementById("editFullNameInput");
+  const fullName = document.getElementById("fullName");
 
-imageInput.addEventListener("change", function () {
-  const file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      imagePreview.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    imagePreview.src = "#";
-  }
-});
+  const editBioBtn = document.getElementById("editBioBtn");
+  const editBioInput = document.getElementById("editBioInput");
+  const bio = document.getElementById("bio");
 
-imageInput2.addEventListener("change", function () {
-  const file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      imagePreview2.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    imagePreview2.src = "#";
-  }
-});
+  const saveProfileBtn = document.getElementById("saveProfileBtn");
+  const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-document.getElementById("addressIcon").addEventListener("click", () => {
-  getUserLocation();
-});
+  editFullNameBtn.addEventListener("click", () => {
+    document
+      .querySelector(".userBioDetails")
+      .classList.add("edit-fullname", "edit-mode");
+    editFullNameInput.value = fullName.textContent;
+  });
 
-const bars = document.getElementById("icon");
-const sidebar = document.getElementById("sidebar");
+  editBioBtn.addEventListener("click", () => {
+    document
+      .querySelector(".userBioDetails")
+      .classList.add("edit-bio", "edit-mode");
+    editBioInput.value = bio.textContent;
+  });
 
-let visible = true;
+  cancelEditBtn.addEventListener("click", () => {
+    document
+      .querySelector(".userBioDetails")
+      .classList.remove("edit-fullname", "edit-bio", "edit-mode");
+  });
 
-bars.addEventListener("click", () => {
-  if (visible == true) {
-    bars.innerHTML = `✖`;
-    visible = false;
-    sidebar.style.left = "0px";
-  } else {
-    bars.innerHTML = `☰`;
-    visible = true;
-    sidebar.style.left = "-250px";
-  }
+  saveProfileBtn.addEventListener("click", async () => {
+    const updatedFullName = editFullNameInput.value.trim();
+    const updatedBio = editBioInput.value.trim();
+
+    if (updatedFullName && updatedBio) {
+      try {
+        const response = await fetch(
+          `http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/alex1234`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              fullName: updatedFullName,
+              bio: updatedBio,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to update profile");
+        }
+
+        const updatedUser = await response.json();
+        fullName.textContent = updatedUser.fullName;
+        bio.textContent = updatedUser.bio;
+
+        document
+          .querySelector(".userBioDetails")
+          .classList.remove("edit-fullname", "edit-bio", "edit-mode");
+      } catch (error) {
+        console.error("Error updating profile:", error);
+      }
+    } else {
+      alert("Full Name and Bio cannot be empty!");
+    }
+  });
 });

@@ -570,3 +570,35 @@ h2 {
     color: rgba(0, 0, 0, 0.75);
   }
 }
+
+/* Other existing styles */
+
+#editFullNameInput,
+#editBioInput,
+#saveProfileBtn,
+#cancelEditBtn {
+  display: none;
+}
+
+.edit-fullname #fullName,
+.edit-fullname #editFullNameBtn {
+  display: none;
+}
+
+.edit-fullname #editFullNameInput {
+  display: block;
+}
+
+.edit-bio #bio,
+.edit-bio #editBioBtn {
+  display: none;
+}
+
+.edit-bio #editBioInput {
+  display: block;
+}
+
+.edit-mode #saveProfileBtn,
+.edit-mode #cancelEditBtn {
+  display: inline-block;
+}

@@ -1,21 +1,25 @@
 "use strict";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTU3NDkwLCJleHAiOjE3MTkyNDM4OTB9.bNlxL8YTydqW-g3fHPvvpGvtmRDSjksSkHR_mbdb49A";
-
 document.addEventListener("DOMContentLoaded", () => {
-  fetchPosts();
+  const token = getLoginData().token;
+
+  if (!token) {
+    window.location.replace("../account/login.html");
+    return;
+  }
+
+  fetchPosts(token);
 
   const createPostInput = document.querySelector(".createPostInput input");
   createPostInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      createPost();
+      createPost(token);
     }
   });
 });
 
-async function fetchPosts() {
+async function fetchPosts(token) {
   try {
     const response = await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts",
@@ -107,11 +111,11 @@ function displayPosts(posts) {
   });
 
   document.querySelectorAll(".like-button").forEach((button) => {
-    button.addEventListener("click", toggleLike);
+    button.addEventListener("click", (event) => toggleLike(event, token));
   });
 }
 
-async function toggleLike(event) {
+async function toggleLike(event, token) {
   const postId = event.currentTarget.dataset.postId;
   const likeButton = event.currentTarget;
 
@@ -121,20 +125,20 @@ async function toggleLike(event) {
 
   try {
     if (isLiked) {
-      await removeLike(postId);
+      await removeLike(postId, token);
       likeButton.classList.remove("liked");
     } else {
-      await addLike(postId);
+      await addLike(postId, token);
       likeButton.classList.add("liked");
     }
   } catch (error) {
     console.error("Error toggling like:", error);
   }
 
-  fetchPosts();
+  fetchPosts(token);
 }
 
-async function addLike(postId) {
+async function addLike(postId, token) {
   try {
     await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes",
@@ -152,7 +156,7 @@ async function addLike(postId) {
   }
 }
 
-async function removeLike(postId) {
+async function removeLike(postId, token) {
   try {
     await fetch(
       `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes/${postId}`,
@@ -168,7 +172,7 @@ async function removeLike(postId) {
   }
 }
 
-async function createPost() {
+async function createPost(token) {
   const input = document.querySelector(".createPostInput input");
   const postText = input.value.trim();
 
@@ -196,7 +200,7 @@ async function createPost() {
 
     const newPost = await response.json();
     input.value = "";
-    fetchPosts(); // Refresh the posts to include the new post
+    fetchPosts(token); // Refresh the posts to include the new post
   } catch (error) {
     console.error("Error creating post:", error);
   }

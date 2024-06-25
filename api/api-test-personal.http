@@ -17,8 +17,8 @@ POST http://microbloglite.us-east-2.elasticbeanstalk.com/auth/login
 Content-Type: application/json
 
 {
-  "username": "alex1234",
-  "password": "aaung@yearup"
+  "username": "denzel2.0",
+  "password": "denzel2.0"
 }
 
 
