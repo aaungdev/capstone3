@@ -14,18 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSidebarUserDetails(user);
   });
 
-  fetchPosts(token);
+  fetchPosts(token, username);
 
   const createPostInput = document.querySelector(".createPostInput input");
   createPostInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      createPost(token);
+      createPost(token, username);
     }
   });
 });
 
-async function fetchPosts(token) {
+async function fetchPosts(token, username) {
   try {
     const response = await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts",
@@ -41,13 +41,13 @@ async function fetchPosts(token) {
     }
 
     const posts = await response.json();
-    displayPosts(posts);
+    displayPosts(posts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
   }
 }
 
-function displayPosts(posts) {
+function displayPosts(posts, token, username) {
   const mainContent = document.querySelector(".mainContent");
   const createPostSection = document.querySelector(".createPost");
   const sortBySection = document.querySelector(".sortBy");
@@ -75,6 +75,9 @@ function displayPosts(posts) {
       ? `<img src="${post.image}" alt="Post Image" width="100%">`
       : "";
 
+    const like = post.likes.find((like) => like.username === username);
+    const isLiked = !!like;
+
     const postStats = `
       <article class="postStats">
           <article>
@@ -97,7 +100,11 @@ function displayPosts(posts) {
 
     const postActivity = `
       <article class="postActivity">
-          <article class="postActivityLink like-button" data-post-id="${post._id}">
+          <article class="postActivityLink like-button ${
+            isLiked ? "liked" : ""
+          }" data-post-id="${post._id}" data-like-id="${
+      isLiked ? like._id : ""
+    }">
               <i class='bx bx-like bx-flip-horizontal'></i>&nbsp;<span>Like</span>
           </article>
           <article class="postActivityLink">
@@ -117,36 +124,38 @@ function displayPosts(posts) {
   });
 
   document.querySelectorAll(".like-button").forEach((button) => {
-    button.addEventListener("click", (event) => toggleLike(event, token));
+    button.addEventListener("click", (event) =>
+      toggleLike(event, token, username)
+    );
   });
 }
 
-async function toggleLike(event, token) {
+async function toggleLike(event, token, username) {
   const postId = event.currentTarget.dataset.postId;
+  const likeId = event.currentTarget.dataset.likeId;
   const likeButton = event.currentTarget;
-
-  if (!likeButton) return;
-
   const isLiked = likeButton.classList.contains("liked");
 
   try {
     if (isLiked) {
-      await removeLike(postId, token);
+      await removeLike(likeId, token);
       likeButton.classList.remove("liked");
+      likeButton.dataset.likeId = ""; // Clear the like ID after removing
     } else {
-      await addLike(postId, token);
+      const newLikeId = await addLike(postId, token);
       likeButton.classList.add("liked");
+      likeButton.dataset.likeId = newLikeId; // Store the new like ID
     }
   } catch (error) {
     console.error("Error toggling like:", error);
   }
 
-  fetchPosts(token);
+  fetchPosts(token, username);
 }
 
 async function addLike(postId, token) {
   try {
-    await fetch(
+    const response = await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes",
       {
         method: "POST",
@@ -157,15 +166,22 @@ async function addLike(postId, token) {
         body: JSON.stringify({ postId }),
       }
     );
+
+    if (!response.ok) {
+      throw new Error("Failed to add like");
+    }
+
+    const result = await response.json();
+    return result._id; // Return the new like ID
   } catch (error) {
     console.error("Error adding like:", error);
   }
 }
 
-async function removeLike(postId, token) {
+async function removeLike(likeId, token) {
   try {
-    await fetch(
-      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes/${postId}`,
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes/${likeId}`,
       {
         method: "DELETE",
         headers: {
@@ -173,6 +189,10 @@ async function removeLike(postId, token) {
         },
       }
     );
+
+    if (!response.ok) {
+      throw new Error("Failed to remove like");
+    }
   } catch (error) {
     console.error("Error removing like:", error);
   }
@@ -204,7 +224,6 @@ async function createPost(token) {
       throw new Error("Failed to create post");
     }
 
-    const newPost = await response.json();
     input.value = "";
     fetchPosts(token); // Refresh the posts to include the new post
   } catch (error) {
@@ -293,4 +312,9 @@ async function fetchUserDetails(username, token) {
   } catch (error) {
     console.error("Error fetching user details:", error);
   }
+}
+
+function getLoginData() {
+  const loginJSON = window.localStorage.getItem("login-data");
+  return JSON.parse(loginJSON) || {};
 }

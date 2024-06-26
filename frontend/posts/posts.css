@@ -820,3 +820,7 @@ a {
 .postActivityLink i {
   font-size: 1.5rem;
 }
+
+.liked {
+  color: #0073b1;
+}
