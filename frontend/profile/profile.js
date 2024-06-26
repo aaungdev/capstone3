@@ -26,9 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownUserDetails(user);
   });
 
-  fetchUserPosts(username, token); // Call the function with username
+  fetchUserPosts(username, token);
 
-  // Open modal
   editFullNameBtn.addEventListener("click", async () => {
     modal.style.display = "block";
     const fullName = fullNameElement.textContent.trim();
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     headline.value = bioElement.textContent.trim();
   });
 
-  // Close modal
   span.addEventListener("click", () => {
     modal.style.display = "none";
   });
@@ -67,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         fullNameElement.textContent = updatedUser.fullName;
         bioElement.textContent = updatedUser.bio;
-        updateDropdownUserDetails(updatedUser); // Update dropdown details
+        updateDropdownUserDetails(updatedUser);
         modal.style.display = "none";
       } catch (error) {
         console.error("Error updating profile:", error);
@@ -143,16 +141,14 @@ async function fetchUserPosts(username, token) {
     }
 
     const posts = await response.json();
-    console.log("Fetched posts:", posts); // Debugging line
     const userPosts = posts.filter((post) => post.username === username);
-    console.log("Filtered user posts:", userPosts); // Debugging line
-    displayUserPosts(userPosts);
+    displayUserPosts(userPosts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
   }
 }
 
-function displayUserPosts(posts) {
+function displayUserPosts(posts, token, username) {
   const postsContainer = document.querySelector(".postsContainer");
 
   if (!postsContainer) {
@@ -160,21 +156,34 @@ function displayUserPosts(posts) {
     return;
   }
 
-  console.log("Displaying posts:", posts); // Debugging line
-  postsContainer.innerHTML = ""; // Clear previous posts
+  postsContainer.innerHTML = "";
 
   posts.forEach((post) => {
     const postElement = document.createElement("article");
     postElement.classList.add("post");
 
+    const postDate = new Date(post.createdAt);
+    const formattedDate = postDate.toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
     const postAuthor = `
       <article class="postAuthor">
-          <img src="images/user.png" alt="User">
+          <img src="../images/user.png" alt="User">
           <article>
               <h1>${post.username}</h1>
               <small>${post.bio || ""}</small>
-              <small>${new Date(post.createdAt).toLocaleTimeString()}</small>
+              <small>${formattedDate}</small>
           </article>
+          <div class="postOptions">
+              <button class="optionsBtn"><i class="fas fa-ellipsis-h"></i></button>
+              <button class="closeBtn"><i class="fas fa-times"></i></button>
+          </div>
       </article>`;
 
     const postContent = `<p>${post.text}</p>`;
@@ -185,12 +194,12 @@ function displayUserPosts(posts) {
     const postStats = `
       <article class="postStats">
           <article>
-              <img src="images/like.svg" alt="Like">
-              <img src="images/love.svg" alt="Love">
-              <img src="images/celebrate.svg" alt="Celebrate">
-              <img src="images/support.svg" alt="Support">
-              <img src="images/insightful.svg" alt="Insightful">
-              <img src="images/funny.svg" alt="funny">
+              <img src="../images/like.svg" alt="Like">
+              <img src="../images/love.svg" alt="Love">
+              <img src="../images/celebrate.svg" alt="Celebrate">
+              <img src="../images/support.svg" alt="Support">
+              <img src="../images/insightful.svg" alt="Insightful">
+              <img src="../images/funny.svg" alt="funny">
               <span class="likedUser">${post.likes.length} likes</span>
           </article>
           <article>
@@ -204,7 +213,11 @@ function displayUserPosts(posts) {
 
     const postActivity = `
       <article class="postActivity">
-          <article class="postActivityLink like-button" data-post-id="${post._id}">
+          <article class="postActivityLink like-button ${
+            post.likes.some((like) => like.username === username) ? "liked" : ""
+          }" data-post-id="${post._id}" data-like-id="${
+      post.likes.find((like) => like.username === username)?._id || ""
+    }">
               <i class='bx bx-like bx-flip-horizontal'></i>&nbsp;<span>Like</span>
           </article>
           <article class="postActivityLink">
@@ -222,6 +235,105 @@ function displayUserPosts(posts) {
       postAuthor + postContent + postImage + postStats + postActivity;
     postsContainer.appendChild(postElement);
   });
+
+  document.querySelectorAll(".like-button").forEach((button) => {
+    button.addEventListener("click", (event) =>
+      toggleLike(event, token, username)
+    );
+  });
+
+  document.querySelectorAll(".optionsBtn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      console.log(
+        "Options button clicked for post:",
+        event.currentTarget.closest(".post")
+      );
+    });
+  });
+
+  document.querySelectorAll(".closeBtn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      console.log(
+        "Close button clicked for post:",
+        event.currentTarget.closest(".post")
+      );
+    });
+  });
+}
+
+async function toggleLike(event, token, username) {
+  const postId = event.currentTarget.dataset.postId;
+  const likeId = event.currentTarget.dataset.likeId;
+  const likeButton = event.currentTarget;
+  const isLiked = likeButton.classList.contains("liked");
+
+  try {
+    if (isLiked) {
+      await removeLike(likeId, token);
+      likeButton.classList.remove("liked");
+      likeButton.dataset.likeId = "";
+    } else {
+      const newLikeId = await addLike(postId, token);
+      likeButton.classList.add("liked");
+      likeButton.dataset.likeId = newLikeId;
+    }
+  } catch (error) {
+    console.error("Error toggling like:", error);
+  }
+
+  fetchUserPosts(username, token);
+}
+
+async function addLike(postId, token) {
+  console.log(`Adding like to postId: ${postId}`);
+  try {
+    const response = await fetch(
+      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ postId }),
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to add like", await response.json());
+      throw new Error("Failed to add like");
+    }
+
+    const result = await response.json();
+    console.log("Like added successfully", result);
+    return result._id;
+  } catch (error) {
+    console.error("Error adding like:", error);
+  }
+}
+
+async function removeLike(likeId, token) {
+  console.log(`Removing like with likeId: ${likeId}`);
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes/${likeId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to remove like", await response.json());
+      throw new Error("Failed to remove like");
+    }
+
+    console.log("Like removed successfully");
+  } catch (error) {
+    console.error("Error removing like:", error);
+  }
 }
 
 function getLoginData() {
@@ -234,7 +346,6 @@ function toggleMenu() {
   dropdownMenu.classList.toggle("show");
 }
 
-// Close the dropdown if clicked outside
 window.onclick = function (event) {
   if (
     !event.target.matches(".online img") &&
@@ -247,14 +358,12 @@ window.onclick = function (event) {
   }
 };
 
-// Add event listener for "View Profile" button
 document
   .getElementById("viewProfileButton")
   .addEventListener("click", function () {
     window.location.href = "profile.html";
   });
 
-// Add event listener for "Sign Out" link
 document
   .getElementById("logoutButton")
   .addEventListener("click", function (event) {
@@ -267,7 +376,6 @@ function logout() {
   window.location.href = "../account/login.html";
 }
 
-// Function to update dropdown menu user details
 function updateDropdownUserDetails(user) {
   const dropdownFullNameElement = document.querySelector(
     ".dropdownMenu .profileInfo h4"

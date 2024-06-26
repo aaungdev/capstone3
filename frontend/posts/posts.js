@@ -60,23 +60,46 @@ function displayPosts(posts, token, username) {
     const postElement = document.createElement("article");
     postElement.classList.add("post");
 
+    const postDate = new Date(post.createdAt);
+    const formattedDate = postDate.toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+    const formattedTime = postDate.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const like = post.likes.find((like) => like.username === username);
+    const isLiked = !!like;
+
     const postAuthor = `
       <article class="postAuthor">
           <img src="images/user.png" alt="User">
           <article>
               <h1>${post.username}</h1>
               <small>${post.bio || ""}</small>
-              <small>${new Date(post.createdAt).toLocaleTimeString()}</small>
+              <small>${formattedDate} - ${formattedTime}</small>
           </article>
+          <div class="postOptions">
+              <button class="optionsBtn"><i class="fas fa-ellipsis-h"></i></button>
+              <div class="dropdownMenu">
+                  <a href="#">Save</a>
+                  <a href="#">Copy link to post</a>
+                  <a href="#">Not interested</a>
+                  <a href="#">Unfollow ${post.username}</a>
+                  <a href="#">Report post</a>
+              </div>
+              <button class="closeBtn"><i class="fas fa-times"></i></button>
+          </div>
       </article>`;
 
     const postContent = `<p>${post.text}</p>`;
     const postImage = post.image
       ? `<img src="${post.image}" alt="Post Image" width="100%">`
       : "";
-
-    const like = post.likes.find((like) => like.username === username);
-    const isLiked = !!like;
 
     const postStats = `
       <article class="postStats">
@@ -127,6 +150,21 @@ function displayPosts(posts, token, username) {
     button.addEventListener("click", (event) =>
       toggleLike(event, token, username)
     );
+  });
+
+  // Add event listeners for options and close buttons
+  document.querySelectorAll(".optionsBtn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const dropdownMenu = event.currentTarget.nextElementSibling;
+      dropdownMenu.classList.toggle("show");
+    });
+  });
+
+  document.querySelectorAll(".closeBtn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const post = event.currentTarget.closest(".post");
+      post.remove();
+    });
   });
 }
 

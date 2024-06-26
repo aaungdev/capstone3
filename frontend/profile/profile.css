@@ -741,3 +741,41 @@ h2 {
   border: #0000001a 1px solid;
   padding: 0 10px 0 10px;
 }
+
+.postAuthor {
+  position: relative;
+}
+
+.postOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.optionsBtn,
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666; /* Adjust the color to your preference */
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.optionsBtn i,
+.closeBtn i {
+  font-size: 18px;
+}
+
+.optionsBtn:hover,
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.optionsBtn:hover i,
+.closeBtn:hover i {
+  color: #333;
+}
