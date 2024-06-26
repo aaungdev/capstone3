@@ -205,3 +205,53 @@ async function createPost(token) {
     console.error("Error creating post:", error);
   }
 }
+
+function toggleMenu() {
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  dropdownMenu.classList.toggle("show");
+}
+
+// Close the dropdown if clicked outside
+window.onclick = function (event) {
+  if (
+    !event.target.matches(".online img") &&
+    !event.target.closest(".dropdownMenu")
+  ) {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    if (dropdownMenu.classList.contains("show")) {
+      dropdownMenu.classList.remove("show");
+    }
+  }
+};
+
+// Add event listener for "View Profile" button
+document
+  .getElementById("viewProfileButton")
+  .addEventListener("click", function () {
+    window.location.href = "../profile/profile.html";
+  });
+
+// Add event listener for "Sign Out" link
+document
+  .getElementById("logoutButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    logout();
+  });
+
+function logout() {
+  window.localStorage.removeItem("login-data");
+  window.location.href = "../account/login.html";
+}
+
+// Function to update dropdown menu user details
+function updateDropdownUserDetails(user) {
+  const dropdownFullNameElement = document.querySelector(
+    ".dropdownMenu .profileInfo h4"
+  );
+  const dropdownBioElement = document.querySelector(
+    ".dropdownMenu .profileInfo p"
+  );
+  dropdownFullNameElement.textContent = user.fullName || "No name provided";
+  dropdownBioElement.textContent = user.bio || "No bio provided";
+}

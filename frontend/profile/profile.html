@@ -67,12 +67,11 @@
           </ul>
         </section>
         <section class="navbarRight">
-          <article class="online">
+          <article class="online" onclick="toggleMenu()">
             <img
               src="https://i.pravatar.cc/300"
               alt="User Image"
               class="navProfileImg"
-              onclick="toggleMenu()"
             />
             <p>Me <i class="bx bxs-down-arrow"></i></p>
           </article>
@@ -90,6 +89,42 @@
             <p>Try Premium for USD $0</p>
           </article>
         </section>
+        <div class="dropdownMenu" id="dropdownMenu">
+          <div class="profileSection">
+            <img
+              src="https://i.pravatar.cc/300"
+              alt="Profile Image"
+              class="profileImage"
+            />
+            <div class="profileInfo">
+              <h4>Aung Aung</h4>
+              <p>
+                Software Engineer | Tech Enthusiast | Student Success Mentor |
+                CUNY | Year Up
+              </p>
+            </div>
+          </div>
+          <button
+            href="profile.html"
+            class="viewProfileBtn"
+            id="viewProfileButton"
+          >
+            View Profile
+          </button>
+          <div class="dropdownLinks">
+            <h4>Account</h4>
+            <a href="#">Get hired faster with Premium</a>
+            <a href="#">Settings & Privacy</a>
+            <a href="#">Help</a>
+            <a href="#">Language</a>
+          </div>
+          <div class="dropdownLinks">
+            <h4>Manage</h4>
+            <a href="#">Posts & Activity</a>
+            <a href="#">Job Posting Account</a>
+          </div>
+          <a href="#" id="logoutButton" class="signOutLink">Sign Out</a>
+        </div>
       </nav>
     </header>
     <div class="sidebar" id="sidebar">
@@ -386,5 +421,12 @@
       </div>
     </div>
     <script src="profile.js"></script>
+    <script>
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          logout();
+        });
+    </script>
   </body>
 </html>

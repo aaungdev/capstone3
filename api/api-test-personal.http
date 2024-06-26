@@ -35,15 +35,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhd
 ### Step 5) Create a Post
 POST http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTk0Mjk2LCJleHAiOjE3MTkyODA2OTZ9.PpxObOiE-VcxiYt1kxnkcMvgrBfCUvbe2DBxO6t9sro
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTM0MzczNiwiZXhwIjoxNzE5NDMwMTM2fQ.EnHiAQGa6R0AuY8GywfA9STp39ykGiGrkGe0m8WR2Iw
 
 {
-  "text": "Hello World"
+  "text": "Hello World 3344fghjk"
 }
 
 ### Step 6) GET Posts
 GET http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTk0Mjk2LCJleHAiOjE3MTkyODA2OTZ9.PpxObOiE-VcxiYt1kxnkcMvgrBfCUvbe2DBxO6t9sro
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTM0MzczNiwiZXhwIjoxNzE5NDMwMTM2fQ.EnHiAQGa6R0AuY8GywfA9STp39ykGiGrkGe0m8WR2Iw
 # 6675a0a2fbf13c2cc0eaf6e3
 
 ### Step 6B) GET Post

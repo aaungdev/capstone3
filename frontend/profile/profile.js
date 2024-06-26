@@ -18,19 +18,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const editProfileForm = document.getElementById("editProfileForm");
   const firstName = document.getElementById("firstName");
   const lastName = document.getElementById("lastName");
-  const additionalName = document.getElementById("additionalName");
-  const pronouns = document.getElementById("pronouns");
   const headline = document.getElementById("headline");
 
-  fetchUserDetails(username, token);
+  fetchUserDetails(username, token).then((user) => {
+    fullNameElement.textContent = user.fullName || "No name provided";
+    bioElement.textContent = user.bio || "No bio provided";
+    updateDropdownUserDetails(user);
+  });
 
   // Open modal
-  editFullNameBtn.addEventListener("click", () => {
+  editFullNameBtn.addEventListener("click", async () => {
     modal.style.display = "block";
-    const [first, last] = fullNameElement.textContent.split(' ');
-    firstName.value = first || '';
-    lastName.value = last || '';
-    headline.value = bioElement.textContent;
+    const fullName = fullNameElement.textContent.trim();
+    const [first, ...last] = fullName.split(" ");
+    firstName.value = first || "";
+    lastName.value = last.join(" ") || "";
+    headline.value = bioElement.textContent.trim();
   });
 
   // Close modal
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         fullNameElement.textContent = updatedUser.fullName;
         bioElement.textContent = updatedUser.bio;
+        updateDropdownUserDetails(updatedUser); // Update dropdown details
         modal.style.display = "none";
       } catch (error) {
         console.error("Error updating profile:", error);
@@ -87,10 +91,7 @@ async function fetchUserDetails(username, token) {
       throw new Error("Failed to fetch user details");
     }
 
-    const user = await response.json();
-    document.getElementById("fullName").textContent =
-      user.fullName || "No name provided";
-    document.getElementById("bio").textContent = user.bio || "No bio provided";
+    return await response.json();
   } catch (error) {
     console.error("Error fetching user details:", error);
   }
@@ -128,3 +129,58 @@ function getLoginData() {
   const loginJSON = window.localStorage.getItem("login-data");
   return JSON.parse(loginJSON) || {};
 }
+
+function toggleMenu() {
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  dropdownMenu.classList.toggle("show");
+}
+
+// Close the dropdown if clicked outside
+window.onclick = function (event) {
+  if (
+    !event.target.matches(".online img") &&
+    !event.target.closest(".dropdownMenu")
+  ) {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    if (dropdownMenu.classList.contains("show")) {
+      dropdownMenu.classList.remove("show");
+    }
+  }
+};
+
+// Add event listener for "View Profile" button
+document
+  .getElementById("viewProfileButton")
+  .addEventListener("click", function () {
+    window.location.href = "profile.html";
+  });
+
+// Add event listener for "Sign Out" link
+document
+  .getElementById("logoutButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    logout();
+  });
+
+function logout() {
+  window.localStorage.removeItem("login-data");
+  window.location.href = "../account/login.html";
+}
+
+// Function to update dropdown menu user details
+function updateDropdownUserDetails(user) {
+  const dropdownFullNameElement = document.querySelector(
+    ".dropdownMenu .profileInfo h4"
+  );
+  const dropdownBioElement = document.querySelector(
+    ".dropdownMenu .profileInfo p"
+  );
+  dropdownFullNameElement.textContent = user.fullName || "No name provided";
+  dropdownBioElement.textContent = user.bio || "No bio provided";
+}
+
+// Update user details in the dropdown menu
+fetchUserDetails(username, token).then((user) => {
+  updateDropdownUserDetails(user);
+});
