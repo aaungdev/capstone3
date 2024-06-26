@@ -24,7 +24,7 @@ a {
   justify-content: space-between;
   background: #fff;
   padding: 0.5rem 0.37rem 0.5rem 0.37rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 100;
 }
@@ -305,7 +305,7 @@ a {
 
 /* CONTAINER START */
 .container {
-  padding: 1.25rem 11%;
+  padding: 6.25rem 11%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

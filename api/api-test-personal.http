@@ -38,8 +38,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTM0MzczNiwiZXhwIjoxNzE5NDMwMTM2fQ.EnHiAQGa6R0AuY8GywfA9STp39ykGiGrkGe0m8WR2Iw
 
 {
-  "text": "Hello World 3344fghjk"
+  "text": "Hello World",
+  "image": "https://th.bing.com/th/id/R.f8b9aac7211454d77b196612fd5b42db?rik=JNQ1SxvP9C2dnA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_PoK3PBeMXC4%2fTK-YhGH937I%2fAAAAAAAAEFM%2fg9-9_XfqhS0%2fs636%2fFuture%2bcity.png&ehk=pyafXD6VGLaN0Fq5AqC2uvrAm3KAqYzKj1yJXoBHg4A%3d&risl=&pid=ImgRaw&r=0"
 }
+
 
 ### Step 6) GET Posts
 GET http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts/
@@ -58,7 +60,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZ
 ### Step 8) Update User
 PUT  http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/julien
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgxMjM0IiwiaWF0IjoxNzE5MTk0Mjk2LCJleHAiOjE3MTkyODA2OTZ9.PpxObOiE-VcxiYt1kxnkcMvgrBfCUvbe2DBxO6t9sro
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTM3MjM4NCwiZXhwIjoxNzE5NDU4Nzg0fQ.PaEfrVAeQ96JFM0t4IVqGKm-Hc0mC19gZb_w9TIh4II
 
 {
   "fullName": "Julien Gold",

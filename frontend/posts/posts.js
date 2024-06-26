@@ -2,11 +2,17 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = getLoginData().token;
+  const username = getLoginData().username;
 
-  if (!token) {
+  if (!token || !username) {
     window.location.replace("../account/login.html");
     return;
   }
+
+  fetchUserDetails(username, token).then((user) => {
+    updateDropdownUserDetails(user);
+    updateSidebarUserDetails(user);
+  });
 
   fetchPosts(token);
 
@@ -254,4 +260,37 @@ function updateDropdownUserDetails(user) {
   );
   dropdownFullNameElement.textContent = user.fullName || "No name provided";
   dropdownBioElement.textContent = user.bio || "No bio provided";
+}
+
+// Function to update sidebar user details
+function updateSidebarUserDetails(user) {
+  const sidebarFullNameElement = document.querySelector(
+    ".sidebarProfileInfo figcaption"
+  );
+  const sidebarBioElement = document.querySelector(".profileInfoTitle");
+  const sidebarImageElement = document.querySelector(".sidebarProfileInfo img");
+  sidebarFullNameElement.textContent = user.fullName || "No name provided";
+  sidebarBioElement.textContent = user.bio || "No bio provided";
+  sidebarImageElement.src = user.profileImage || "https://i.pravatar.cc/300"; // Default image if none provided
+}
+
+async function fetchUserDetails(username, token) {
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user details");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+  }
 }
