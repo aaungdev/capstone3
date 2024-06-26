@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownUserDetails(user);
   });
 
+  fetchUserPosts(username, token); // Call the function with username
+
   // Open modal
   editFullNameBtn.addEventListener("click", async () => {
     modal.style.display = "block";
@@ -125,6 +127,103 @@ async function updateUserDetails(username, fullName, bio, token) {
   }
 }
 
+async function fetchUserPosts(username, token) {
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const posts = await response.json();
+    console.log("Fetched posts:", posts); // Debugging line
+    const userPosts = posts.filter((post) => post.username === username);
+    console.log("Filtered user posts:", userPosts); // Debugging line
+    displayUserPosts(userPosts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+}
+
+function displayUserPosts(posts) {
+  const postsContainer = document.querySelector(".postsContainer");
+
+  if (!postsContainer) {
+    console.error("Posts container element not found");
+    return;
+  }
+
+  console.log("Displaying posts:", posts); // Debugging line
+  postsContainer.innerHTML = ""; // Clear previous posts
+
+  posts.forEach((post) => {
+    const postElement = document.createElement("article");
+    postElement.classList.add("post");
+
+    const postAuthor = `
+      <article class="postAuthor">
+          <img src="images/user.png" alt="User">
+          <article>
+              <h1>${post.username}</h1>
+              <small>${post.bio || ""}</small>
+              <small>${new Date(post.createdAt).toLocaleTimeString()}</small>
+          </article>
+      </article>`;
+
+    const postContent = `<p>${post.text}</p>`;
+    const postImage = post.image
+      ? `<img src="${post.image}" alt="Post Image" width="100%">`
+      : "";
+
+    const postStats = `
+      <article class="postStats">
+          <article>
+              <img src="images/like.svg" alt="Like">
+              <img src="images/love.svg" alt="Love">
+              <img src="images/celebrate.svg" alt="Celebrate">
+              <img src="images/support.svg" alt="Support">
+              <img src="images/insightful.svg" alt="Insightful">
+              <img src="images/funny.svg" alt="funny">
+              <span class="likedUser">${post.likes.length} likes</span>
+          </article>
+          <article>
+              <span>${
+                post.comments || 0
+              } comments</span> <b>&nbsp;-&nbsp;</b> <span>${
+      post.shares || 0
+    } shares</span>
+          </article>
+      </article>`;
+
+    const postActivity = `
+      <article class="postActivity">
+          <article class="postActivityLink like-button" data-post-id="${post._id}">
+              <i class='bx bx-like bx-flip-horizontal'></i>&nbsp;<span>Like</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bx-comment-detail'></i>&nbsp;<span>Comment</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bx-repost'></i>&nbsp;<span>Repost</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bxs-send'></i>&nbsp;<span>Send</span>
+          </article>
+      </article>`;
+
+    postElement.innerHTML =
+      postAuthor + postContent + postImage + postStats + postActivity;
+    postsContainer.appendChild(postElement);
+  });
+}
+
 function getLoginData() {
   const loginJSON = window.localStorage.getItem("login-data");
   return JSON.parse(loginJSON) || {};
@@ -179,8 +278,3 @@ function updateDropdownUserDetails(user) {
   dropdownFullNameElement.textContent = user.fullName || "No name provided";
   dropdownBioElement.textContent = user.bio || "No bio provided";
 }
-
-// Update user details in the dropdown menu
-fetchUserDetails(username, token).then((user) => {
-  updateDropdownUserDetails(user);
-});
