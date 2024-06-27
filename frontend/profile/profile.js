@@ -158,31 +158,37 @@ function displayUserPosts(posts, token, username) {
 
   postsContainer.innerHTML = "";
 
-  posts.forEach((post) => {
+  posts.forEach(async (post) => {
     const postElement = document.createElement("article");
     postElement.classList.add("post");
 
     const postDate = new Date(post.createdAt);
-    const formattedDate = postDate.toLocaleString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    });
+    const now = new Date();
+    const timeDiff = Math.abs(now - postDate);
+    const isRecent = timeDiff < 24 * 60 * 60 * 1000;
+
+    const formattedDate = isRecent
+      ? postDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      : postDate.toLocaleDateString([], { month: "short", day: "numeric" });
 
     const postAuthor = `
       <article class="postAuthor">
           <img src="../images/user.png" alt="User">
           <article>
               <h1>${post.username}</h1>
-              <small>${post.bio || ""}</small>
-              <small>${formattedDate}</small>
+              <p>${await fetchUserBio(post.username, token)}</p>
+              <small><i class="bi bi-globe"></i> ${formattedDate}</small>
           </article>
-          <div class="postOptions">
-              <button class="optionsBtn"><i class="fas fa-ellipsis-h"></i></button>
-              <button class="closeBtn"><i class="fas fa-times"></i></button>
+          <div class="customPostOptions">
+              <button class="customOptionsBtn"><i class="bi bi-three-dots"></i></button>
+              <button class="customCloseBtn"><i class="bi bi-x"></i></button>
+              <div class="customDropdownMenu">
+                  <a href="#"><i class="bi bi-bookmark"></i> Save</a>
+                  <a href="#"><i class="bi bi-link-45deg"></i> Copy link to post</a>
+                  <a href="#"><i class="bi bi-eye-slash"></i> Not interested</a>
+                  <a href="#"><i class="bi bi-person-x"></i> Unfollow</a>
+                  <a href="#"><i class="bi bi-flag"></i> Report post</a>
+              </div>
           </div>
       </article>`;
 
@@ -190,6 +196,9 @@ function displayUserPosts(posts, token, username) {
     const postImage = post.image
       ? `<img src="${post.image}" alt="Post Image" width="100%">`
       : "";
+
+    const like = post.likes.find((like) => like.username === username);
+    const isLiked = !!like;
 
     const postStats = `
       <article class="postStats">
@@ -202,21 +211,26 @@ function displayUserPosts(posts, token, username) {
               <img src="../images/funny.svg" alt="funny">
               <span class="likedUser">${post.likes.length} likes</span>
           </article>
-          <article>
-              <span>${
-                post.comments || 0
-              } comments</span> <b>&nbsp;-&nbsp;</b> <span>${
-      post.shares || 0
-    } shares</span>
-          </article>
+          ${
+            post.comments || post.shares
+              ? `<article>
+              ${post.comments ? `<span>${post.comments} comments</span>` : ""}
+              ${
+                post.shares
+                  ? `<b>&nbsp;-&nbsp;</b> <span>${post.shares} shares</span>`
+                  : ""
+              }
+          </article>`
+              : ""
+          }
       </article>`;
 
     const postActivity = `
       <article class="postActivity">
           <article class="postActivityLink like-button ${
-            post.likes.some((like) => like.username === username) ? "liked" : ""
+            isLiked ? "liked" : ""
           }" data-post-id="${post._id}" data-like-id="${
-      post.likes.find((like) => like.username === username)?._id || ""
+      isLiked ? like._id : ""
     }">
               <i class='bx bx-like bx-flip-horizontal'></i>&nbsp;<span>Like</span>
           </article>
@@ -242,22 +256,27 @@ function displayUserPosts(posts, token, username) {
     );
   });
 
-  document.querySelectorAll(".optionsBtn").forEach((button) => {
+  document.querySelectorAll(".customOptionsBtn").forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log(
-        "Options button clicked for post:",
-        event.currentTarget.closest(".post")
-      );
+      const postElement = event.currentTarget.closest(".post");
+      const dropdownMenu = postElement.querySelector(".customDropdownMenu");
+      dropdownMenu.classList.toggle("show");
     });
   });
 
-  document.querySelectorAll(".closeBtn").forEach((button) => {
+  document.querySelectorAll(".customCloseBtn").forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log(
-        "Close button clicked for post:",
-        event.currentTarget.closest(".post")
-      );
+      const postElement = event.currentTarget.closest(".post");
+      postElement.remove();
     });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".customOptionsBtn")) {
+      document.querySelectorAll(".customDropdownMenu").forEach((menu) => {
+        menu.classList.remove("show");
+      });
+    }
   });
 }
 
@@ -285,7 +304,6 @@ async function toggleLike(event, token, username) {
 }
 
 async function addLike(postId, token) {
-  console.log(`Adding like to postId: ${postId}`);
   try {
     const response = await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes",
@@ -300,12 +318,10 @@ async function addLike(postId, token) {
     );
 
     if (!response.ok) {
-      console.error("Failed to add like", await response.json());
       throw new Error("Failed to add like");
     }
 
     const result = await response.json();
-    console.log("Like added successfully", result);
     return result._id;
   } catch (error) {
     console.error("Error adding like:", error);
@@ -313,7 +329,6 @@ async function addLike(postId, token) {
 }
 
 async function removeLike(likeId, token) {
-  console.log(`Removing like with likeId: ${likeId}`);
   try {
     const response = await fetch(
       `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes/${likeId}`,
@@ -326,13 +341,34 @@ async function removeLike(likeId, token) {
     );
 
     if (!response.ok) {
-      console.error("Failed to remove like", await response.json());
       throw new Error("Failed to remove like");
     }
-
-    console.log("Like removed successfully");
   } catch (error) {
     console.error("Error removing like:", error);
+  }
+}
+
+async function fetchUserBio(username, token) {
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user bio");
+    }
+
+    const user = await response.json();
+    const bio = user.bio || "Yearup Student";
+    return bio.length > 50 ? bio.substring(0, 50) + "..." : bio;
+  } catch (error) {
+    console.error("Error fetching user bio:", error);
+    return "Yearup Student";
   }
 }
 

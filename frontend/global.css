@@ -1,18 +1,294 @@
-/* Global CSS for all pages */
 
-* {
-    /* Sizing helper: See Workbook 1b, page 2-33. */
-    box-sizing: border-box;
+a {
+    text-decoration: none;
+    color: #5f5f5f;
+  }
 
-    /* 
-       Vizualization helper: While styling or debugging your HTML & CSS, 
-       uncomment the rule below to see all the boxes on your page more
-       clearly! (Remove this outline before submitting: users won't 
-       want to see it!)
-    */
-    /* outline: 1px dotted red; */
-}
+/* NAVBAR AREA START */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0.5rem 0.37rem 0.5rem 0.37rem;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo img {
+    width: 2rem;
+    margin-right: 0.5rem;
+    margin-left: 6rem;
+    display: block;
+  }
+  
+  .navbarCenter ul li {
+    display: inline-block;
+    list-style: none;
+  }
+  
+  .navbarCenter ul li a {
+    display: flex;
+    align-items: center;
+    font-size: 0.87rem;
+    margin: 0 0.3rem 0.3rem 0.3rem;
+    padding-right: 0.1rem;
+    position: relative;
+  }
+  
+  .navbarCenter ul li span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 1.56rem;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+  
+  .navbarCenter ul li a i {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 1.87rem;
+    margin: 0rem 1.6rem 1rem 1.6rem;
+  }
+  
+  .navbarCenter li a:hover {
+    color: #000;
+  }
+  
+  .navbarCenter .activeLink {
+    color: #000;
+  }
+  
+  .navbarCenter ul li a::after {
+    content: "";
+    width: 0;
+    height: 0.125rem;
+    background: #333;
+    position: absolute;
+    bottom: -0.5rem;
+    transition: width 0.3s;
+  }
+  
+  .navbarCenter ul li a:hover::after,
+  .navbarCenter ul li a.activeLink::after {
+    width: 100%;
+  }
+  
+  .navbarRight {
+    margin-right: 10rem;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .navbarRight .online {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .navProfileImg {
+    width: 1.8rem;
+    border-radius: 50%;
+    display: block;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .online {
+    position: relative;
+    margin-right: 1.5rem;
+  }
+  
+  .online p,
+  .online p i {
+    color: #777;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+  }
+  
+  .verticalLine {
+    border-left: 1px solid #ccc;
+    height: 3rem;
+    margin: 0 0.625rem;
+  }
+  
+  .navbarRight .forBusinessNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .navbarRight .forBusinessNav i {
+    color: #777;
+    font-size: 1.5rem;
+    margin-bottom: -1.05rem;
+  }
+  
+  .navbarRight .forBusinessNav p,
+  .navbarRight .forBusinessNav p i {
+    color: #777;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  
+  .navbarRight .tryPremiumLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .navbarRight .tryPremiumLink h6,
+  .navbarRight .tryPremiumLink p {
+    color: #777;
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  
+  .searchBox {
+    background: #ecf1fa;
+    width: 15.6rem;
+    min-height: 2.3em;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  
+  .searchBox i {
+    width: 0.875rem;
+    color: #000;
+    font-weight: 600;
+  }
+  
+  .jobIconSize {
+    font-size: 1.3rem !important;
+    text-align: center;
+    width: 1.87rem;
+    margin: 0rem 1.6rem 1rem 1rem;
+  }
+  
+  .searchBox input {
+    width: 100%;
+    background: transparent;
+    padding: 0.5rem;
+    border: 0;
+  }
+  
+  .navbarLeft {
+    display: flex;
+    align-items: center;
+    margin-left: 4.5rem;
+  }
+  
+  /* Dropdown Menu Styles */
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    right: 26.5rem;
+    top: 100%;
+    background: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 15.625rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-0.625rem);
+  }
+  
+  .dropdownMenu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .dropdownMenu .profileSection {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .dropdownMenu .profileImage {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 0.625rem;
+  }
+  
+  .dropdownMenu .profileInfo h4 {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+  
+  .dropdownMenu .profileInfo p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #666;
+  }
+  
+  .dropdownMenu .viewProfileBtn {
+    width: calc(100% - 1.25rem);
+    margin: 0.625rem;
+    padding: 0.5rem 0;
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    font-weight: 600;
+    background: #fff;
+    border-radius: 3.5rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .dropdownMenu .dropdownLinks {
+    padding: 0.625rem;
+  }
+  
+  .dropdownMenu .dropdownLinks h4 {
+    margin: 0;
+    margin-bottom: 0.3125rem;
+    font-size: 0.75rem;
+    color: #666;
+  }
+  
+  .dropdownMenu .dropdownLinks a {
+    display: block;
+    font-size: 0.875rem;
+    color: #333;
+    text-decoration: none;
+    padding: 0.3125rem 0;
+  }
+  
+  .dropdownMenu .dropdownLinks a:hover {
+    text-decoration: underline;
+  }
+  
+  .dropdownMenu .signOutLink {
+    display: block;
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    color: #333;
+    text-decoration: none;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .dropdownMenu .signOutLink:hover {
+    background: #f5f5f5;
+  }
+  
+  /* NAVBAR AREA END */
+  
 
-:root {
-    font-size: 1rem;
-}
+  
