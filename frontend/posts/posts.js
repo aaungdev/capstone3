@@ -129,63 +129,28 @@ function displayPosts(posts, token, username) {
           }
       </article>`;
 
-    const postActivity = document.createElement("article");
-    postActivity.classList.add("postActivity");
+    const postActivity = `
+      <article class="postActivity">
+          <article class="postActivityLink like-button ${
+            isLiked ? "liked" : ""
+          }" data-post-id="${post._id}" data-like-id="${
+      isLiked ? like._id : ""
+    }">
+              <i class='bx bx-like bx-flip-horizontal'></i>&nbsp;<span>Like</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bx-comment-detail'></i>&nbsp;<span>Comment</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bx-repost'></i>&nbsp;<span>Repost</span>
+          </article>
+          <article class="postActivityLink">
+              <i class='bx bxs-send'></i>&nbsp;<span>Send</span>
+          </article>
+      </article>`;
 
-    const likeButton = document.createElement("article");
-    likeButton.classList.add("postActivityLink", "like-button");
-    if (isLiked) likeButton.classList.add("liked");
-    likeButton.dataset.postId = post._id;
-    if (isLiked) likeButton.dataset.likeId = like._id;
-
-    const likeIcon = document.createElement("i");
-    likeIcon.classList.add("bx", "bx-like", "bx-flip-horizontal");
-    likeButton.appendChild(likeIcon);
-
-    const likeText = document.createElement("span");
-    likeText.innerText = "Like";
-    likeButton.appendChild(likeText);
-
-    const commentButton = document.createElement("article");
-    commentButton.classList.add("postActivityLink");
-
-    const commentIcon = document.createElement("i");
-    commentIcon.classList.add("bx", "bx-comment-detail");
-    commentButton.appendChild(commentIcon);
-
-    const commentText = document.createElement("span");
-    commentText.innerText = "Comment";
-    commentButton.appendChild(commentText);
-
-    const repostButton = document.createElement("article");
-    repostButton.classList.add("postActivityLink");
-
-    const repostIcon = document.createElement("i");
-    repostIcon.classList.add("bx", "bx-repost");
-    repostButton.appendChild(repostIcon);
-
-    const repostText = document.createElement("span");
-    repostText.innerText = "Repost";
-    repostButton.appendChild(repostText);
-
-    const sendButton = document.createElement("article");
-    sendButton.classList.add("postActivityLink");
-
-    const sendIcon = document.createElement("i");
-    sendIcon.classList.add("bx", "bxs-send");
-    sendButton.appendChild(sendIcon);
-
-    const sendText = document.createElement("span");
-    sendText.innerText = "Send";
-    sendButton.appendChild(sendText);
-
-    postActivity.appendChild(likeButton);
-    postActivity.appendChild(commentButton);
-    postActivity.appendChild(repostButton);
-    postActivity.appendChild(sendButton);
-
-    postElement.innerHTML = postAuthor + postContent + postImage + postStats;
-    postElement.appendChild(postActivity);
+    postElement.innerHTML =
+      postAuthor + postContent + postImage + postStats + postActivity;
     mainContent.appendChild(postElement);
   });
 
@@ -367,8 +332,8 @@ function updateDropdownUserDetails(user) {
   const dropdownBioElement = document.querySelector(
     ".dropdownMenu .profileInfo p"
   );
-  dropdownFullNameElement.innerText = user.fullName || "No name provided";
-  dropdownBioElement.innerText = user.bio || "No bio provided";
+  dropdownFullNameElement.textContent = user.fullName || "No name provided";
+  dropdownBioElement.textContent = user.bio || "No bio provided";
 }
 
 // Function to update sidebar user details
@@ -378,8 +343,8 @@ function updateSidebarUserDetails(user) {
   );
   const sidebarBioElement = document.querySelector(".profileInfoTitle");
   const sidebarImageElement = document.querySelector(".sidebarProfileInfo img");
-  sidebarFullNameElement.innerText = user.fullName || "No name provided";
-  sidebarBioElement.innerText = user.bio || "No bio provided";
+  sidebarFullNameElement.textContent = user.fullName || "No name provided";
+  sidebarBioElement.textContent = user.bio || "No bio provided";
   sidebarImageElement.src = user.profileImage || "https://i.pravatar.cc/300"; // Default image if none provided
 }
 

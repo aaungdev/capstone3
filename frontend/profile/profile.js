@@ -1,8 +1,9 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const token = getLoginData().token;
-  const username = getLoginData().username;
+  const loginData = getLoginData();
+  const token = loginData?.token;
+  const username = loginData?.username;
 
   if (!token || !username) {
     window.location.replace("../account/login.html");
@@ -12,14 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const fullNameElement = document.getElementById("fullName");
   const bioElement = document.getElementById("bio");
 
-  const modal = document.getElementById("editProfileModal");
-  const span = document.getElementsByClassName("close")[0];
-  const editFullNameBtn = document.getElementById("editFullNameBtn");
-  const editProfileForm = document.getElementById("editProfileForm");
-  const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
-  const headline = document.getElementById("headline");
-
   fetchUserDetails(username, token).then((user) => {
     fullNameElement.textContent = user.fullName || "No name provided";
     bioElement.textContent = user.bio || "No bio provided";
@@ -28,7 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchUserPosts(username, token);
 
-  editFullNameBtn.addEventListener("click", async () => {
+  const modal = document.getElementById("editProfileModal");
+  const span = document.getElementsByClassName("close")[0];
+  const editFullNameBtn = document.getElementById("editFullNameBtn");
+  const editProfileForm = document.getElementById("editProfileForm");
+  const firstName = document.getElementById("firstName");
+  const lastName = document.getElementById("lastName");
+  const headline = document.getElementById("headline");
+
+  editFullNameBtn.addEventListener("click", () => {
     modal.style.display = "block";
     const fullName = fullNameElement.textContent.trim();
     const [first, ...last] = fullName.split(" ");
@@ -72,6 +73,28 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       alert("Full Name and Headline cannot be empty!");
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    const isOptionsButton = event.target.closest(".customOptionsBtn");
+    const dropdownMenus = document.querySelectorAll(".customDropdownMenu");
+
+    if (isOptionsButton) {
+      const postElement = isOptionsButton.closest(".post");
+      const dropdownMenu = postElement.querySelector(".customDropdownMenu");
+      dropdownMenus.forEach((menu) => {
+        if (menu !== dropdownMenu) {
+          menu.classList.remove("show");
+        }
+      });
+      dropdownMenu.classList.toggle("show");
+    } else {
+      dropdownMenus.forEach((menu) => {
+        if (!menu.contains(event.target)) {
+          menu.classList.remove("show");
+        }
+      });
     }
   });
 });
@@ -158,7 +181,7 @@ function displayUserPosts(posts, token, username) {
 
   postsContainer.innerHTML = "";
 
-  posts.forEach(async (post) => {
+  posts.forEach((post) => {
     const postElement = document.createElement("article");
     postElement.classList.add("post");
 
@@ -176,18 +199,17 @@ function displayUserPosts(posts, token, username) {
           <img src="../images/user.png" alt="User">
           <article>
               <h1>${post.username}</h1>
-              <p>${await fetchUserBio(post.username, token)}</p>
+              <p>Yearup Student</p>
               <small><i class="bi bi-globe"></i> ${formattedDate}</small>
           </article>
           <div class="customPostOptions">
               <button class="customOptionsBtn"><i class="bi bi-three-dots"></i></button>
-              <button class="customCloseBtn"><i class="bi bi-x"></i></button>
               <div class="customDropdownMenu">
-                  <a href="#"><i class="bi bi-bookmark"></i> Save</a>
-                  <a href="#"><i class="bi bi-link-45deg"></i> Copy link to post</a>
-                  <a href="#"><i class="bi bi-eye-slash"></i> Not interested</a>
-                  <a href="#"><i class="bi bi-person-x"></i> Unfollow</a>
-                  <a href="#"><i class="bi bi-flag"></i> Report post</a>
+                  <a href="#"><i class="bi bi-star"></i> Feature on top of profile</a>
+                  <a href="#"><i class="bi bi-pencil"></i> Edit post</a>
+                  <a href="#"><i class="bi bi-trash"></i> Delete post</a>
+                  <a href="#"><i class="bi bi-chat-dots"></i> Who can comment on this post?</a>
+                  <a href="#"><i class="bi bi-eye"></i> Who can see this post?</a>
               </div>
           </div>
       </article>`;
@@ -203,12 +225,7 @@ function displayUserPosts(posts, token, username) {
     const postStats = `
       <article class="postStats">
           <article>
-              <img src="../images/like.svg" alt="Like">
-              <img src="../images/love.svg" alt="Love">
-              <img src="../images/celebrate.svg" alt="Celebrate">
-              <img src="../images/support.svg" alt="Support">
-              <img src="../images/insightful.svg" alt="Insightful">
-              <img src="../images/funny.svg" alt="funny">
+              <img src="../posts/images/love.svg" alt="Love">
               <span class="likedUser">${post.likes.length} likes</span>
           </article>
           ${
@@ -254,29 +271,6 @@ function displayUserPosts(posts, token, username) {
     button.addEventListener("click", (event) =>
       toggleLike(event, token, username)
     );
-  });
-
-  document.querySelectorAll(".customOptionsBtn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const postElement = event.currentTarget.closest(".post");
-      const dropdownMenu = postElement.querySelector(".customDropdownMenu");
-      dropdownMenu.classList.toggle("show");
-    });
-  });
-
-  document.querySelectorAll(".customCloseBtn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const postElement = event.currentTarget.closest(".post");
-      postElement.remove();
-    });
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".customOptionsBtn")) {
-      document.querySelectorAll(".customDropdownMenu").forEach((menu) => {
-        menu.classList.remove("show");
-      });
-    }
   });
 }
 
@@ -348,33 +342,29 @@ async function removeLike(likeId, token) {
   }
 }
 
-async function fetchUserBio(username, token) {
-  try {
-    const response = await fetch(
-      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/${username}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch user bio");
-    }
-
-    const user = await response.json();
-    const bio = user.bio || "Yearup Student";
-    return bio.length > 50 ? bio.substring(0, 50) + "..." : bio;
-  } catch (error) {
-    console.error("Error fetching user bio:", error);
-    return "Yearup Student";
-  }
-}
-
 function getLoginData() {
   const loginJSON = window.localStorage.getItem("login-data");
   return JSON.parse(loginJSON) || {};
+}
+
+function updateDropdownUserDetails(user) {
+  const dropdownFullNameElement = document.querySelector(
+    ".dropdownMenu .profileInfo h4"
+  );
+  const dropdownBioElement = document.querySelector(
+    ".dropdownMenu .profileInfo p"
+  );
+  dropdownFullNameElement.textContent = user.fullName || "No name provided";
+  dropdownBioElement.textContent = user.bio || "No bio provided";
+}
+
+document.getElementById("logoutButton").addEventListener("click", function () {
+  logout();
+});
+
+function logout() {
+  window.localStorage.removeItem("login-data");
+  window.location.href = "../account/login.html";
 }
 
 function toggleMenu() {
@@ -399,26 +389,3 @@ document
   .addEventListener("click", function () {
     window.location.href = "profile.html";
   });
-
-document
-  .getElementById("logoutButton")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    logout();
-  });
-
-function logout() {
-  window.localStorage.removeItem("login-data");
-  window.location.href = "../account/login.html";
-}
-
-function updateDropdownUserDetails(user) {
-  const dropdownFullNameElement = document.querySelector(
-    ".dropdownMenu .profileInfo h4"
-  );
-  const dropdownBioElement = document.querySelector(
-    ".dropdownMenu .profileInfo p"
-  );
-  dropdownFullNameElement.textContent = user.fullName || "No name provided";
-  dropdownBioElement.textContent = user.bio || "No bio provided";
-}
