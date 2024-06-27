@@ -97,6 +97,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  document.addEventListener("click", async (event) => {
+    if (event.target.matches(".delete-post")) {
+      const postElement = event.target.closest(".post");
+      const postId = postElement.dataset.postId;
+      try {
+        await deletePost(postId, token);
+        postElement.remove();
+      } catch (error) {
+        console.error("Error deleting post:", error);
+      }
+    }
+  });
 });
 
 async function fetchUserDetails(username, token) {
@@ -184,6 +197,7 @@ function displayUserPosts(posts, token, username) {
   posts.forEach((post) => {
     const postElement = document.createElement("article");
     postElement.classList.add("post");
+    postElement.dataset.postId = post._id;
 
     const postDate = new Date(post.createdAt);
     const now = new Date();
@@ -205,16 +219,16 @@ function displayUserPosts(posts, token, username) {
           <div class="customPostOptions">
               <button class="customOptionsBtn"><i class="bi bi-three-dots"></i></button>
               <div class="customDropdownMenu">
-                  <a href="#"><i class="bi bi-star"></i> Feature on top of profile</a>
+                  <a href="#"><i class="bi bi-bookmark"></i> Save</a>
                   <a href="#"><i class="bi bi-pencil"></i> Edit post</a>
-                  <a href="#"><i class="bi bi-trash"></i> Delete post</a>
+                  <a href="#" class="delete-post"><i class="bi bi-trash"></i> Delete post</a>
                   <a href="#"><i class="bi bi-chat-dots"></i> Who can comment on this post?</a>
                   <a href="#"><i class="bi bi-eye"></i> Who can see this post?</a>
               </div>
           </div>
       </article>`;
 
-    const postContent = `<p>${post.text}</p>`;
+    const postContent = `<p class="post-content">${post.text}</p>`;
     const postImage = post.image
       ? `<img src="${post.image}" alt="Post Image" width="100%">`
       : "";
@@ -272,6 +286,29 @@ function displayUserPosts(posts, token, username) {
       toggleLike(event, token, username)
     );
   });
+}
+
+async function deletePost(postId, token) {
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts/${postId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to delete post");
+    }
+
+    console.log("Post deleted successfully");
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw error;
+  }
 }
 
 async function toggleLike(event, token, username) {
