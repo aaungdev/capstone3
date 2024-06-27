@@ -321,7 +321,7 @@ document
 
 function logout() {
   window.localStorage.removeItem("login-data");
-  window.location.href = "../account/login.html";
+  window.location.href = "../index.html";
 }
 
 // Function to update dropdown menu user details
