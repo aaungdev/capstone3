@@ -754,11 +754,19 @@ a {
   display: block;
   margin-bottom: -2px;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 
 .post p {
-  font-size: 0.875rem;
-  margin-bottom: 0.93rem;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.postAuthor p.bio-text,
+.postAuthor small.date-text {
+  color: rgba(101, 100, 100, 0.883); /* Adjust the opacity */
+  margin: 0;
 }
 
 .postStats {
@@ -863,7 +871,7 @@ a {
   color: #333;
 }
 
-/* Add to your existing CSS */
+/* Add to your existing CSS
 
 .postOptions {
   position: relative;
@@ -906,5 +914,75 @@ a {
 }
 
 .dropdownMenu.show {
+  display: block;
+} */
+
+/* CSS for options button and dropdown menu */
+.customPostOptions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 10px; /* Increased gap for better spacing */
+}
+
+.customOptionsBtn,
+.customCloseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Increased font size */
+  color: #666;
+  border-radius: 50%;
+  padding: 10px; /* Increased padding for better click area */
+}
+
+.customOptionsBtn i,
+.customCloseBtn i {
+  font-size: 22px; /* Increased icon size */
+}
+
+.customOptionsBtn:hover,
+.customCloseBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.customOptionsBtn:hover i,
+.customCloseBtn:hover i {
+  color: #333;
+}
+
+.customDropdownMenu {
+  display: none;
+  position: absolute;
+  top: 30px; /* Adjusted for better alignment */
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  z-index: 1;
+  padding: 15px; /* Increased padding for better spacing */
+  width: 220px; /* Increased width for better readability */
+}
+
+.customDropdownMenu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px; /* Increased padding for better spacing */
+  color: black;
+  text-decoration: none;
+  font-size: 16px; /* Increased font size */
+}
+
+.customDropdownMenu a i {
+  margin-right: 15px; /* Increased margin for better spacing */
+}
+
+.customDropdownMenu a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.customDropdownMenu.show {
   display: block;
 }
