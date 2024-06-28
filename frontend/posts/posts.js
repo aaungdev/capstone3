@@ -1,4 +1,4 @@
-"use strict";
+let allPosts = []; // Global variable to store all posts
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = getLoginData().token;
@@ -23,6 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
       createPost(token, username);
     }
   });
+
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", function () {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query) {
+      const filteredPosts = allPosts.filter(post => 
+        post.username.toLowerCase().includes(query) || 
+        post.text.toLowerCase().includes(query)
+      );
+      displayPosts(filteredPosts, token, username);
+    } else {
+      displayPosts(allPosts, token, username); // Display all posts if search is cleared
+    }
+  });
 });
 
 async function fetchPosts(token, username) {
@@ -40,8 +54,8 @@ async function fetchPosts(token, username) {
       throw new Error("Failed to fetch posts");
     }
 
-    const posts = await response.json();
-    displayPosts(posts, token, username);
+    allPosts = await response.json(); // Store all posts in the global variable
+    displayPosts(allPosts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
   }

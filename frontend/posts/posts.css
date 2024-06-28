@@ -431,8 +431,8 @@ body {
   padding: 1.25rem 1.56rem 0;
   margin: 0.31rem 0 0.93rem;
   color: #333;
-  word-wrap: break-word; 
-  word-break: break-word; 
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .postAuthor {
@@ -543,7 +543,7 @@ body {
 #postContent {
   font-size: 0.9em;
   padding: 0.5em 0 1.7em 0em;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
 }
 
 .liked {
@@ -704,3 +704,9 @@ body {
   display: block;
 }
 
+.noResultsMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 20px;
+}
