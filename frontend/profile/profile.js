@@ -186,7 +186,33 @@ async function fetchUserPosts(username, token) {
   }
 }
 
-function displayUserPosts(posts, token, username) {
+async function getFullNameAndBio(username, token) {
+  try {
+    const response = await fetch(
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user details");
+    }
+
+    const user = await response.json();
+    return { fullName: user.fullName, bio: user.bio };
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    return {
+      fullName: username,
+      bio: "Yearup Student | Application Developer | Future Leader",
+    }; // Fallback to default values
+  }
+}
+
+async function displayUserPosts(posts, token, currentUsername) {
   const postsContainer = document.querySelector(".postsContainer");
 
   if (!postsContainer) {
@@ -196,7 +222,9 @@ function displayUserPosts(posts, token, username) {
 
   postsContainer.innerHTML = "";
 
-  posts.forEach((post) => {
+  for (const post of posts) {
+    const userDetails = await getFullNameAndBio(post.username, token);
+
     const postElement = document.createElement("article");
     postElement.classList.add("post");
     postElement.dataset.postId = post._id;
@@ -214,9 +242,9 @@ function displayUserPosts(posts, token, username) {
       <article class="postAuthor">
           <img src="../images/user2.png" alt="User">
           <article>
-              <h1>${post.username}</h1>
-              <p>Yearup Student | Application Developer | Future Leader</p>
-              <small>${formattedDate}  <i class="bi bi-globe"></i> </small>
+              <h1>${userDetails.fullName}</h1>
+              <p>${userDetails.bio}</p>
+              <small>${formattedDate} <i class="bi bi-globe"></i></small>
           </article>
           <div class="customPostOptions">
               <button class="customOptionsBtn"><i class="bi bi-three-dots"></i></button>
@@ -235,7 +263,7 @@ function displayUserPosts(posts, token, username) {
       ? `<div class="postImageContainer"><img src="${post.image}" alt="Post Image"></div>`
       : "";
 
-    const like = post.likes.find((like) => like.username === username);
+    const like = post.likes.find((like) => like.username === currentUsername);
     const isLiked = !!like;
 
     const postStats = `
@@ -291,16 +319,31 @@ function displayUserPosts(posts, token, username) {
     postElement.innerHTML =
       postAuthor + postContent + postImage + postStats + postActivity;
     postsContainer.appendChild(postElement);
-  });
+  }
 
   document.querySelectorAll(".like-button").forEach((button) => {
     button.addEventListener("click", (event) =>
-      toggleLike(event, token, username)
+      toggleLike(event, token, currentUsername)
     );
   });
 }
 
 async function deletePost(postId, token) {
+  // Check if post is from local storage
+  const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+  const localPostIndex = savedPosts.findIndex(
+    (post) => post.localId === postId || post._id === postId
+  );
+
+  if (localPostIndex > -1) {
+    // Remove from local storage
+    savedPosts.splice(localPostIndex, 1);
+    localStorage.setItem("posts", JSON.stringify(savedPosts));
+    fetchUserPosts(getLoginData().username, token); // Refresh posts to update the UI
+    return;
+  }
+
+  // If not from local storage, delete using API
   try {
     const response = await fetch(
       `http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts/${postId}`,
@@ -316,7 +359,7 @@ async function deletePost(postId, token) {
       throw new Error("Failed to delete post");
     }
 
-    console.log("Post deleted successfully");
+    fetchUserPosts(getLoginData().username, token); // Refresh posts to update the UI
   } catch (error) {
     console.error("Error deleting post:", error);
     throw error;

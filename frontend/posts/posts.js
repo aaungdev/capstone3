@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function fetchPosts(token, username) {
   try {
     const response = await fetch(
-      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts",
+      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts?limit=4000", // Increased limit parameter
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -294,28 +294,25 @@ async function createPost(token) {
     return;
   }
 
-  // Save post locally
-  const newPost = {
-    text: postText,
-    image: postImage,
-    username: getLoginData().username,
-    createdAt: new Date().toISOString(),
-    likes: [],
-  };
+  // Save post locally if it has an image
+  if (postImage) {
+    const newPost = {
+      text: postText,
+      image: postImage,
+      username: getLoginData().username,
+      createdAt: new Date().toISOString(),
+      likes: [],
+    };
 
-  // Store the post in local storage
-  const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-  savedPosts.push(newPost);
-  localStorage.setItem("posts", JSON.stringify(savedPosts));
+    // Store the post in local storage
+    const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+    savedPosts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(savedPosts));
 
-  // Clear input fields
-  input.value = "";
-  localStorage.removeItem("newPostImage");
-  clearImagePreview(); // Clear the image preview
-
-  // Display the post
-  allPosts.unshift(newPost);
-  displayPosts(allPosts, token, getLoginData().username);
+    // Display the post
+    allPosts.unshift(newPost);
+    displayPosts(allPosts, token, getLoginData().username);
+  }
 
   // Save text content to API
   try {
@@ -340,6 +337,11 @@ async function createPost(token) {
   } catch (error) {
     console.error("Error creating post:", error);
   }
+
+  // Clear input fields
+  input.value = "";
+  localStorage.removeItem("newPostImage");
+  clearImagePreview(); // Clear the image preview
 }
 
 function loadPostsFromLocalStorage() {
