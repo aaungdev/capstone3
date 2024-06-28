@@ -73,7 +73,7 @@ function displayPosts(posts, token, username) {
       formattedDate = `${days}d`;
     }
 
-    const bio = "Yearup Student"; // Default bio
+    const bio = "Yearup Student | Application Developer | Future Leader"; // Default bio
 
     const postAuthor = `
       <article class="postAuthor">
