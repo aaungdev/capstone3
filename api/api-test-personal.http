@@ -44,7 +44,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlb
 
 ### Step 6) GET Posts
 GET http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTUyNzUxNywiZXhwIjoxNzE5NjEzOTE3fQ.2r_PMPcKlvpwAkIk0RdB9JeCiiPyo3q6-KoLW1BTqgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbnplbDIuMCIsImlhdCI6MTcxOTUzNTE3MSwiZXhwIjoxNzE5NjIxNTcxfQ.CaNEYhDbbYvKSAhsVmTJBBfCLJ89QgcvTuF2athnB7o
 # 6675a0a2fbf13c2cc0eaf6e3
 
 ### Step 6B) GET Post
