@@ -106,25 +106,34 @@ function displayPosts(posts, token, username) {
 
     const postStats = `
       <article class="postStats">
-          <article>
-              <img src="images/like.svg" alt="Like">
-              <img src="images/love.svg" alt="Love">
-              <img src="images/celebrate.svg" alt="Celebrate">
-              <img src="images/support.svg" alt="Support">
-              <img src="images/insightful.svg" alt="Insightful">
-              <img src="images/funny.svg" alt="funny">
-              <span class="likedUser">${post.likes.length} likes</span>
-          </article>
           ${
-            post.comments || post.shares
-              ? `<article>
-              ${post.comments ? `<span>${post.comments} comments</span>` : ""}
+            post.likes.length > 0
+              ? `
+              <article>
+                <img src="images/like.svg" alt="Like">
+                <img src="images/love.svg" alt="Love">
+                <img src="images/celebrate.svg" alt="Celebrate">
+                <img src="images/support.svg" alt="Support">
+                <img src="images/insightful.svg" alt="Insightful">
+                <img src="images/funny.svg" alt="Funny">
+                <span class="likedUser">${post.likes.length} likes</span>
+              </article>
               ${
-                post.shares
-                  ? `<b>&nbsp;-&nbsp;</b> <span>${post.shares} shares</span>`
+                post.comments || post.shares
+                  ? `<article>
+                  ${
+                    post.comments
+                      ? `<span>${post.comments} comments</span>`
+                      : ""
+                  }
+                  ${
+                    post.shares
+                      ? `<b>&nbsp;-&nbsp;</b> <span>${post.shares} shares</span>`
+                      : ""
+                  }
+              </article>`
                   : ""
-              }
-          </article>`
+              }`
               : ""
           }
       </article>`;
@@ -155,9 +164,18 @@ function displayPosts(posts, token, username) {
   });
 
   document.querySelectorAll(".like-button").forEach((button) => {
-    button.addEventListener("click", (event) =>
-      toggleLike(event, token, username)
-    );
+    button.addEventListener("click", async (event) => {
+      const postId = event.currentTarget.dataset.postId;
+      const likeId = event.currentTarget.dataset.likeId;
+      const isLiked = event.currentTarget.classList.contains("liked");
+
+      if (isLiked) {
+        await removeLike(likeId, token);
+      } else {
+        await addReaction(postId, token);
+      }
+      fetchPosts(token, username); // Refresh posts to update the UI
+    });
   });
 
   // Add event listeners for options button
@@ -185,51 +203,27 @@ function displayPosts(posts, token, username) {
   });
 }
 
-async function toggleLike(event, token, username) {
-  const postId = event.currentTarget.dataset.postId;
-  const likeId = event.currentTarget.dataset.likeId;
-  const likeButton = event.currentTarget;
-  const isLiked = likeButton.classList.contains("liked");
-
-  try {
-    if (isLiked) {
-      await removeLike(likeId, token);
-      likeButton.classList.remove("liked");
-      likeButton.dataset.likeId = ""; // Clear the like ID after removing
-    } else {
-      const newLikeId = await addLike(postId, token);
-      likeButton.classList.add("liked");
-      likeButton.dataset.likeId = newLikeId; // Store the new like ID
-    }
-  } catch (error) {
-    console.error("Error toggling like:", error);
-  }
-
-  fetchPosts(token, username);
-}
-
-async function addLike(postId, token) {
+async function addReaction(postId, token) {
   try {
     const response = await fetch(
-      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes",
+      `http://microbloglite.us-east-2.elasticbeanstalk.com/api/likes`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ postId }),
+        body: JSON.stringify({ postId: postId }),
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to add like");
+      throw new Error("Failed to add reaction");
     }
 
-    const result = await response.json();
-    return result._id; // Return the new like ID
+    return await response.json(); // Return the new reaction
   } catch (error) {
-    console.error("Error adding like:", error);
+    console.error("Error adding reaction:", error);
   }
 }
 
@@ -248,6 +242,8 @@ async function removeLike(likeId, token) {
     if (!response.ok) {
       throw new Error("Failed to remove like");
     }
+
+    return await response.json(); // Return the removed like
   } catch (error) {
     console.error("Error removing like:", error);
   }
