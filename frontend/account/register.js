@@ -13,3 +13,14 @@ document.querySelector("#signupForm").onsubmit = function (event) {
   // Redirect to the next step
   window.location.href = "register-step2.html";
 };
+
+// Add event listener for the "show" text
+document
+  .getElementById("togglePassword")
+  .addEventListener("click", function () {
+    const passwordField = document.getElementById("password");
+    const passwordFieldType =
+      passwordField.getAttribute("type") === "password" ? "text" : "password";
+    passwordField.setAttribute("type", passwordFieldType);
+    this.textContent = passwordFieldType === "password" ? "show" : "hide";
+  });

@@ -83,6 +83,7 @@ body {
   top: 50%;
   right: 0.75rem;
   transform: translateY(5%);
+  cursor: pointer;
   color: #0467c3;
   font-weight: 600;
   font-size: 0.9em;
