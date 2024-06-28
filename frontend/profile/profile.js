@@ -210,11 +210,11 @@ function displayUserPosts(posts, token, username) {
 
     const postAuthor = `
       <article class="postAuthor">
-          <img src="../images/user.png" alt="User">
+          <img src="../images/user2.png" alt="User">
           <article>
               <h1>${post.username}</h1>
-              <p>Yearup Student</p>
-              <small><i class="bi bi-globe"></i> ${formattedDate}</small>
+              <p>Yearup Student | Application Developer | Future Leader</p>
+              <small>${formattedDate}  <i class="bi bi-globe"></i> </small>
           </article>
           <div class="customPostOptions">
               <button class="customOptionsBtn"><i class="bi bi-three-dots"></i></button>
@@ -228,7 +228,7 @@ function displayUserPosts(posts, token, username) {
           </div>
       </article>`;
 
-    const postContent = `<p class="post-content">${post.text}</p>`;
+    const postContent = `<p id="postContent">${post.text}</p>`;
     const postImage = post.image
       ? `<img src="${post.image}" alt="Post Image" width="100%">`
       : "";

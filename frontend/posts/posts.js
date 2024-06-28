@@ -1,3 +1,5 @@
+"use strict";
+
 let allPosts = []; // Global variable to store all posts
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,13 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Event listener for the search input
   const searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", function () {
     const query = searchInput.value.trim().toLowerCase();
     if (query) {
-      const filteredPosts = allPosts.filter(post => 
-        post.username.toLowerCase().includes(query) || 
-        post.text.toLowerCase().includes(query)
+      // Filter posts locally based on the search query
+      const filteredPosts = allPosts.filter(
+        (post) =>
+          post.username.toLowerCase().includes(query) ||
+          post.text.toLowerCase().includes(query)
       );
       displayPosts(filteredPosts, token, username);
     } else {
