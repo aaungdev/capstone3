@@ -185,7 +185,9 @@ function displayPosts(posts, token, username) {
           <article class="postActivityLink">
               <i class='bx bx-comment-detail'></i>&nbsp;<span>Comment</span>
           </article>
-          <article class="postActivityLink">
+          <article class="postActivityLink repost-button" data-post-id="${
+            post._id
+          }">
               <i class='bx bx-repost'></i>&nbsp;<span>Repost</span>
           </article>
           <article class="postActivityLink">
@@ -209,6 +211,14 @@ function displayPosts(posts, token, username) {
       } else {
         await addReaction(postId, token);
       }
+      fetchPosts(token, username); // Refresh posts to update the UI
+    });
+  });
+
+  document.querySelectorAll(".repost-button").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      const postId = event.currentTarget.dataset.postId;
+      await repostPost(postId, token);
       fetchPosts(token, username); // Refresh posts to update the UI
     });
   });
@@ -342,6 +352,53 @@ async function createPost(token) {
   input.value = "";
   localStorage.removeItem("newPostImage");
   clearImagePreview(); // Clear the image preview
+}
+
+async function repostPost(postId, token) {
+  try {
+    const originalPost = allPosts.find((post) => post._id === postId);
+
+    // Fetch original user's full name and bio
+    const originalUser = await fetchUserDetails(originalPost.username, token);
+
+    const newPostContent = `
+      Repost from ${originalUser.fullName} (${originalUser.bio}):
+      ${originalPost.text}
+    `;
+
+    const newPost = {
+      text: newPostContent,
+      image: originalPost.image,
+      username: getLoginData().username,
+      createdAt: new Date().toISOString(),
+      likes: [],
+      repost: true, // Mark this post as a repost
+      originalPostId: postId, // Reference the original post ID
+      originalPostUsername: originalPost.username, // Reference the original post's username
+    };
+
+    // Save repost to API
+    const response = await fetch(
+      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newPost),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to create repost");
+    }
+
+    // Fetch and display updated posts
+    fetchPosts(token);
+  } catch (error) {
+    console.error("Error reposting:", error);
+  }
 }
 
 function loadPostsFromLocalStorage() {
