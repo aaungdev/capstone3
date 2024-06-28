@@ -546,6 +546,11 @@ body {
   white-space: pre-wrap;
 }
 
+#postContent {
+  font-size: 0.9em;
+  padding: 0.5em 0 1.7em 0em;
+  white-space: pre-wrap;
+}
 
 .liked {
   color: #0073b1;

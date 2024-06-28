@@ -1,6 +1,6 @@
 "use strict";
 
-let allUsers = []; 
+let allUsers = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   const loginData = getLoginData();
@@ -38,6 +38,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const profileDropdownToggle = document.querySelector(".online");
   profileDropdownToggle.addEventListener("click", toggleMenu);
+
+  // Add event listener for "View Profile" button
+  document
+    .getElementById("viewProfileButton")
+    .addEventListener("click", function () {
+      window.location.href = "../profile/profile.html";
+    });
+
+  // Add event listener for "Sign Out" link
+  document
+    .getElementById("logoutButton")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      logout(loginData.token);
+    });
 
   function fetchAllUsers() {
     const url =
@@ -157,4 +172,29 @@ function updateSidebarUserDetails(user) {
 function getLoginData() {
   const loginJSON = window.localStorage.getItem("login-data");
   return JSON.parse(loginJSON) || {};
+}
+
+async function logout(token) {
+  try {
+    const response = await fetch(
+      "http://microbloglite.us-east-2.elasticbeanstalk.com/api/logout",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to log out");
+    }
+
+    window.localStorage.removeItem("login-data");
+    window.location.href = "../index.html";
+  } catch (error) {
+    console.error("Error logging out:", error);
+    window.localStorage.removeItem("login-data");
+    window.location.href = "../index.html";
+  }
 }
