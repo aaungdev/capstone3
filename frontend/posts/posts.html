@@ -204,11 +204,21 @@
               alt="User Image"
               class="createPostUser"
             />
-            <input type="text" placeholder="Write a post" />
+            <input type="text" placeholder="Write a post" id="postText" />
           </article>
           <article class="createPostLinks">
             <ul>
-              <li><img src="images/add-image.png" alt="Photo" />Photo</li>
+              <li>
+                <label for="postImage"
+                  ><img src="images/add-image.png" alt="Photo" />Photo</label
+                >
+              </li>
+              <input
+                type="file"
+                id="postImage"
+                accept="image/*"
+                style="display: none"
+              />
               <li>
                 <img src="images/add-event.png" alt="Video" />Create Event
               </li>
@@ -219,6 +229,7 @@
             </ul>
           </article>
         </article>
+
         <article class="sortBy">
           <hr />
           <p>

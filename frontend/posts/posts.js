@@ -16,13 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSidebarUserDetails(user);
   });
 
+  loadPostsFromLocalStorage();
   fetchPosts(token, username);
 
-  const createPostInput = document.querySelector(".createPostInput input");
+  const createPostInput = document.querySelector("#postText");
+  const postImageInput = document.getElementById("postImage");
+
   createPostInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
       createPost(token, username);
+    }
+  });
+
+  postImageInput.addEventListener("change", function () {
+    const file = postImageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        localStorage.setItem("newPostImage", e.target.result);
+        displayImagePreview(e.target.result); // Display the image preview
+      };
+      reader.readAsDataURL(file);
     }
   });
 
@@ -59,7 +74,8 @@ async function fetchPosts(token, username) {
       throw new Error("Failed to fetch posts");
     }
 
-    allPosts = await response.json(); // Store all posts in the global variable
+    const postsFromApi = await response.json();
+    allPosts = [...loadPostsFromLocalStorage(), ...postsFromApi]; // Combine local posts with API posts
     displayPosts(allPosts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -269,14 +285,39 @@ async function removeLike(likeId, token) {
 }
 
 async function createPost(token) {
-  const input = document.querySelector(".createPostInput input");
+  const input = document.querySelector("#postText");
   const postText = input.value.trim();
+  const postImage = localStorage.getItem("newPostImage"); // Get the image from localStorage
 
   if (!postText) {
     alert("Post content cannot be empty!");
     return;
   }
 
+  // Save post locally
+  const newPost = {
+    text: postText,
+    image: postImage,
+    username: getLoginData().username,
+    createdAt: new Date().toISOString(),
+    likes: [],
+  };
+
+  // Store the post in local storage
+  const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+  savedPosts.push(newPost);
+  localStorage.setItem("posts", JSON.stringify(savedPosts));
+
+  // Clear input fields
+  input.value = "";
+  localStorage.removeItem("newPostImage");
+  clearImagePreview(); // Clear the image preview
+
+  // Display the post
+  allPosts.unshift(newPost);
+  displayPosts(allPosts, token, getLoginData().username);
+
+  // Save text content to API
   try {
     const response = await fetch(
       "http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts",
@@ -294,11 +335,17 @@ async function createPost(token) {
       throw new Error("Failed to create post");
     }
 
-    input.value = "";
-    fetchPosts(token); // Refresh the posts to include the new post
+    // Fetch and display updated posts
+    fetchPosts(token);
   } catch (error) {
     console.error("Error creating post:", error);
   }
+}
+
+function loadPostsFromLocalStorage() {
+  const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+  allPosts = savedPosts;
+  return savedPosts;
 }
 
 function toggleMenu() {
@@ -387,4 +434,26 @@ async function fetchUserDetails(username, token) {
 function getLoginData() {
   const loginJSON = window.localStorage.getItem("login-data");
   return JSON.parse(loginJSON) || {};
+}
+
+function displayImagePreview(imageSrc) {
+  const createPostSection = document.querySelector(".createPost");
+  let imagePreview = createPostSection.querySelector(".imagePreview");
+
+  if (!imagePreview) {
+    imagePreview = document.createElement("img");
+    imagePreview.classList.add("imagePreview");
+    createPostSection.appendChild(imagePreview);
+  }
+
+  imagePreview.src = imageSrc;
+}
+
+function clearImagePreview() {
+  const createPostSection = document.querySelector(".createPost");
+  const imagePreview = createPostSection.querySelector(".imagePreview");
+
+  if (imagePreview) {
+    imagePreview.remove();
+  }
 }

@@ -744,3 +744,17 @@ h2 {
   padding: 0 10px 0 10px;
 }
 
+.postImageContainer {
+  width: 100%;
+  max-width: 500px; /* Adjust the max-width as needed */
+  height: auto;
+  margin: 10px 0;
+  overflow: hidden;
+  border-radius: 8px; /* Add border radius if needed */
+}
+
+.postImageContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

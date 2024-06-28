@@ -176,9 +176,11 @@ async function fetchUserPosts(username, token) {
       throw new Error("Failed to fetch posts");
     }
 
-    const posts = await response.json();
-    const userPosts = posts.filter((post) => post.username === username);
-    displayUserPosts(userPosts, token, username);
+    const postsFromApi = await response.json();
+    const savedPosts = loadPostsFromLocalStorage();
+    const userPosts = postsFromApi.filter((post) => post.username === username);
+    const allUserPosts = [...savedPosts, ...userPosts]; // Combine local and API posts
+    displayUserPosts(allUserPosts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
   }
@@ -230,7 +232,7 @@ function displayUserPosts(posts, token, username) {
 
     const postContent = `<p id="postContent">${post.text}</p>`;
     const postImage = post.image
-      ? `<img src="${post.image}" alt="Post Image" width="100%">`
+      ? `<div class="postImageContainer"><img src="${post.image}" alt="Post Image"></div>`
       : "";
 
     const like = post.likes.find((like) => like.username === username);
@@ -238,20 +240,30 @@ function displayUserPosts(posts, token, username) {
 
     const postStats = `
       <article class="postStats">
-          <article>
-              <img src="../posts/images/love.svg" alt="Love">
-              <span class="likedUser">${post.likes.length} likes</span>
-          </article>
+          ${
+            post.likes.length > 0
+              ? `<article>
+                  <img src="../posts/images/love.svg" alt="Love" style="display: ${
+                    isLiked ? "inline" : "none"
+                  };">
+                  <span class="likedUser">${post.likes.length} likes</span>
+              </article>`
+              : ""
+          }
           ${
             post.comments || post.shares
               ? `<article>
-              ${post.comments ? `<span>${post.comments} comments</span>` : ""}
-              ${
-                post.shares
-                  ? `<b>&nbsp;-&nbsp;</b> <span>${post.shares} shares</span>`
-                  : ""
-              }
-          </article>`
+                  ${
+                    post.comments
+                      ? `<span>${post.comments} comments</span>`
+                      : ""
+                  }
+                  ${
+                    post.shares
+                      ? `<b>&nbsp;-&nbsp;</b> <span>${post.shares} shares</span>`
+                      : ""
+                  }
+              </article>`
               : ""
           }
       </article>`;
@@ -426,3 +438,7 @@ document
   .addEventListener("click", function () {
     window.location.href = "profile.html";
   });
+
+function loadPostsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("posts")) || [];
+}

@@ -392,7 +392,9 @@ body {
 
 .createPostLinks li img {
   width: 1.5rem;
+  height: 1.5rem;
   margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .sortBy {
@@ -716,3 +718,12 @@ body {
   color: #666;
   margin-top: 20px;
 }
+
+.imagePreview {
+  width: 100%;
+  height: fit-content;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
