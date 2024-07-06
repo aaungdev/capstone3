@@ -1,9 +1,5 @@
 # LinkedIn Clone using Microblog API
 
-## Demo Project
-
-[Check out the live demo of the project here](https://github.com/aaungdev/microblog-linkedin-clone)
-
 ## Overview
 
 This project is a LinkedIn clone web application built using HTML, CSS, API, and JavaScript. The application leverages the Microblog API to implement microblogging functionalities.
