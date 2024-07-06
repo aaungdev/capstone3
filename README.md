@@ -31,17 +31,22 @@ This project is a LinkedIn clone web application built using HTML, CSS, API, and
 
 ![Login](screenshots/join-now.png)
 
-## Usage
+### Feeds Page
 
-Once both the backend and frontend servers are running, you can access the application in your web browser at `http://localhost:3000`.
+![Login](screenshots/feed.jpeg)
+
+### Profile
+
+![Login](screenshots/profile.pngg)
+
+### User Profile
+
+![Login](screenshots/user.jpeg)
 
 ## API Documentation
 
-Detailed API documentation for the Microblog API can be found [here](link-to-api-documentation).
+Detailed API documentation for the Microblog API can be found [here](http://microbloglite.us-east-2.elasticbeanstalk.com/docs/).
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Credit 📜
 
