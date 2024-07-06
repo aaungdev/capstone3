@@ -75,7 +75,7 @@ async function fetchPosts(token, username) {
     }
 
     const postsFromApi = await response.json();
-    allPosts = [...loadPostsFromLocalStorage(), ...postsFromApi]; // Combine local posts with API posts
+    allPosts = [...loadPostsFromLocalStorage(), ...postsFromApi]; // Combine local posts with API posts ******************************************************
     displayPosts(allPosts, token, username);
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -314,7 +314,7 @@ async function createPost(token) {
       likes: [],
     };
 
-    // Store the post in local storage
+    //  ******************************************************  Store the post in local storage ******************************************************
     const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     savedPosts.push(newPost);
     localStorage.setItem("posts", JSON.stringify(savedPosts));
@@ -401,6 +401,7 @@ async function repostPost(postId, token) {
   }
 }
 
+// ****************************************************** Retrieving Posts from Local Storage ******************************************************
 function loadPostsFromLocalStorage() {
   const savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
   allPosts = savedPosts;

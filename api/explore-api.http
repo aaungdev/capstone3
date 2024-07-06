@@ -6,9 +6,9 @@ POST {{BASE_URL}}/api/users
 Content-Type: application/json
 
 {
-  "username": "aaung",
-  "fullName": "Aung Aung",
-  "password": "         "
+  "username": ,
+  "fullName": ,
+  "password":
 }
 
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
 {
-  "postId": "6675a2e9fbf13c2cc0eaf755"
+  "postId": ""
 }
 
 ### Step 10) Delete/Remove Like
