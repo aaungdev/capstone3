@@ -1,5 +1,37 @@
-# Enjoy the Microblog Project and the MicroblogLite API!
+# LinkedIn Clone using Microblog API
 
-Don't forget to read the [_MicroblogLite_ API docs](http://microbloglite.us-east-2.elasticbeanstalk.com/) and experiment with the API in _Postman!_
+## Demo Project
+[Check out the live demo of the project here](https://github.com/aaungdev/microblog-linkedin-clone)
+
+## Overview
+This project is a LinkedIn clone web application built using HTML, CSS, API, and JavaScript. The application leverages the Microblog API to implement microblogging functionalities.
+
+## Features
+- User Authentication and Authorization (Sign Up, Sign Out)
+- Profile Creation and Management (Edit Bio and Name)
+- Post Creation, Editing, and Deletion
+- Like and Unlike Posts
+- Search Functionality for Users and Posts
+- View All Users
+
+## Screenshots
+### Home Page
+![Home Page](path/to/homepage-screenshot.png)
+### User Profile
+![User Profile](path/to/userprofile-screenshot.png)
+### Post Creation
+![Post Creation](path/to/postcreation-screenshot.png)
+
+## Usage
+Once both the backend and frontend servers are running, you can access the application in your web browser at `http://localhost:3000`.
+
+## API Documentation
+Detailed API documentation for the Microblog API can be found [here](link-to-api-documentation).
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Credit 📜
+Enjoy the Microblog Project and the MicroblogLite API! Don't forget to read the MicroblogLite API docs and experiment with the API in Postman!
 
 Practice and experimentation provide experience, and experience provides confidence.
