@@ -19,7 +19,7 @@ This project is a LinkedIn clone web application built using HTML, CSS, API, and
 
 ![Welcome Page](screenshots/welcome.png)
 
-### Sign Im
+### Sign In
 
 ![Sign In](screenshots/sign-in.png)
 
